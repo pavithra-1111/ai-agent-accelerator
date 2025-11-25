@@ -1,0 +1,1182 @@
+{
+  "name": "[COMPLETED] Youtube Scraper",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -400,
+        -32
+      ],
+      "id": "7963b88f-40cb-415d-8958-abb8742b6018",
+      "name": "When chat message received",
+      "webhookId": "8171a5d1-8b06-46d1-b796-fd7fd983b193"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1Ro05FaAHEPj9FAvVJSP7hUdzlKNPVt2rWsj0PtCVB7s",
+          "mode": "list",
+          "cachedResultName": "YouTube Scraper",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ro05FaAHEPj9FAvVJSP7hUdzlKNPVt2rWsj0PtCVB7s/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ro05FaAHEPj9FAvVJSP7hUdzlKNPVt2rWsj0PtCVB7s/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Channel Name": "={{ $json.channelName }}",
+            "Channel URL": "={{ $json.channelUrl }}",
+            "No. of Subscribers": "={{ $json.numberOfSubscribers }}",
+            "Location": "={{ $json.location }}",
+            "Video Title": "={{ $json.title }}",
+            "Link": "={{ $json.url }}",
+            "Likes": "={{ $json.likes }}",
+            "Comments": "={{ $json.commentsCount }}",
+            "Views": "={{ $json.viewCount }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Video Title",
+              "displayName": "Video Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Views",
+              "displayName": "Views",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Likes",
+              "displayName": "Likes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Comments",
+              "displayName": "Comments",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Channel Name",
+              "displayName": "Channel Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Channel URL",
+              "displayName": "Channel URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "No. of Subscribers",
+              "displayName": "No. of Subscribers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        304,
+        -32
+      ],
+      "id": "b99b8ac5-495e-4041-8afc-fe751a70b3d6",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "8ERR7nKGyBgaeMLc",
+          "name": "DSM PUBLIC- 18 NOV 2025"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "### Give the name of the YouTube Channel\n",
+        "height": 272,
+        "width": 304
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -496,
+        -112
+      ],
+      "typeVersion": 1,
+      "id": "7b82855b-3e3f-4e5a-87cb-35dc433e5190",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "### Pass the name as input",
+        "height": 272,
+        "width": 304
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -144,
+        -112
+      ],
+      "typeVersion": 1,
+      "id": "4e5c1d65-db7e-4cbd-906d-9d19dc6569ec",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "### Store the data\n",
+        "height": 272,
+        "width": 304
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        208,
+        -112
+      ],
+      "typeVersion": 1,
+      "id": "859e4d5b-312c-4798-85a7-e3d2aec57e57",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "operation": "Run actor and get dataset",
+        "actorSource": "store",
+        "actorId": {
+          "__rl": true,
+          "value": "h7sDV53CddomktSi5",
+          "mode": "list",
+          "cachedResultName": "YouTube Scraper (streamers/youtube-scraper)",
+          "cachedResultUrl": "https://console.apify.com/actors/h7sDV53CddomktSi5/input"
+        },
+        "customBody": "={\n    \"downloadSubtitles\": false,\n    \"hasCC\": false,\n    \"hasLocation\": false,\n    \"hasSubtitles\": false,\n    \"is360\": false,\n    \"is3D\": false,\n    \"is4K\": false,\n    \"isBought\": false,\n    \"isHD\": false,\n    \"isHDR\": false,\n    \"isLive\": false,\n    \"isVR180\": false,\n    \"maxResultStreams\": 0,\n    \"maxResults\": 10,\n    \"maxResultsShorts\": 0,\n    \"preferAutoGeneratedSubtitles\": false,\n    \"saveSubsToKVS\": false,\n    \"searchQueries\": [\n        \"{{ $json.chatInput }}\"\n    ]\n}"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        -48,
+        -32
+      ],
+      "id": "10cad73d-04b9-4647-aade-054661c93f87",
+      "name": "YouTube Scraper",
+      "credentials": {
+        "apifyApi": {
+          "id": "mmIoZGIjIHp24dKy",
+          "name": "AS Apify account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When chat message received": [
+      {
+        "json": {
+          "sessionId": "44700aea9c364eec8e376621cdbf3380",
+          "action": "sendMessage",
+          "chatInput": "Autocar India"
+        }
+      }
+    ],
+    "YouTube Scraper": [
+      {
+        "json": {
+          "title": "Tata Sierra unveiled, Maruti eVitara launch date, and more | News | Autocar India",
+          "translatedTitle": null,
+          "type": "video",
+          "id": "fKrEyTN-mmo",
+          "url": "https://www.youtube.com/watch?v=fKrEyTN-mmo",
+          "thumbnailUrl": "https://i.ytimg.com/vi/fKrEyTN-mmo/maxresdefault.jpg",
+          "viewCount": 40914,
+          "date": "2025-11-16T15:00:15.000Z",
+          "likes": 763,
+          "location": null,
+          "channelName": "Autocar India",
+          "channelUrl": "https://www.youtube.com/@autocarindia1",
+          "channelUsername": "autocarindia1",
+          "collaborators": null,
+          "channelId": "UCjWs7BxyjO5SLqevxSmp4vQ",
+          "numberOfSubscribers": 2490000,
+          "duration": "00:10:52",
+          "commentsCount": 30,
+          "text": "In this week’s Autocar India Quick News, Tata has revealed the production-spec Sierra, while Maruti has confirmed the e-Vitara’s India launch for December 2. Audi has introduced new Signature Line versions of the Q3 and Q5, and Tata has updated the Curvv and Curvv EV with additional features. At the premium end, Porsche has launched the 2025 911 Turbo S, and Maserati has announced India prices for the GranTurismo, GranCabrio Folgore EVs and the Grecale Folgore. On two wheels, Yamaha has launched the XSR155 and FZ Rave, and also showcased the EC-06 and Aerox Electric scooters. Lenny D’sa has all the details.\n\nChapters -\n0:00 - Intro\n0:30 - Tata Sierra production-spec version shown\n1:46 - Maruti e Vitara India launch on December 2\n3:03 - Audi Q3 and Q5 Signature Line launched\n3:45 - Tata launches updated Curvv and Curvv EV\n4:42 - Porsche 911 Turbo S launched\n5:32 - Maserati GranTurismo, GranCabrio Folgore EVs launched\n6:58 - Maserati Grecale Folgore launched\n7:54 - Yamaha XSR155 launched\n8:55 - Yamaha FZ Rave launched\n9:22 - River Indie-based Yamaha EC-06 revealed\n10:14 - Yamaha Aerox Electric revealed\n\nSUBSCRIBE to Autocar India for the hottest automotive news and the most comprehensive reviews ► http://bit.ly/AutocarInd\n\nAutocar India is your one-stop source for test drive reviews & comparison tests of every new car and motorcycle launched in India. We also offer a great mix of other automotive content, including weekly news, motor show reports, travelogues and other special features. \n\nWebsite: http://www.autocarindia.com \nFacebook:   / autocarindiamag  \nInstagram:   / autocar_india  \nTwitter:   / autocarindiamag  \n\nNew car reviews ►http://bit.ly/ACI-NewCarReviews\n\nComparison tests ►http://bit.ly/ACI-Comparison\n\nNew bike reviews ►http://bit.ly/ACI-BikeReviews\n\nFeatures ►http://bit.ly/ACI-Features",
+          "translatedText": null,
+          "descriptionLinks": [
+            {
+              "url": "https://www.youtube.com/watch?v=fKrEyTN-mmo",
+              "text": "0:00"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=fKrEyTN-mmo&t=30s",
+              "text": "0:30"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=fKrEyTN-mmo&t=106s",
+              "text": "1:46"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=fKrEyTN-mmo&t=183s",
+              "text": "3:03"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=fKrEyTN-mmo&t=225s",
+              "text": "3:45"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=fKrEyTN-mmo&t=282s",
+              "text": "4:42"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=fKrEyTN-mmo&t=332s",
+              "text": "5:32"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=fKrEyTN-mmo&t=418s",
+              "text": "6:58"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=fKrEyTN-mmo&t=474s",
+              "text": "7:54"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=fKrEyTN-mmo&t=535s",
+              "text": "8:55"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=fKrEyTN-mmo&t=562s",
+              "text": "9:22"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=fKrEyTN-mmo&t=614s",
+              "text": "10:14"
+            },
+            {
+              "url": "http://bit.ly/AutocarInd",
+              "text": "http://bit.ly/AutocarInd"
+            },
+            {
+              "url": "http://www.autocarindia.com/",
+              "text": "http://www.autocarindia.com"
+            },
+            {
+              "url": "http://www.facebook.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "https://www.instagram.com/autocar_india/",
+              "text": "  / autocar_india  "
+            },
+            {
+              "url": "http://www.twitter.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "http://bit.ly/ACI-NewCarReviews",
+              "text": "http://bit.ly/ACI-NewCarReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Comparison",
+              "text": "http://bit.ly/ACI-Comparison"
+            },
+            {
+              "url": "http://bit.ly/ACI-BikeReviews",
+              "text": "http://bit.ly/ACI-BikeReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Features",
+              "text": "http://bit.ly/ACI-Features"
+            }
+          ],
+          "subtitles": null,
+          "order": 61,
+          "commentsTurnedOff": false,
+          "fromYTUrl": "https://www.youtube.com/results?search_query=Autocar+India",
+          "isMonetized": null,
+          "hashtags": [],
+          "formats": [],
+          "isMembersOnly": false,
+          "input": "Autocar India"
+        }
+      },
+      {
+        "json": {
+          "title": "Honda’s bold comeback plan | Deep Drive Podcast Ep. 86 | Autocar India",
+          "translatedTitle": null,
+          "type": "video",
+          "id": "Lf64mVrynlQ",
+          "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ",
+          "thumbnailUrl": "https://i.ytimg.com/vi/Lf64mVrynlQ/maxresdefault.jpg",
+          "viewCount": 34484,
+          "date": "2025-11-15T05:30:25.000Z",
+          "likes": 668,
+          "location": "Autocar Deep Drive Podcast",
+          "channelName": "Autocar India",
+          "channelUrl": "https://www.youtube.com/@autocarindia1",
+          "channelUsername": "autocarindia1",
+          "collaborators": null,
+          "channelId": "UCjWs7BxyjO5SLqevxSmp4vQ",
+          "numberOfSubscribers": 2490000,
+          "duration": "00:33:06",
+          "commentsCount": 95,
+          "text": "Honda revealed big plans for India at the recently concluded 2025 Japan Mobility Show. On this episode of the Autocar Deep Drive Podcast powered by Kotak Mahindra Prime, Hormazd Sorabjee - Editor, Autocar India - and Ketan Thakkar - Editor, Autocar Professional - discuss where Honda’s at currently and break down why the announcement is a big deal.\n\nEditor: Deven Bhalla\nArchives: Ganesh Jadhav, Shrey Vaid, Lincon Rodrigues\n\nChapters -\n0:00 - Introduction \n1:25 - Honda 0 Alpha SUV\n2:50 - Honda’s India business\n4:30 - Honda 0 SUV\n5:47 - Honda Prelude\n6:35 - Honda ZR-V\n7:10 - Focus on India\n10:54 - New platform and focus on hybrids\n13:12 - Next-gen City\n15:20 - Short term challenges\n20:15 - Supplying cars to other manufacturers \n28:40 - Change in mindset\n29:50 - 8 new Suzukis for India\n31:10 - Toyota Land Cruiser FJ India-bound\n32:06 - Nissan Patrol launch plans\n\nSUBSCRIBE to Autocar India for the hottest automotive news and the most comprehensive reviews ► http://bit.ly/AutocarInd\n\nAutocar India is your one-stop source for test drive reviews & comparison tests of every new car and motorcycle launched in India. We also offer a great mix of other automotive content, including weekly news, motor show reports, travelogues and other special features. \n\nWebsite: http://www.autocarindia.com \nFacebook:   / autocarindiamag  \nInstagram:   / autocar_india  \nTwitter:   / autocarindiamag  \n\nNew car reviews ►http://bit.ly/ACI-NewCarReviews\n\nComparison tests ►http://bit.ly/ACI-Comparison\n\nNew bike reviews ►http://bit.ly/ACI-BikeReviews\n\nFeatures ►http://bit.ly/ACI-Features",
+          "translatedText": null,
+          "descriptionLinks": [
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ",
+              "text": "0:00"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=85s",
+              "text": "1:25"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=170s",
+              "text": "2:50"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=270s",
+              "text": "4:30"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=347s",
+              "text": "5:47"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=395s",
+              "text": "6:35"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=430s",
+              "text": "7:10"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=654s",
+              "text": "10:54"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=792s",
+              "text": "13:12"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=920s",
+              "text": "15:20"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=1215s",
+              "text": "20:15"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=1720s",
+              "text": "28:40"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=1790s",
+              "text": "29:50"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=1870s",
+              "text": "31:10"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=Lf64mVrynlQ&t=1926s",
+              "text": "32:06"
+            },
+            {
+              "url": "http://bit.ly/AutocarInd",
+              "text": "http://bit.ly/AutocarInd"
+            },
+            {
+              "url": "http://www.autocarindia.com/",
+              "text": "http://www.autocarindia.com"
+            },
+            {
+              "url": "http://www.facebook.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "https://www.instagram.com/autocar_india/",
+              "text": "  / autocar_india  "
+            },
+            {
+              "url": "http://www.twitter.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "http://bit.ly/ACI-NewCarReviews",
+              "text": "http://bit.ly/ACI-NewCarReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Comparison",
+              "text": "http://bit.ly/ACI-Comparison"
+            },
+            {
+              "url": "http://bit.ly/ACI-BikeReviews",
+              "text": "http://bit.ly/ACI-BikeReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Features",
+              "text": "http://bit.ly/ACI-Features"
+            }
+          ],
+          "subtitles": null,
+          "order": 64,
+          "commentsTurnedOff": false,
+          "fromYTUrl": "https://www.youtube.com/results?search_query=Autocar+India",
+          "isMonetized": null,
+          "hashtags": [],
+          "formats": [],
+          "isMembersOnly": false,
+          "input": "Autocar India"
+        }
+      },
+      {
+        "json": {
+          "title": "Raptee.HV T30 review - India's first high-voltage electric motorcycle | First Ride | Autocar India",
+          "translatedTitle": null,
+          "type": "video",
+          "id": "PHEuDrmOKhI",
+          "url": "https://www.youtube.com/watch?v=PHEuDrmOKhI",
+          "thumbnailUrl": "https://i.ytimg.com/vi/PHEuDrmOKhI/maxresdefault.jpg",
+          "viewCount": 40617,
+          "date": "2025-11-12T04:53:18.000Z",
+          "likes": 680,
+          "location": null,
+          "channelName": "Autocar India",
+          "channelUrl": "https://www.youtube.com/@autocarindia1",
+          "channelUsername": "autocarindia1",
+          "collaborators": null,
+          "channelId": "UCjWs7BxyjO5SLqevxSmp4vQ",
+          "numberOfSubscribers": 2490000,
+          "duration": "00:09:59",
+          "commentsCount": 104,
+          "text": "Raptee.HV is a Chennai-based startup company that has incorporated high-voltage technology into its first electric motorcycle. We got to spend a day with the T30, covering around 60 kilometres and Azaman brings you our first impressions.\n\nCameraperson - Abhijeet Kamane\nEditor - Rohit Kesarkar/Siddhesh Bhogale\n\n\nSUBSCRIBE to Autocar India for the hottest automotive news and the most comprehensive reviews ► http://bit.ly/AutocarInd\n\nAutocar India is your one-stop source for test drive reviews & comparison tests of every new car and motorcycle launched in India. We also offer a great mix of other automotive content, including weekly news, motor show reports, travelogues and other special features. \n\nWebsite: http://www.autocarindia.com \nFacebook:   / autocarindiamag  \nInstagram:   / autocar_india  \nTwitter:   / autocarindiamag  \n\nNew car reviews ►http://bit.ly/ACI-NewCarReviews\n\nComparison tests ►http://bit.ly/ACI-Comparison\n\nNew bike reviews ►http://bit.ly/ACI-BikeReviews\n\nFeatures ►http://bit.ly/ACI-Features",
+          "translatedText": null,
+          "descriptionLinks": [
+            {
+              "url": "http://bit.ly/AutocarInd",
+              "text": "http://bit.ly/AutocarInd"
+            },
+            {
+              "url": "http://www.autocarindia.com/",
+              "text": "http://www.autocarindia.com"
+            },
+            {
+              "url": "http://www.facebook.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "https://www.instagram.com/autocar_india/",
+              "text": "  / autocar_india  "
+            },
+            {
+              "url": "http://www.twitter.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "http://bit.ly/ACI-NewCarReviews",
+              "text": "http://bit.ly/ACI-NewCarReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Comparison",
+              "text": "http://bit.ly/ACI-Comparison"
+            },
+            {
+              "url": "http://bit.ly/ACI-BikeReviews",
+              "text": "http://bit.ly/ACI-BikeReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Features",
+              "text": "http://bit.ly/ACI-Features"
+            }
+          ],
+          "subtitles": null,
+          "order": 68,
+          "commentsTurnedOff": false,
+          "fromYTUrl": "https://www.youtube.com/results?search_query=Autocar+India",
+          "isMonetized": null,
+          "hashtags": [],
+          "formats": [],
+          "isMembersOnly": false,
+          "input": "Autocar India"
+        }
+      },
+      {
+        "json": {
+          "title": "Yamaha XSR155, Aerox E and EC-06 | Walkaround | Autocar India",
+          "translatedTitle": null,
+          "type": "video",
+          "id": "GZP0PzWwwWM",
+          "url": "https://www.youtube.com/watch?v=GZP0PzWwwWM",
+          "thumbnailUrl": "https://i.ytimg.com/vi/GZP0PzWwwWM/maxresdefault.jpg",
+          "viewCount": 78355,
+          "date": "2025-11-11T16:42:20.000Z",
+          "likes": 869,
+          "location": null,
+          "channelName": "Autocar India",
+          "channelUrl": "https://www.youtube.com/@autocarindia1",
+          "channelUsername": "autocarindia1",
+          "collaborators": null,
+          "channelId": "UCjWs7BxyjO5SLqevxSmp4vQ",
+          "numberOfSubscribers": 2490000,
+          "duration": "00:05:13",
+          "commentsCount": 108,
+          "text": "Yamaha have launched the XSR 155 in India with prices starting at Rs 1.50 lakh (ex-showroom). Alongside the XSR, they also unveiled the Aerox E and EC-06 scooters. Azaman gives you a quick  walkaround of all three products.\n\nCameraperson - Roshni Manghani\nEditor - Siddhesh Kadam\n\n0:00 - Yamaha XSR155\n1:51 - Yamaha Aerox E \n3:30 - Yamaha EC-06\n\n\nSUBSCRIBE to Autocar India for the hottest automotive news and the most comprehensive reviews ► http://bit.ly/AutocarInd\n\nAutocar India is your one-stop source for test drive reviews & comparison tests of every new car and motorcycle launched in India. We also offer a great mix of other automotive content, including weekly news, motor show reports, travelogues and other special features. \n\nWebsite: http://www.autocarindia.com \nFacebook:   / autocarindiamag  \nInstagram:   / autocar_india  \nTwitter:   / autocarindiamag  \n\nNew car reviews ►http://bit.ly/ACI-NewCarReviews\n\nComparison tests ►http://bit.ly/ACI-Comparison\n\nNew bike reviews ►http://bit.ly/ACI-BikeReviews\n\nFeatures ►http://bit.ly/ACI-Features",
+          "translatedText": null,
+          "descriptionLinks": [
+            {
+              "url": "https://www.youtube.com/watch?v=GZP0PzWwwWM",
+              "text": "0:00"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=GZP0PzWwwWM&t=111s",
+              "text": "1:51"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=GZP0PzWwwWM&t=210s",
+              "text": "3:30"
+            },
+            {
+              "url": "http://bit.ly/AutocarInd",
+              "text": "http://bit.ly/AutocarInd"
+            },
+            {
+              "url": "http://www.autocarindia.com/",
+              "text": "http://www.autocarindia.com"
+            },
+            {
+              "url": "http://www.facebook.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "https://www.instagram.com/autocar_india/",
+              "text": "  / autocar_india  "
+            },
+            {
+              "url": "http://www.twitter.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "http://bit.ly/ACI-NewCarReviews",
+              "text": "http://bit.ly/ACI-NewCarReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Comparison",
+              "text": "http://bit.ly/ACI-Comparison"
+            },
+            {
+              "url": "http://bit.ly/ACI-BikeReviews",
+              "text": "http://bit.ly/ACI-BikeReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Features",
+              "text": "http://bit.ly/ACI-Features"
+            }
+          ],
+          "subtitles": null,
+          "order": 69,
+          "commentsTurnedOff": false,
+          "fromYTUrl": "https://www.youtube.com/results?search_query=Autocar+India",
+          "isMonetized": null,
+          "hashtags": [],
+          "formats": [],
+          "isMembersOnly": false,
+          "input": "Autocar India"
+        }
+      },
+      {
+        "json": {
+          "title": "Citroen Basalt X review – Updated interior now matches stylish exterior | First Drive |Autocar India",
+          "translatedTitle": null,
+          "type": "video",
+          "id": "KE7Qs61Fjn8",
+          "url": "https://www.youtube.com/watch?v=KE7Qs61Fjn8",
+          "thumbnailUrl": "https://i.ytimg.com/vi/KE7Qs61Fjn8/maxresdefault.jpg",
+          "viewCount": 44698,
+          "date": "2025-11-17T10:30:12.000Z",
+          "likes": 714,
+          "location": null,
+          "channelName": "Autocar India",
+          "channelUrl": "https://www.youtube.com/@autocarindia1",
+          "channelUsername": "autocarindia1",
+          "collaborators": null,
+          "channelId": "UCjWs7BxyjO5SLqevxSmp4vQ",
+          "numberOfSubscribers": 2490000,
+          "duration": "00:08:56",
+          "commentsCount": 146,
+          "text": "Less than a year since launch, Citroen has updated the Basalt coupe SUV to revive its flagging sales. Dubbed the Basalt X, it finally gets the interior it always deserved, along with much-requested features such as cruise control and keyless entry. Citroen has also revised prices across the range, making it a far more enticing proposition. Lenny D’sa has the full review, including instrumented performance and real-world fuel efficiency tests.\n\nCameraperson - Mritunjay Chakraborty\nEditor - Sanil Sawardekar\n\n0:00 - Introduction  \n0:53 - Design\n2:22 - Boot space\n2:30 - Interiors \n4:02- Features\n4:50 - Safety\n5:02 - Rear seat space\n5:27 - Engine, performance \n7:20 - Fuel efficiency\n7:32 - Ride & handling\n8:09 - Price \n8:22 - Verdict\n\n\nSUBSCRIBE to Autocar India for the hottest automotive news and the most comprehensive reviews ► http://bit.ly/AutocarInd\n\nAutocar India is your one-stop source for test drive reviews & comparison tests of every new car and motorcycle launched in India. We also offer a great mix of other automotive content, including weekly news, motor show reports, travelogues and other special features. \n\nWebsite: http://www.autocarindia.com \nFacebook:   / autocarindiamag  \nInstagram:   / autocar_india  \nTwitter:   / autocarindiamag  \n\nNew car reviews ►http://bit.ly/ACI-NewCarReviews\n\nComparison tests ►http://bit.ly/ACI-Comparison\n\nNew bike reviews ►http://bit.ly/ACI-BikeReviews\n\nFeatures ►http://bit.ly/ACI-Features",
+          "translatedText": null,
+          "descriptionLinks": [
+            {
+              "url": "https://www.youtube.com/watch?v=KE7Qs61Fjn8",
+              "text": "0:00"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=KE7Qs61Fjn8&t=53s",
+              "text": "0:53"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=KE7Qs61Fjn8&t=142s",
+              "text": "2:22"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=KE7Qs61Fjn8&t=150s",
+              "text": "2:30"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=KE7Qs61Fjn8&t=242s",
+              "text": "4:02"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=KE7Qs61Fjn8&t=290s",
+              "text": "4:50"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=KE7Qs61Fjn8&t=302s",
+              "text": "5:02"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=KE7Qs61Fjn8&t=327s",
+              "text": "5:27"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=KE7Qs61Fjn8&t=440s",
+              "text": "7:20"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=KE7Qs61Fjn8&t=452s",
+              "text": "7:32"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=KE7Qs61Fjn8&t=489s",
+              "text": "8:09"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=KE7Qs61Fjn8&t=502s",
+              "text": "8:22"
+            },
+            {
+              "url": "http://bit.ly/AutocarInd",
+              "text": "http://bit.ly/AutocarInd"
+            },
+            {
+              "url": "http://www.autocarindia.com/",
+              "text": "http://www.autocarindia.com"
+            },
+            {
+              "url": "http://www.facebook.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "https://www.instagram.com/autocar_india/",
+              "text": "  / autocar_india  "
+            },
+            {
+              "url": "http://www.twitter.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "http://bit.ly/ACI-NewCarReviews",
+              "text": "http://bit.ly/ACI-NewCarReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Comparison",
+              "text": "http://bit.ly/ACI-Comparison"
+            },
+            {
+              "url": "http://bit.ly/ACI-BikeReviews",
+              "text": "http://bit.ly/ACI-BikeReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Features",
+              "text": "http://bit.ly/ACI-Features"
+            }
+          ],
+          "subtitles": null,
+          "order": 60,
+          "commentsTurnedOff": false,
+          "fromYTUrl": "https://www.youtube.com/results?search_query=Autocar+India",
+          "isMonetized": null,
+          "hashtags": [],
+          "formats": [],
+          "isMembersOnly": false,
+          "input": "Autocar India"
+        }
+      },
+      {
+        "json": {
+          "title": "2025 Tata Sierra - Key details on new Tata SUV | Autocar India",
+          "translatedTitle": null,
+          "type": "video",
+          "id": "5lgGBqjO9uQ",
+          "url": "https://www.youtube.com/watch?v=5lgGBqjO9uQ",
+          "thumbnailUrl": "https://i.ytimg.com/vi/5lgGBqjO9uQ/maxresdefault.jpg",
+          "viewCount": 451607,
+          "date": "2025-11-13T05:54:09.000Z",
+          "likes": 4500,
+          "location": null,
+          "channelName": "Autocar India",
+          "channelUrl": "https://www.youtube.com/@autocarindia1",
+          "channelUsername": "autocarindia1",
+          "collaborators": null,
+          "channelId": "UCjWs7BxyjO5SLqevxSmp4vQ",
+          "numberOfSubscribers": 2490000,
+          "duration": "00:06:28",
+          "commentsCount": 554,
+          "text": "The Tata Sierra is one of the most awaited arrivals of 2025. Ahead of its November 25 launch, Nikhil Bhatia gives you the key details of the all-important new Tata SUV.\n\nEditor: Deven Bhalla\n\nChapters - \n0:00 - Introduction\n0:30 - Design and styling\n1:43 - Interior and features\n3:02 - Safety features, ADAS and crash test rating\n3:29 - Engines and gearboxes\n5:16 - Rivals and price expectation\n\nSUBSCRIBE to Autocar India for the hottest automotive news and the most comprehensive reviews ► http://bit.ly/AutocarInd\n\nAutocar India is your one-stop source for test drive reviews & comparison tests of every new car and motorcycle launched in India. We also offer a great mix of other automotive content, including weekly news, motor show reports, travelogues and other special features. \n\nWebsite: http://www.autocarindia.com \nFacebook:   / autocarindiamag  \nInstagram:   / autocar_india  \nTwitter:   / autocarindiamag  \n\nNew car reviews ►http://bit.ly/ACI-NewCarReviews\n\nComparison tests ►http://bit.ly/ACI-Comparison\n\nNew bike reviews ►http://bit.ly/ACI-BikeReviews\n\nFeatures ►http://bit.ly/ACI-Features",
+          "translatedText": null,
+          "descriptionLinks": [
+            {
+              "url": "https://www.youtube.com/watch?v=5lgGBqjO9uQ",
+              "text": "0:00"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=5lgGBqjO9uQ&t=30s",
+              "text": "0:30"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=5lgGBqjO9uQ&t=103s",
+              "text": "1:43"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=5lgGBqjO9uQ&t=182s",
+              "text": "3:02"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=5lgGBqjO9uQ&t=209s",
+              "text": "3:29"
+            },
+            {
+              "url": "https://www.youtube.com/watch?v=5lgGBqjO9uQ&t=316s",
+              "text": "5:16"
+            },
+            {
+              "url": "http://bit.ly/AutocarInd",
+              "text": "http://bit.ly/AutocarInd"
+            },
+            {
+              "url": "http://www.autocarindia.com/",
+              "text": "http://www.autocarindia.com"
+            },
+            {
+              "url": "http://www.facebook.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "https://www.instagram.com/autocar_india/",
+              "text": "  / autocar_india  "
+            },
+            {
+              "url": "http://www.twitter.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "http://bit.ly/ACI-NewCarReviews",
+              "text": "http://bit.ly/ACI-NewCarReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Comparison",
+              "text": "http://bit.ly/ACI-Comparison"
+            },
+            {
+              "url": "http://bit.ly/ACI-BikeReviews",
+              "text": "http://bit.ly/ACI-BikeReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Features",
+              "text": "http://bit.ly/ACI-Features"
+            }
+          ],
+          "subtitles": null,
+          "order": 66,
+          "commentsTurnedOff": false,
+          "fromYTUrl": "https://www.youtube.com/results?search_query=Autocar+India",
+          "isMonetized": null,
+          "hashtags": [],
+          "formats": [],
+          "isMembersOnly": false,
+          "input": "Autocar India"
+        }
+      },
+      {
+        "json": {
+          "title": "Maruti Suzuki e Vitara review - Maruti (finally) goes electric | Drive | Autocar India",
+          "translatedTitle": null,
+          "type": "video",
+          "id": "a9PJFsluzjw",
+          "url": "https://www.youtube.com/watch?v=a9PJFsluzjw",
+          "thumbnailUrl": "https://i.ytimg.com/vi/a9PJFsluzjw/maxresdefault.jpg",
+          "viewCount": 99255,
+          "date": "2025-11-12T13:30:01.000Z",
+          "likes": 1100,
+          "location": null,
+          "channelName": "Autocar India",
+          "channelUrl": "https://www.youtube.com/@autocarindia1",
+          "channelUsername": "autocarindia1",
+          "collaborators": null,
+          "channelId": "UCjWs7BxyjO5SLqevxSmp4vQ",
+          "numberOfSubscribers": 2490000,
+          "duration": "00:12:16",
+          "commentsCount": 230,
+          "text": "Maruti's first EV is not your typical Maruti, as Sergius Barretto found out driving it in the UK.\n\nEditor: Mohit Sharma\n\nSUBSCRIBE to Autocar India for the hottest automotive news and the most comprehensive reviews ► http://bit.ly/AutocarInd\n\nAutocar India is your one-stop source for test drive reviews & comparison tests of every new car and motorcycle launched in India. We also offer a great mix of other automotive content, including weekly news, motor show reports, travelogues and other special features. \n\nWebsite: http://www.autocarindia.com \nFacebook:   / autocarindiamag  \nInstagram:   / autocar_india  \nTwitter:   / autocarindiamag  \n\nNew car reviews ►http://bit.ly/ACI-NewCarReviews\n\nComparison tests ►http://bit.ly/ACI-Comparison\n\nNew bike reviews ►http://bit.ly/ACI-BikeReviews\n\nFeatures ►http://bit.ly/ACI-Features",
+          "translatedText": null,
+          "descriptionLinks": [
+            {
+              "url": "http://bit.ly/AutocarInd",
+              "text": "http://bit.ly/AutocarInd"
+            },
+            {
+              "url": "http://www.autocarindia.com/",
+              "text": "http://www.autocarindia.com"
+            },
+            {
+              "url": "http://www.facebook.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "https://www.instagram.com/autocar_india/",
+              "text": "  / autocar_india  "
+            },
+            {
+              "url": "http://www.twitter.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "http://bit.ly/ACI-NewCarReviews",
+              "text": "http://bit.ly/ACI-NewCarReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Comparison",
+              "text": "http://bit.ly/ACI-Comparison"
+            },
+            {
+              "url": "http://bit.ly/ACI-BikeReviews",
+              "text": "http://bit.ly/ACI-BikeReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Features",
+              "text": "http://bit.ly/ACI-Features"
+            }
+          ],
+          "subtitles": null,
+          "order": 67,
+          "commentsTurnedOff": false,
+          "fromYTUrl": "https://www.youtube.com/results?search_query=Autocar+India",
+          "isMonetized": null,
+          "hashtags": [],
+          "formats": [],
+          "isMembersOnly": false,
+          "input": "Autocar India"
+        }
+      },
+      {
+        "json": {
+          "title": "Ducati Panigale V4 S - Living the dream | Feature | Autocar India",
+          "translatedTitle": null,
+          "type": "video",
+          "id": "CYrvPtJTMB4",
+          "url": "https://www.youtube.com/watch?v=CYrvPtJTMB4",
+          "thumbnailUrl": "https://i.ytimg.com/vi/CYrvPtJTMB4/maxresdefault.jpg",
+          "viewCount": 56967,
+          "date": "2025-11-14T05:30:17.000Z",
+          "likes": 1700,
+          "location": null,
+          "channelName": "Autocar India",
+          "channelUrl": "https://www.youtube.com/@autocarindia1",
+          "channelUsername": "autocarindia1",
+          "collaborators": null,
+          "channelId": "UCjWs7BxyjO5SLqevxSmp4vQ",
+          "numberOfSubscribers": 2490000,
+          "duration": "00:11:16",
+          "commentsCount": 102,
+          "text": "The chance to ride a modified Ducati Panigale V4 at the BIC was a rare opportunity. Rishaad Mody tells you what it’s like to do a track day in India with one of the best superbikes money can buy. \n\nCameraperson - Roshni Manghani\nEditor - Siddhesh Kadam\n\n\nSUBSCRIBE to Autocar India for the hottest automotive news and the most comprehensive reviews ► http://bit.ly/AutocarInd\n\nAutocar India is your one-stop source for test drive reviews & comparison tests of every new car and motorcycle launched in India. We also offer a great mix of other automotive content, including weekly news, motor show reports, travelogues and other special features. \n\nWebsite: http://www.autocarindia.com \nFacebook:   / autocarindiamag  \nInstagram:   / autocar_india  \nTwitter:   / autocarindiamag  \n\nNew car reviews ►http://bit.ly/ACI-NewCarReviews\n\nComparison tests ►http://bit.ly/ACI-Comparison\n\nNew bike reviews ►http://bit.ly/ACI-BikeReviews\n\nFeatures ►http://bit.ly/ACI-Features",
+          "translatedText": null,
+          "descriptionLinks": [
+            {
+              "url": "http://bit.ly/AutocarInd",
+              "text": "http://bit.ly/AutocarInd"
+            },
+            {
+              "url": "http://www.autocarindia.com/",
+              "text": "http://www.autocarindia.com"
+            },
+            {
+              "url": "http://www.facebook.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "https://www.instagram.com/autocar_india/",
+              "text": "  / autocar_india  "
+            },
+            {
+              "url": "http://www.twitter.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "http://bit.ly/ACI-NewCarReviews",
+              "text": "http://bit.ly/ACI-NewCarReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Comparison",
+              "text": "http://bit.ly/ACI-Comparison"
+            },
+            {
+              "url": "http://bit.ly/ACI-BikeReviews",
+              "text": "http://bit.ly/ACI-BikeReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Features",
+              "text": "http://bit.ly/ACI-Features"
+            }
+          ],
+          "subtitles": null,
+          "order": 65,
+          "commentsTurnedOff": false,
+          "fromYTUrl": "https://www.youtube.com/results?search_query=Autocar+India",
+          "isMonetized": null,
+          "hashtags": [],
+          "formats": [],
+          "isMembersOnly": false,
+          "input": "Autocar India"
+        }
+      },
+      {
+        "json": {
+          "title": "Designing the Tata Sierra - Martin Uhlarik | Interview | Autocar India",
+          "translatedTitle": null,
+          "type": "video",
+          "id": "e-vl9OI9ezQ",
+          "url": "https://www.youtube.com/watch?v=e-vl9OI9ezQ",
+          "thumbnailUrl": "https://i.ytimg.com/vi/e-vl9OI9ezQ/maxresdefault.jpg",
+          "viewCount": 36649,
+          "date": "2025-11-16T11:30:47.000Z",
+          "likes": 641,
+          "location": null,
+          "channelName": "Autocar India",
+          "channelUrl": "https://www.youtube.com/@autocarindia1",
+          "channelUsername": "autocarindia1",
+          "collaborators": null,
+          "channelId": "UCjWs7BxyjO5SLqevxSmp4vQ",
+          "numberOfSubscribers": 2490000,
+          "duration": "00:06:42",
+          "commentsCount": 91,
+          "text": "In conversation with Sergius Barretto, Martin Uhlarik - Chief Design Officer, Tata Motors - talks of the new Tata Sierra’s design and styling.\n\nCameraperson: Roshni Manghani\nEditor: Sanil Sawardekar\n\nSUBSCRIBE to Autocar India for the hottest automotive news and the most comprehensive reviews ► http://bit.ly/AutocarInd\n\nAutocar India is your one-stop source for test drive reviews & comparison tests of every new car and motorcycle launched in India. We also offer a great mix of other automotive content, including weekly news, motor show reports, travelogues and other special features. \n\nWebsite: http://www.autocarindia.com \nFacebook:   / autocarindiamag  \nInstagram:   / autocar_india  \nTwitter:   / autocarindiamag  \n\nNew car reviews ►http://bit.ly/ACI-NewCarReviews\n\nComparison tests ►http://bit.ly/ACI-Comparison\n\nNew bike reviews ►http://bit.ly/ACI-BikeReviews\n\nFeatures ►http://bit.ly/ACI-Features",
+          "translatedText": null,
+          "descriptionLinks": [
+            {
+              "url": "http://bit.ly/AutocarInd",
+              "text": "http://bit.ly/AutocarInd"
+            },
+            {
+              "url": "http://www.autocarindia.com/",
+              "text": "http://www.autocarindia.com"
+            },
+            {
+              "url": "http://www.facebook.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "https://www.instagram.com/autocar_india/",
+              "text": "  / autocar_india  "
+            },
+            {
+              "url": "http://www.twitter.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "http://bit.ly/ACI-NewCarReviews",
+              "text": "http://bit.ly/ACI-NewCarReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Comparison",
+              "text": "http://bit.ly/ACI-Comparison"
+            },
+            {
+              "url": "http://bit.ly/ACI-BikeReviews",
+              "text": "http://bit.ly/ACI-BikeReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Features",
+              "text": "http://bit.ly/ACI-Features"
+            }
+          ],
+          "subtitles": null,
+          "order": 62,
+          "commentsTurnedOff": false,
+          "fromYTUrl": "https://www.youtube.com/results?search_query=Autocar+India",
+          "isMonetized": null,
+          "hashtags": [],
+          "formats": [],
+          "isMembersOnly": false,
+          "input": "Autocar India"
+        }
+      },
+      {
+        "json": {
+          "title": "Tata Sierra revealed - Production-spec Sierra in detail | Walkaround | Autocar India",
+          "translatedTitle": null,
+          "type": "video",
+          "id": "et-EosPRRYc",
+          "url": "https://www.youtube.com/watch?v=et-EosPRRYc",
+          "thumbnailUrl": "https://i.ytimg.com/vi/et-EosPRRYc/maxresdefault.jpg",
+          "viewCount": 856206,
+          "date": "2025-11-15T13:14:27.000Z",
+          "likes": 7500,
+          "location": null,
+          "channelName": "Autocar India",
+          "channelUrl": "https://www.youtube.com/@autocarindia1",
+          "channelUsername": "autocarindia1",
+          "collaborators": null,
+          "channelId": "UCjWs7BxyjO5SLqevxSmp4vQ",
+          "numberOfSubscribers": 2490000,
+          "duration": "00:09:56",
+          "commentsCount": 778,
+          "text": "Tata has officially unveiled the Sierra in full production ready guise and Sergius Barretto gives us a look at how it will be. \n\nEditor: Sanil Sawardekar\n\n\nSUBSCRIBE to Autocar India for the hottest automotive news and the most comprehensive reviews ► http://bit.ly/AutocarInd\n\nAutocar India is your one-stop source for test drive reviews & comparison tests of every new car and motorcycle launched in India. We also offer a great mix of other automotive content, including weekly news, motor show reports, travelogues and other special features. \n\nWebsite: http://www.autocarindia.com \nFacebook:   / autocarindiamag  \nInstagram:   / autocar_india  \nTwitter:   / autocarindiamag  \n\nNew car reviews ►http://bit.ly/ACI-NewCarReviews\n\nComparison tests ►http://bit.ly/ACI-Comparison\n\nNew bike reviews ►http://bit.ly/ACI-BikeReviews\n\nFeatures ►http://bit.ly/ACI-Features",
+          "translatedText": null,
+          "descriptionLinks": [
+            {
+              "url": "http://bit.ly/AutocarInd",
+              "text": "http://bit.ly/AutocarInd"
+            },
+            {
+              "url": "http://www.autocarindia.com/",
+              "text": "http://www.autocarindia.com"
+            },
+            {
+              "url": "http://www.facebook.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "https://www.instagram.com/autocar_india/",
+              "text": "  / autocar_india  "
+            },
+            {
+              "url": "http://www.twitter.com/autocarindiamag",
+              "text": "  / autocarindiamag  "
+            },
+            {
+              "url": "http://bit.ly/ACI-NewCarReviews",
+              "text": "http://bit.ly/ACI-NewCarReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Comparison",
+              "text": "http://bit.ly/ACI-Comparison"
+            },
+            {
+              "url": "http://bit.ly/ACI-BikeReviews",
+              "text": "http://bit.ly/ACI-BikeReviews"
+            },
+            {
+              "url": "http://bit.ly/ACI-Features",
+              "text": "http://bit.ly/ACI-Features"
+            }
+          ],
+          "subtitles": null,
+          "order": 63,
+          "commentsTurnedOff": false,
+          "fromYTUrl": "https://www.youtube.com/results?search_query=Autocar+India",
+          "isMonetized": null,
+          "hashtags": [],
+          "formats": [],
+          "isMembersOnly": false,
+          "input": "Autocar India"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "YouTube Scraper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "YouTube Scraper": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "dab37d2b-6821-43c9-a668-28635a2ab360",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d85661857dfcd1207ce11ef23fab2db3d27371fb05cc9bce02662a3f60039047"
+  },
+  "id": "rtGs2J4vCNxwcOZN",
+  "tags": []
+}
