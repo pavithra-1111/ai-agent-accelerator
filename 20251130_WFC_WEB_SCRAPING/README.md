@@ -20,8 +20,8 @@ Follow these steps to use any Apify scraper in n8n:
 
 1. Go to **https://console.apify.com**
 2. Sign up or log in
-3. Click your profile icon (top right)
-4. Select **Integrations**
+3. Go to settings
+4. click on API & Integrations
 5. Under **API Tokens**, click **Create new token**
 6. Give it a name (example: *DSM Training Token*)
 7. Copy the token and save it safely  
