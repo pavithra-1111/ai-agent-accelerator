@@ -26,7 +26,7 @@
             "Name": "={{ $json.name }}",
             "Address": "={{ $json.locationString }}",
             "Rating": "={{ $json.rating }}",
-            "Phone Number": "={{ $json.phone }}",
+            "Phone Number": "='{{ $json.phone }}",
             "Email": "={{ $json.email }}",
             "No. of Reviews": "={{ $json.rankingDenominator }}",
             "Website": "={{ $json.website }}",
@@ -147,21 +147,6 @@
     },
     {
       "parameters": {
-        "content": "### Give a city name as input\n",
-        "height": 272,
-        "width": 304
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        0,
-        0
-      ],
-      "typeVersion": 1,
-      "id": "38708b62-580b-43c2-970c-964ce2f43331",
-      "name": "Sticky Note"
-    },
-    {
-      "parameters": {
         "content": "### Pass the city to the actor",
         "height": 272,
         "width": 304
@@ -201,7 +186,7 @@
           "cachedResultName": "Tripadvisor Scraper (maxcopell/tripadvisor)",
           "cachedResultUrl": "https://console.apify.com/actors/dbEyMBriog95Fv8CW/input"
         },
-        "customBody": "={\n    \"currency\": \"INR\",\n    \"includeAiReviewsSummary\": false,\n    \"includeAttractions\": true,\n    \"includeHotels\": true,\n    \"includeNearbyResults\": false,\n    \"includePriceOffers\": false,\n    \"includeRestaurants\": true,\n    \"includeTags\": true,\n    \"includeVacationRentals\": false,\n    \"language\": \"en\",\n    \"maxItemsPerQuery\": 10,\n    \"query\": \"{{ $json.chatInput }}\"\n}"
+        "customBody": "={\n    \"currency\": \"INR\",\n    \"includeAiReviewsSummary\": false,\n    \"includeAttractions\": true,\n    \"includeHotels\": true,\n    \"includeNearbyResults\": false,\n    \"includePriceOffers\": false,\n    \"includeRestaurants\": true,\n    \"includeTags\": true,\n    \"includeVacationRentals\": false,\n    \"language\": \"en\",\n    \"maxItemsPerQuery\": 10,\n    \"query\": \"{{ $json.Location }}\"\n}"
       },
       "type": "@apify/n8n-nodes-apify.apify",
       "typeVersion": 1,
@@ -210,43 +195,787 @@
         96
       ],
       "id": "c6bf7593-06e9-4a00-847a-4b5d882ff25a",
-      "name": "TripAdvisor Scraper"
+      "name": "TripAdvisor Scraper",
+      "credentials": {
+        "apifyApi": {
+          "id": "HdtXg7jhS6Bv0Bx7",
+          "name": "KN APIFY 30 NOV 2025"
+        }
+      }
     },
     {
       "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1.3,
-      "position": [
-        128,
-        96
-      ],
-      "id": "ea668d27-c954-487a-b2d0-1cc07295e680",
-      "name": "When chat message received",
-      "webhookId": "6b70fc25-efe4-4d72-8d53-315d4aa8e40f"
-    },
-    {
-      "parameters": {
-        "content": "## Google Sheet Link (Copy)\nhttps://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=sharing",
-        "height": 112,
-        "width": 480
+        "content": "## Links\n- Google Sheet Link (Copy) https://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=sharing\n\n- Apify Actor - https://console.apify.com/actors/dbEyMBriog95Fv8CW/input",
+        "height": 128,
+        "width": 1008
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         0,
-        -128
+        -224
       ],
       "typeVersion": 1,
-      "id": "29cd8788-c4bf-4f36-9ec3-40de68bcdcf2",
+      "id": "3b04ff59-a5fb-4b5c-a521-41123dd0bd0c",
       "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "### Give a city name as input\n",
+        "height": 272,
+        "width": 304
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "38708b62-580b-43c2-970c-964ce2f43331",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -192,
+        96
+      ],
+      "id": "149b389d-949b-49a5-96be-8a800b57479f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "93d75b7f-24c3-46ba-bb47-0c8abef8fe8e",
+              "name": "Location",
+              "value": "Bengaluru",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        96,
+        96
+      ],
+      "id": "0a0205c1-f1d8-41bf-b8f9-95fd73cdf0d8",
+      "name": "Search Field"
     }
   ],
   "pinData": {
     "TripAdvisor Scraper": [
       {
         "json": {
-          "reviewTags": [],
+          "reviewTags": [
+            {
+              "text": "chicken",
+              "reviews": 2
+            },
+            {
+              "text": "biryani",
+              "reviews": 2
+            },
+            {
+              "text": "pizza",
+              "reviews": 2
+            },
+            {
+              "text": "nice performance",
+              "reviews": 4
+            },
+            {
+              "text": "nice vibe",
+              "reviews": 2
+            },
+            {
+              "text": "live karaoke",
+              "reviews": 2
+            },
+            {
+              "text": "lovely music",
+              "reviews": 2
+            },
+            {
+              "text": "nice drinks",
+              "reviews": 2
+            },
+            {
+              "text": "tasty food",
+              "reviews": 6
+            },
+            {
+              "text": "mg road",
+              "reviews": 4
+            },
+            {
+              "text": "brigade road",
+              "reviews": 3
+            },
+            {
+              "text": "awesome ambience",
+              "reviews": 2
+            },
+            {
+              "text": "awesome place",
+              "reviews": 2
+            },
+            {
+              "text": "visit this place",
+              "reviews": 3
+            },
+            {
+              "text": "roshan",
+              "reviews": 3
+            },
+            {
+              "text": "thnk",
+              "reviews": 2
+            },
+            {
+              "text": "musics",
+              "reviews": 2
+            },
+            {
+              "text": "hookah",
+              "reviews": 3
+            },
+            {
+              "text": "bangalore",
+              "reviews": 8
+            },
+            {
+              "text": "hav",
+              "reviews": 2
+            },
+            {
+              "text": "cheers",
+              "reviews": 2
+            },
+            {
+              "text": "crowd",
+              "reviews": 3
+            },
+            {
+              "text": "team",
+              "reviews": 3
+            }
+          ],
+          "id": "20105318",
+          "type": "RESTAURANT",
+          "category": "restaurant",
+          "subcategories": [],
+          "name": "Just Blr",
+          "locationString": "Bengaluru, Bangalore District, Karnataka",
+          "description": null,
+          "image": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2f/b7/08/62/usual-evening-at-just.jpg",
+          "photoCount": 129,
+          "rankingPosition": 17,
+          "rating": 4.9,
+          "rawRanking": 4.8224101066589355,
+          "phone": "+91 942969054",
+          "address": "Brigade Road 185, Dena Complex, Opp mc Donalds, Bengaluru 560025 India",
+          "addressObj": {
+            "street1": "Brigade Road",
+            "street2": "185, Dena Complex, Opp mc Donalds",
+            "city": "Bengaluru",
+            "state": "Karnataka",
+            "country": "India",
+            "postalcode": "560025"
+          },
+          "localName": "Just Blr",
+          "localAddress": "Brigade Road, 185, Dena Complex, Opp mc Donalds, 560025",
+          "localLangCode": "en-IN",
+          "email": "justblrmanagement@gmail.com",
+          "latitude": 12.973275,
+          "longitude": 77.60732,
+          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d20105318-Reviews-Just_Blr-Bengaluru_Bangalore_District_Karnataka.html",
+          "website": "http://www.justblr.com",
+          "rankingString": "#17 of 10,590 places to eat in Bengaluru",
+          "rankingDenominator": "4152",
+          "rankingSource": "API",
+          "neighborhoodLocations": [],
+          "nearestMetroStations": [
+            {
+              "name": "Vidhana Soudha",
+              "localName": "Vidhana Soudha",
+              "address": "Mahatma Gandhi Road, Bengaluru 560001, India",
+              "localAddress": "Mahatma Gandhi Road, 560001",
+              "lines": [
+                {
+                  "id": "bangalore-namma-metro-purple",
+                  "lineName": "Purple",
+                  "lineSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "systemName": "Namma Metro",
+                  "systemSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "type": "Metro"
+                }
+              ],
+              "latitude": 12.97558879852295,
+              "longitude": 77.60657501220703,
+              "distance": 0.16778126338314678
+            },
+            {
+              "name": "Mahatma Gandhi Road",
+              "localName": "Mahatma Gandhi Road",
+              "address": "MG Road, Bengaluru 560001, India",
+              "localAddress": "MG Road, 560001",
+              "lines": [
+                {
+                  "id": "bangalore-namma-metro-purple",
+                  "lineName": "Purple",
+                  "lineSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "systemName": "Namma Metro",
+                  "systemSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "type": "Metro"
+                }
+              ],
+              "latitude": 12.975634574890137,
+              "longitude": 77.60661315917969,
+              "distance": 0.17006313248874655
+            },
+            {
+              "name": "Trinity",
+              "localName": "Trinity",
+              "address": "Mahatma Gandhi Road, Bengaluru 560025, India",
+              "localAddress": "Mahatma Gandhi Road, 560025",
+              "lines": [
+                {
+                  "id": "bangalore-namma-metro-purple",
+                  "lineName": "Purple",
+                  "lineSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "systemName": "Namma Metro",
+                  "systemSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "type": "Metro"
+                }
+              ],
+              "latitude": 12.972954750061035,
+              "longitude": 77.61699676513672,
+              "distance": 0.6524553588580634
+            }
+          ],
+          "ancestorLocations": [
+            {
+              "id": "297628",
+              "name": "Bengaluru",
+              "abbreviation": null,
+              "subcategory": "City"
+            },
+            {
+              "id": "12392950",
+              "name": "Bangalore District",
+              "abbreviation": null,
+              "subcategory": "District"
+            },
+            {
+              "id": "297627",
+              "name": "Karnataka",
+              "abbreviation": null,
+              "subcategory": "State"
+            },
+            {
+              "id": "293860",
+              "name": "India",
+              "abbreviation": null,
+              "subcategory": "Country"
+            }
+          ],
+          "ratingHistogram": {
+            "count1": 1,
+            "count2": 1,
+            "count3": 4,
+            "count4": 7,
+            "count5": 250
+          },
+          "numberOfReviews": 263,
+          "isClosed": false,
+          "isLongClosed": false,
+          "openNowText": "Open Now",
+          "priceLevel": "$$ - $$$",
+          "dishes": [],
+          "hours": {
+            "weekRanges": [
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1500,
+                  "closeHours": "01:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1500,
+                  "closeHours": "01:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1500,
+                  "closeHours": "01:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1500,
+                  "closeHours": "01:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1500,
+                  "closeHours": "01:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1500,
+                  "closeHours": "01:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1500,
+                  "closeHours": "01:00"
+                }
+              ]
+            ],
+            "timezone": "Asia/Kolkata"
+          },
+          "menuWebUrl": "http://www.tripadvisor.com/MobileRestaurantMenu-g297628-d20105318-Just_Blr-Bengaluru_Bangalore_District_Karnataka.html",
+          "ownersTopReasons": null,
+          "isNearbyResult": false,
+          "photos": [
+            "https://media-cdn.tripadvisor.com/media/photo-o/2f/b7/08/62/usual-evening-at-just.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/2f/b7/08/c0/usual-evening-at-just.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/2f/b6/e8/38/a-performance-night-at.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/31/ce/22/4c/caption.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/31/ca/71/3a/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/29/ef/1f/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/29/ef/20/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/af/6f/d0/just-blr.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/83/07/04/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/f3/07/53/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/c6/8b/9b/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/1a/56/ee/just-blr.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/1a/56/ef/just-blr.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f9/8c/26/just-blr.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f9/8c/80/just-blr.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/f9/8e/cd/just-blr.jpg"
+          ],
+          "travelerChoiceAward": null,
+          "cuisines": [
+            "Indian",
+            "Bar",
+            "Pub",
+            "Gastropub"
+          ],
+          "dietaryRestrictions": [
+            "Vegetarian friendly"
+          ],
+          "establishmentTypes": [
+            "Bars & Pubs",
+            "Restaurants"
+          ],
+          "features": [
+            "Reservations",
+            "Seating",
+            "Serves Alcohol",
+            "Full Bar",
+            "Table Service"
+          ],
+          "mealTypes": [
+            "Lunch",
+            "Dinner"
+          ],
+          "isClaimedIcon": false,
+          "isClaimedText": null,
+          "orderOnline": [],
+          "input": "Bengaluru"
+        }
+      },
+      {
+        "json": {
+          "id": "1787778",
+          "type": "RESTAURANT",
+          "category": "restaurant",
+          "subcategories": [
+            "Sit down"
+          ],
+          "name": "Shiro Bengaluru",
+          "locationString": "Bengaluru, Bangalore District, Karnataka",
+          "description": "Shiro, or castle in Japanese, is a dramatic soaring space that immediately captures the imagination and stretches the senses. The towering interior is finished in a unique combination of natural stone, woods, slate, leather, bamboo, and velvet complemented by shimmering lotus pools, soft furniture and subtle lighting. Shiro’s ability to stimulate your senses continues with their diverse cuisine and sophisticated bar. Inspired by the fiery orient, the menu offers an eclectic mix of Korean, Vietnamese, Chinese, Japanese and Thai gastronomy . Having won 19 awards across the country over the last eight years, including The Times Food Guide’s Best Pan Asian Restaurant in Bengaluru for the last four years consecutively, Shiro speaks for itself.",
+          "image": "https://media-cdn.tripadvisor.com/media/photo-o/2b/76/94/07/shiro-bengaluru-cafe.jpg",
+          "photoCount": 458,
+          "rankingPosition": 16,
+          "rating": 4.5,
+          "rawRanking": 4.823756217956543,
+          "phone": "+91 72590 21121",
+          "address": "UB City, Vittal Mallya Road 222, 3rd Floor, Ashok Nagar, Bengaluru 560001 India",
+          "addressObj": {
+            "street1": "UB City, Vittal Mallya Road",
+            "street2": "222, 3rd Floor, Ashok Nagar",
+            "city": "Bengaluru",
+            "state": "Karnataka",
+            "country": "India",
+            "postalcode": "560001"
+          },
+          "localName": "Shiro Bengaluru",
+          "localAddress": "UB City, Vittal Mallya Road, 222, 3rd Floor, Ashok Nagar, 560001",
+          "localLangCode": "en-IN",
+          "email": "priyank@jsmcorp.in",
+          "latitude": 12.97166,
+          "longitude": 77.59598,
+          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d1787778-Reviews-Shiro_Bengaluru-Bengaluru_Bangalore_District_Karnataka.html",
+          "website": "http://www.facebook.com/experienceshiro",
+          "rankingString": "#16 of 10,590 places to eat in Bengaluru",
+          "rankingDenominator": "4152",
+          "rankingSource": "API",
+          "neighborhoodLocations": [
+            {
+              "id": "20484099",
+              "name": "Richmond Town"
+            }
+          ],
+          "nearestMetroStations": [
+            {
+              "name": "Cubbon Park",
+              "localName": "Cubbon Park",
+              "address": "Kasturba Road, Bengaluru 560001, India",
+              "localAddress": "Kasturba Road, 560001",
+              "lines": [
+                {
+                  "id": "bangalore-namma-metro-purple",
+                  "lineName": "Purple",
+                  "lineSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "systemName": "Namma Metro",
+                  "systemSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "type": "Metro"
+                }
+              ],
+              "latitude": 12.97555160522461,
+              "longitude": 77.59098052978516,
+              "distance": 0.43119877515802113
+            },
+            {
+              "name": "Vidhana Soudha",
+              "localName": "Vidhana Soudha",
+              "address": "Mahatma Gandhi Road, Bengaluru 560001, India",
+              "localAddress": "Mahatma Gandhi Road, 560001",
+              "lines": [
+                {
+                  "id": "bangalore-namma-metro-purple",
+                  "lineName": "Purple",
+                  "lineSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "systemName": "Namma Metro",
+                  "systemSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "type": "Metro"
+                }
+              ],
+              "latitude": 12.97558879852295,
+              "longitude": 77.60657501220703,
+              "distance": 0.764259308286105
+            },
+            {
+              "name": "Mahatma Gandhi Road",
+              "localName": "Mahatma Gandhi Road",
+              "address": "MG Road, Bengaluru 560001, India",
+              "localAddress": "MG Road, 560001",
+              "lines": [
+                {
+                  "id": "bangalore-namma-metro-purple",
+                  "lineName": "Purple",
+                  "lineSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "systemName": "Namma Metro",
+                  "systemSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "type": "Metro"
+                }
+              ],
+              "latitude": 12.975634574890137,
+              "longitude": 77.60661315917969,
+              "distance": 0.7677911758015769
+            },
+            {
+              "name": "Sir M Visveshwarya",
+              "localName": "Sir M Visveshwarya",
+              "address": "Post Office Road, Bengaluru 560009, India",
+              "localAddress": "Post Office Road, 560009",
+              "lines": [
+                {
+                  "id": "bangalore-namma-metro-purple",
+                  "lineName": "Purple",
+                  "lineSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "systemName": "Namma Metro",
+                  "systemSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "type": "Metro"
+                }
+              ],
+              "latitude": 12.974120140075684,
+              "longitude": 77.58399200439453,
+              "distance": 0.8256313501808936
+            },
+            {
+              "name": "Central College",
+              "localName": "Central College",
+              "address": "Palace Road, Bengaluru 560009, India",
+              "localAddress": "Palace Road, 560009",
+              "lines": [
+                {
+                  "id": "bangalore-namma-metro-purple",
+                  "lineName": "Purple",
+                  "lineSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "systemName": "Namma Metro",
+                  "systemSymbol": "https://static.tacdn.com/img/api/metro_stations/metro_placeholder.png",
+                  "type": "Metro"
+                }
+              ],
+              "latitude": 12.974810600280762,
+              "longitude": 77.58273315429688,
+              "distance": 0.9189706907022622
+            }
+          ],
+          "ancestorLocations": [
+            {
+              "id": "297628",
+              "name": "Bengaluru",
+              "abbreviation": null,
+              "subcategory": "City"
+            },
+            {
+              "id": "12392950",
+              "name": "Bangalore District",
+              "abbreviation": null,
+              "subcategory": "District"
+            },
+            {
+              "id": "297627",
+              "name": "Karnataka",
+              "abbreviation": null,
+              "subcategory": "State"
+            },
+            {
+              "id": "293860",
+              "name": "India",
+              "abbreviation": null,
+              "subcategory": "Country"
+            }
+          ],
+          "ratingHistogram": {
+            "count1": 22,
+            "count2": 21,
+            "count3": 67,
+            "count4": 219,
+            "count5": 648
+          },
+          "numberOfReviews": 974,
+          "isClosed": false,
+          "isLongClosed": false,
+          "openNowText": "Open Now",
+          "priceLevel": "$$$$",
+          "dishes": [
+            "Noodle",
+            "Dim Sum",
+            "Dumplings",
+            "Tempura",
+            "Ramen",
+            "Teppanyaki",
+            "Salad",
+            "Curry",
+            "Tiramisu",
+            "Salmon",
+            "Tuna",
+            "Prawns",
+            "Seafood Platters",
+            "Duck",
+            "Crisp",
+            "Gyoza",
+            "Fried rice",
+            "Sashimi",
+            "Fish",
+            "Pork",
+            "Chicken dishes",
+            "BC Roll",
+            "Rice dishes",
+            "Soup",
+            "Sushi Rolls",
+            "Avocado",
+            "Potato Chips",
+            "Desserts",
+            "Jumbo Shrimp",
+            "Duck Dish",
+            "Crispy",
+            "Cake",
+            "Vegetable Curry",
+            "Maki"
+          ],
+          "hours": {
+            "weekRanges": [
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1500,
+                  "closeHours": "01:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1440,
+                  "closeHours": "00:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1440,
+                  "closeHours": "00:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1440,
+                  "closeHours": "00:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1440,
+                  "closeHours": "00:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1500,
+                  "closeHours": "01:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 1500,
+                  "closeHours": "01:00"
+                }
+              ]
+            ],
+            "timezone": "Asia/Kolkata"
+          },
+          "menuWebUrl": null,
+          "ownersTopReasons": null,
+          "isNearbyResult": false,
+          "reviewTags": [
+            {
+              "text": "sushi",
+              "reviews": 104
+            },
+            {
+              "text": "salad",
+              "reviews": 6
+            },
+            {
+              "text": "ub city",
+              "reviews": 64
+            },
+            {
+              "text": "great ambience",
+              "reviews": 16
+            },
+            {
+              "text": "statues",
+              "reviews": 28
+            },
+            {
+              "text": "cuisine",
+              "reviews": 16
+            }
+          ],
+          "photos": [
+            "https://media-cdn.tripadvisor.com/media/photo-o/2b/76/94/05/shiro-bengaluru-cafe.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/2b/76/94/07/shiro-bengaluru-cafe.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/2b/76/9a/dc/best-sushi-dimsums-shiro.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/2b/76/9a/db/the-best-of-pan-asian.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/2b/76/9a/da/shiro-pan-asian-spread.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/2b/76/9a/d9/women-s-luncheon-shiro.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/aa/65/da/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/aa/65/17/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/71/85/d9/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/71/85/da/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/71/8e/9f/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/71/8e/9e/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/71/8e/9d/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/cf/8c/d6/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/53/52/a1/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/53/52/a0/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/53/52/9f/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/19/9e/ce/caption.jpg"
+          ],
+          "travelerChoiceAward": null,
+          "cuisines": [
+            "Sushi",
+            "Shanghai",
+            "Japanese",
+            "Asian"
+          ],
+          "dietaryRestrictions": [
+            "Gluten free options",
+            "Vegetarian friendly",
+            "Vegan options"
+          ],
+          "establishmentTypes": [
+            "Restaurants"
+          ],
+          "features": [
+            "Outdoor Seating",
+            "Serves Alcohol",
+            "Table Service",
+            "Full Bar",
+            "Highchairs Available",
+            "Seating",
+            "Accepts Credit Cards",
+            "Wine and Beer",
+            "Reservations",
+            "Parking Available"
+          ],
+          "mealTypes": [
+            "Dinner",
+            "Drinks",
+            "Late Night",
+            "Lunch"
+          ],
+          "isClaimedIcon": false,
+          "isClaimedText": null,
+          "orderOnline": [],
+          "input": "Bengaluru"
+        }
+      },
+      {
+        "json": {
           "id": "27493936",
           "type": "RESTAURANT",
           "category": "restaurant",
@@ -279,7 +1008,7 @@
           "longitude": 77.61949,
           "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d27493936-Reviews-Kari_Theory-Bengaluru_Bangalore_District_Karnataka.html",
           "website": null,
-          "rankingString": "#8 of 10,588 places to eat in Bengaluru",
+          "rankingString": "#8 of 10,590 places to eat in Bengaluru",
           "rankingDenominator": "4152",
           "rankingSource": "API",
           "neighborhoodLocations": [],
@@ -468,6 +1197,7 @@
           "menuWebUrl": null,
           "ownersTopReasons": null,
           "isNearbyResult": false,
+          "reviewTags": [],
           "photos": [
             "https://media-cdn.tripadvisor.com/media/photo-o/2b/ad/87/d1/nethili-fry.jpg",
             "https://media-cdn.tripadvisor.com/media/photo-o/2b/ad/87/d0/kumbakonam-kapi-daiquiri.jpg",
@@ -541,228 +1271,128 @@
       },
       {
         "json": {
-          "reviewTags": [],
-          "id": "32842762",
-          "type": "RESTAURANT",
-          "category": "restaurant",
-          "subcategories": [
-            "Sit down"
-          ],
-          "name": "Zarf - The Indian Kitchen",
-          "locationString": "Bengaluru, Bangalore District, Karnataka",
-          "description": "Embark on a culinary voyage where each dish tells a story that resonates with depth and its complex yet seamless art of cooking. In a world where flavors become narratives and ingredients transform into characters, our restaurant invites you to experience gastronomic alchemy—a symphony of tastes that goes beyond the surface, delving into the profound depths of culinary mastery. Our chefs, akin to skilled craftsmen, prepare each dish with an understanding that surpasses the ordinary. It's not just about flavors; it's about the intricate dance of spices, the nuanced layering of textures and the harmonious balance of contrasting elements that elevate each bite to a sensorial masterpiece. Our commitment to culinary depth extends beyond the plate; it is a connection to culture and tradition. Each dish is a bridge to India’s heritage, an invitation to explore the roots of a cuisine that has evolved through time, carrying with it the stories of generations.",
-          "image": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2e/95/e6/8d/zarf-interior.jpg",
-          "photoCount": 69,
-          "rankingPosition": 5,
-          "rating": 5,
-          "rawRanking": 4.876897811889648,
-          "phone": "+91 89040 52101",
-          "address": "Sheraton Grand Bengaluru Whitefield Hotel And Convention Center Hoodi, Thigalarapalya, Whitefield, Bengaluru 560048 India",
-          "addressObj": {
-            "street1": "Sheraton Grand Bengaluru Whitefield Hotel And Convention Center",
-            "street2": "Hoodi, Thigalarapalya, Whitefield",
-            "city": "Bengaluru",
-            "state": "Karnataka",
-            "country": "India",
-            "postalcode": "560048"
-          },
-          "localName": "Zarf - The Indian Kitchen",
-          "localAddress": "Sheraton Grand Bengaluru Whitefield Hotel And Convention Center, Hoodi, Thigalarapalya, Whitefield, 560048",
-          "localLangCode": "en-IN",
-          "email": "marcomsw.bangalore@gmail.com",
-          "latitude": 9.984388,
-          "longitude": 76.56384,
-          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d32842762-Reviews-Zarf_The_Indian_Kitchen-Bengaluru_Bangalore_District_Karnataka.html",
-          "website": "https://www.marriott.com/en-us/hotels/blrsw-sheraton-grand-bengaluru-whitefield-hotel-and-convention-center/overview/",
-          "rankingString": "#5 of 10,588 places to eat in Bengaluru",
-          "rankingDenominator": "4152",
-          "rankingSource": "API",
-          "neighborhoodLocations": [],
-          "nearestMetroStations": [],
-          "ancestorLocations": [
+          "reviewTags": [
             {
-              "id": "297628",
-              "name": "Bengaluru",
-              "abbreviation": null,
-              "subcategory": "City"
+              "text": "seafood",
+              "reviews": 222
             },
             {
-              "id": "12392950",
-              "name": "Bangalore District",
-              "abbreviation": null,
-              "subcategory": "District"
+              "text": "appam",
+              "reviews": 246
             },
             {
-              "id": "297627",
-              "name": "Karnataka",
-              "abbreviation": null,
-              "subcategory": "State"
+              "text": "mango curry",
+              "reviews": 31
             },
             {
-              "id": "293860",
-              "name": "India",
-              "abbreviation": null,
-              "subcategory": "Country"
+              "text": "stew",
+              "reviews": 44
+            },
+            {
+              "text": "tiger prawns",
+              "reviews": 25
+            },
+            {
+              "text": "crab",
+              "reviews": 28
+            },
+            {
+              "text": "thali",
+              "reviews": 71
+            },
+            {
+              "text": "kerala food",
+              "reviews": 22
+            },
+            {
+              "text": "cake",
+              "reviews": 59
+            },
+            {
+              "text": "curries",
+              "reviews": 23
+            },
+            {
+              "text": "chicken",
+              "reviews": 36
+            },
+            {
+              "text": "coastal food",
+              "reviews": 109
+            },
+            {
+              "text": "mr anthony",
+              "reviews": 47
+            },
+            {
+              "text": "birthday lunch",
+              "reviews": 28
+            },
+            {
+              "text": "residency road",
+              "reviews": 47
+            },
+            {
+              "text": "amazing food",
+              "reviews": 80
+            },
+            {
+              "text": "special mention",
+              "reviews": 49
+            },
+            {
+              "text": "banana leaf",
+              "reviews": 33
+            },
+            {
+              "text": "outdoor seating",
+              "reviews": 39
+            },
+            {
+              "text": "special thanks",
+              "reviews": 50
+            },
+            {
+              "text": "memorable experience",
+              "reviews": 22
+            },
+            {
+              "text": "great ambience",
+              "reviews": 65
+            },
+            {
+              "text": "south indian",
+              "reviews": 23
+            },
+            {
+              "text": "must visit place",
+              "reviews": 26
+            },
+            {
+              "text": "mouth watering",
+              "reviews": 27
+            },
+            {
+              "text": "non veg",
+              "reviews": 26
+            },
+            {
+              "text": "bangalore",
+              "reviews": 318
+            },
+            {
+              "text": "ada",
+              "reviews": 22
+            },
+            {
+              "text": "meen",
+              "reviews": 25
+            },
+            {
+              "text": "malabar",
+              "reviews": 48
             }
           ],
-          "ratingHistogram": {
-            "count1": 0,
-            "count2": 0,
-            "count3": 0,
-            "count4": 5,
-            "count5": 140
-          },
-          "numberOfReviews": 145,
-          "isClosed": false,
-          "isLongClosed": false,
-          "openNowText": "Opens in 12 min",
-          "priceLevel": "$$$$",
-          "dishes": [
-            "Desserts"
-          ],
-          "hours": {
-            "weekRanges": [
-              [
-                {
-                  "open": 750,
-                  "openHours": "12:30",
-                  "close": 900,
-                  "closeHours": "15:00"
-                },
-                {
-                  "open": 1140,
-                  "openHours": "19:00",
-                  "close": 1380,
-                  "closeHours": "23:00"
-                }
-              ],
-              [
-                {
-                  "open": 1140,
-                  "openHours": "19:00",
-                  "close": 1380,
-                  "closeHours": "23:00"
-                }
-              ],
-              [
-                {
-                  "open": 1140,
-                  "openHours": "19:00",
-                  "close": 1380,
-                  "closeHours": "23:00"
-                }
-              ],
-              [
-                {
-                  "open": 1140,
-                  "openHours": "19:00",
-                  "close": 1380,
-                  "closeHours": "23:00"
-                }
-              ],
-              [
-                {
-                  "open": 1140,
-                  "openHours": "19:00",
-                  "close": 1380,
-                  "closeHours": "23:00"
-                }
-              ],
-              [
-                {
-                  "open": 1140,
-                  "openHours": "19:00",
-                  "close": 1380,
-                  "closeHours": "23:00"
-                }
-              ],
-              [
-                {
-                  "open": 750,
-                  "openHours": "12:30",
-                  "close": 900,
-                  "closeHours": "15:00"
-                },
-                {
-                  "open": 1140,
-                  "openHours": "19:00",
-                  "close": 1380,
-                  "closeHours": "23:00"
-                }
-              ]
-            ],
-            "timezone": "Asia/Kolkata"
-          },
-          "menuWebUrl": null,
-          "ownersTopReasons": null,
-          "isNearbyResult": false,
-          "photos": [
-            "https://media-cdn.tripadvisor.com/media/photo-o/2e/95/e6/8d/zarf-interior.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/2e/95/eb/0f/interior.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/2e/95/e4/6b/zarf-logo.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/2f/f8/b7/2c/drinks.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/2f/f8/b6/c0/interior.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/81/24/50/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/81/24/51/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/90/bf/63/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/90/bf/62/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/90/bf/61/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/90/bf/60/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/77/d6/23/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/77/d6/24/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/77/d6/25/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/77/d6/26/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/77/d6/27/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/77/d6/28/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/2f/97/80/caption.jpg"
-          ],
-          "travelerChoiceAward": null,
-          "cuisines": [
-            "Indian"
-          ],
-          "dietaryRestrictions": [
-            "Vegetarian friendly",
-            "Vegan options"
-          ],
-          "establishmentTypes": [
-            "Restaurants"
-          ],
-          "features": [
-            "Delivery",
-            "Takeout",
-            "Reservations",
-            "Seating",
-            "Parking Available",
-            "Validated Parking",
-            "Valet Parking",
-            "Free off-street parking",
-            "Highchairs Available",
-            "Wheelchair Accessible",
-            "Serves Alcohol",
-            "Full Bar",
-            "Wine and Beer",
-            "American Express",
-            "Mastercard",
-            "Visa",
-            "Digital Payments",
-            "Cash Only",
-            "Discover",
-            "Accepts Credit Cards",
-            "Table Service",
-            "Family style",
-            "Non-smoking restaurants"
-          ],
-          "mealTypes": [
-            "Dinner"
-          ],
-          "isClaimedIcon": false,
-          "isClaimedText": null,
-          "orderOnline": [],
-          "input": "Bengaluru"
-        }
-      },
-      {
-        "json": {
           "id": "1568903",
           "type": "RESTAURANT",
           "category": "restaurant",
@@ -773,7 +1403,7 @@
           "locationString": "Bengaluru, Bangalore District, Karnataka",
           "description": "Karavalli an iconic restaurant located at Vivanta Bengaluru Residency Road. Since inception in 1990, Karavalli has grown to be an institution when it comes to South west coast flavours. Modelled on a traditional Mangalorean bungalow, and surrounded by lush tamarind trees, the restaurant is inspired by the architecture of coastal South India. Ingredients from the coast, such as cloves, cinnamon, pepper, home grown chillies and only the freshest vegetables and finest meats make it to the menu. The chef and team have painstakingly preserved India’s most refined culinary traditions from our rich heritage by restoring age old recipes, decades of researching meeting with locals and recreating forgotten flavours of a glorious bygone era.",
           "image": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1b/2d/2f/94/karavalli-garden.jpg",
-          "photoCount": 762,
+          "photoCount": 766,
           "rankingPosition": 9,
           "rating": 4.8,
           "rawRanking": 4.856713771820068,
@@ -795,7 +1425,7 @@
           "longitude": 77.60883,
           "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d1568903-Reviews-Karavalli_Taj-Bengaluru_Bangalore_District_Karnataka.html",
           "website": "https://www.vivantahotels.com/en-in/vivanta-bengaluru-residency-road/restaurants/karavalli",
-          "rankingString": "#9 of 10,588 places to eat in Bengaluru",
+          "rankingString": "#9 of 10,590 places to eat in Bengaluru",
           "rankingDenominator": "4152",
           "rankingSource": "API",
           "neighborhoodLocations": [
@@ -898,9 +1528,9 @@
             "count2": 20,
             "count3": 62,
             "count4": 325,
-            "count5": 2161
+            "count5": 2162
           },
-          "numberOfReviews": 2583,
+          "numberOfReviews": 2584,
           "isClosed": false,
           "isLongClosed": false,
           "openNowText": "Open Now",
@@ -1043,128 +1673,6 @@
           "menuWebUrl": null,
           "ownersTopReasons": null,
           "isNearbyResult": false,
-          "reviewTags": [
-            {
-              "text": "seafood",
-              "reviews": 222
-            },
-            {
-              "text": "appam",
-              "reviews": 246
-            },
-            {
-              "text": "mango curry",
-              "reviews": 31
-            },
-            {
-              "text": "stew",
-              "reviews": 44
-            },
-            {
-              "text": "tiger prawns",
-              "reviews": 25
-            },
-            {
-              "text": "crab",
-              "reviews": 28
-            },
-            {
-              "text": "thali",
-              "reviews": 71
-            },
-            {
-              "text": "kerala food",
-              "reviews": 22
-            },
-            {
-              "text": "cake",
-              "reviews": 59
-            },
-            {
-              "text": "curries",
-              "reviews": 23
-            },
-            {
-              "text": "chicken",
-              "reviews": 36
-            },
-            {
-              "text": "coastal food",
-              "reviews": 109
-            },
-            {
-              "text": "mr anthony",
-              "reviews": 47
-            },
-            {
-              "text": "birthday lunch",
-              "reviews": 28
-            },
-            {
-              "text": "residency road",
-              "reviews": 47
-            },
-            {
-              "text": "amazing food",
-              "reviews": 80
-            },
-            {
-              "text": "special mention",
-              "reviews": 49
-            },
-            {
-              "text": "banana leaf",
-              "reviews": 33
-            },
-            {
-              "text": "outdoor seating",
-              "reviews": 39
-            },
-            {
-              "text": "special thanks",
-              "reviews": 50
-            },
-            {
-              "text": "memorable experience",
-              "reviews": 22
-            },
-            {
-              "text": "great ambience",
-              "reviews": 65
-            },
-            {
-              "text": "south indian",
-              "reviews": 23
-            },
-            {
-              "text": "must visit place",
-              "reviews": 26
-            },
-            {
-              "text": "mouth watering",
-              "reviews": 27
-            },
-            {
-              "text": "non veg",
-              "reviews": 26
-            },
-            {
-              "text": "bangalore",
-              "reviews": 318
-            },
-            {
-              "text": "ada",
-              "reviews": 22
-            },
-            {
-              "text": "meen",
-              "reviews": 25
-            },
-            {
-              "text": "malabar",
-              "reviews": 48
-            }
-          ],
           "photos": [
             "https://media-cdn.tripadvisor.com/media/photo-o/1b/2d/2f/94/karavalli-garden.jpg",
             "https://media-cdn.tripadvisor.com/media/photo-o/03/d9/62/ce/karavalli.jpg",
@@ -1175,10 +1683,7 @@
             "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/34/de/be/caption.jpg",
             "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/34/de/bf/caption.jpg",
             "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/34/de/c0/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/34/de/c1/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/bf/44/e1/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/bf/44/e0/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/bf/44/df/caption.jpg"
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/34/de/c1/caption.jpg"
           ],
           "travelerChoiceAward": null,
           "cuisines": [
@@ -1223,129 +1728,533 @@
         "json": {
           "reviewTags": [
             {
-              "text": "brunch",
-              "reviews": 41
+              "text": "kulfi",
+              "reviews": 32
             },
             {
-              "text": "tres leches",
-              "reviews": 18
+              "text": "dal makhani",
+              "reviews": 17
             },
             {
-              "text": "nachos",
-              "reviews": 37
-            },
-            {
-              "text": "pizza",
-              "reviews": 50
+              "text": "cake",
+              "reviews": 25
             },
             {
               "text": "chicken",
-              "reviews": 20
+              "reviews": 15
             },
             {
-              "text": "karari roti",
+              "text": "kebab",
+              "reviews": 15
+            },
+            {
+              "text": "shangri la hotel",
+              "reviews": 19
+            },
+            {
+              "text": "saffron restaurant",
+              "reviews": 16
+            },
+            {
+              "text": "chef pankaj",
+              "reviews": 12
+            },
+            {
+              "text": "anniversary celebration",
               "reviews": 17
-            },
-            {
-              "text": "popcorn prawns",
-              "reviews": 17
-            },
-            {
-              "text": "brewed beer",
-              "reviews": 26
-            },
-            {
-              "text": "great ambience",
-              "reviews": 55
-            },
-            {
-              "text": "must visit place",
-              "reviews": 43
-            },
-            {
-              "text": "awesome place",
-              "reviews": 24
             },
             {
               "text": "special thanks",
-              "reviews": 24
-            },
-            {
-              "text": "amazing food",
-              "reviews": 31
-            },
-            {
-              "text": "service",
-              "reviews": 588
-            },
-            {
-              "text": "samuel",
               "reviews": 34
             },
             {
-              "text": "mr",
-              "reviews": 113
+              "text": "set menu",
+              "reviews": 16
             },
             {
-              "text": "brewery",
-              "reviews": 50
+              "text": "great ambience",
+              "reviews": 39
             },
             {
-              "text": "hospitality",
-              "reviews": 62
+              "text": "amazing hospitality",
+              "reviews": 12
             },
             {
-              "text": "bangalore",
-              "reviews": 78
+              "text": "indian food",
+              "reviews": 30
             },
             {
-              "text": "cheers",
-              "reviews": 20
+              "text": "excellent food",
+              "reviews": 35
             },
             {
-              "text": "mocktails",
-              "reviews": 24
+              "text": "special mention",
+              "reviews": 16
             },
             {
-              "text": "team",
+              "text": "family dinner",
+              "reviews": 11
+            },
+            {
+              "text": "courteous staff",
+              "reviews": 14
+            },
+            {
+              "text": "dining experience",
+              "reviews": 12
+            },
+            {
+              "text": "main course",
               "reviews": 28
             },
             {
-              "text": "crowd",
-              "reviews": 16
+              "text": "shangrila",
+              "reviews": 44
+            },
+            {
+              "text": "lal",
+              "reviews": 20
+            },
+            {
+              "text": "floor",
+              "reviews": 72
+            },
+            {
+              "text": "bangalore",
+              "reviews": 81
+            },
+            {
+              "text": "ms",
+              "reviews": 23
+            },
+            {
+              "text": "team",
+              "reviews": 33
             }
           ],
-          "id": "14766986",
+          "id": "10252338",
           "type": "RESTAURANT",
           "category": "restaurant",
           "subcategories": [],
-          "name": "Byg Brewski Brewing Company",
+          "name": "Ssaffron",
           "locationString": "Bengaluru, Bangalore District, Karnataka",
-          "description": "Byg Brewski Brewing Company, Asia's largest premium brewpub, offers five experience zones, array of home-made craft Beers and a eclectic cuisine with combines both International and Local cuisines to suit every palate. Large open outdoor, adorned with lush greenery, water body combining nature's five elements namely earth, water, fire, metal, making this an opulent experience. Live music, no mobile zone, table games and many activities to participate in.",
-          "image": "https://media-cdn.tripadvisor.com/media/photo-m/1280/18/85/13/70/byg-brewski-brewing-company.jpg",
-          "photoCount": 745,
-          "rankingPosition": 10,
-          "rating": 4.9,
-          "rawRanking": 4.849773406982422,
-          "phone": "+91 80 4680 9351",
-          "address": "SOUTHERN ASIA BIBLE COLLEGE, 22, Hennur Bagalur Main Rd, Bengaluru 560077 India",
+          "description": null,
+          "image": "https://media-cdn.tripadvisor.com/media/photo-o/0b/ff/18/35/ssaffron-restaurant.jpg",
+          "photoCount": 431,
+          "rankingPosition": 22,
+          "rating": 4.8,
+          "rawRanking": 4.815494537353516,
+          "phone": "+91 80 6916 6100",
+          "address": "No 56-6B Palace Road Level 18, Bengaluru 560001 India",
           "addressObj": {
-            "street1": "SOUTHERN ASIA BIBLE COLLEGE, 22, Hennur Bagalur Main Rd",
-            "street2": null,
+            "street1": "No 56-6B Palace Road",
+            "street2": "Level 18",
             "city": "Bengaluru",
             "state": "Karnataka",
             "country": "India",
-            "postalcode": "560077"
+            "postalcode": "560001"
           },
-          "localName": "Byg Brewski Brewing Company",
-          "localAddress": "SOUTHERN ASIA BIBLE COLLEGE, 22, Hennur Bagalur Main Rd, 560077",
+          "localName": "Ssaffron",
+          "localAddress": "No 56-6B Palace Road, Level 18, 560001",
           "localLangCode": "en-IN",
-          "email": "agm.hnr@bygbrewski.com",
-          "latitude": 13.07083,
-          "longitude": 77.65186,
-          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d14766986-Reviews-Byg_Brewski_Brewing_Company-Bengaluru_Bangalore_District_Karnataka.html",
-          "website": "https://www.bygbrewski.com",
-          "rankingString": "#10 of 10,588 places to eat in Bengaluru",
+          "email": "Ssaffron.slbl@shangri-la.com",
+          "latitude": 12.991831,
+          "longitude": 77.588005,
+          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d10252338-Reviews-Ssaffron-Bengaluru_Bangalore_District_Karnataka.html",
+          "website": "http://www.shangri-la.com/bengaluru/shangrila/dining/restaurants/ssaffron/",
+          "rankingString": "#22 of 10,590 places to eat in Bengaluru",
+          "rankingDenominator": "4152",
+          "rankingSource": "API",
+          "neighborhoodLocations": [
+            {
+              "id": "20484100",
+              "name": "Vasanth Nagar"
+            }
+          ],
+          "nearestMetroStations": [],
+          "ancestorLocations": [
+            {
+              "id": "297628",
+              "name": "Bengaluru",
+              "abbreviation": null,
+              "subcategory": "City"
+            },
+            {
+              "id": "12392950",
+              "name": "Bangalore District",
+              "abbreviation": null,
+              "subcategory": "District"
+            },
+            {
+              "id": "297627",
+              "name": "Karnataka",
+              "abbreviation": null,
+              "subcategory": "State"
+            },
+            {
+              "id": "293860",
+              "name": "India",
+              "abbreviation": null,
+              "subcategory": "Country"
+            }
+          ],
+          "ratingHistogram": {
+            "count1": 6,
+            "count2": 11,
+            "count3": 5,
+            "count4": 100,
+            "count5": 939
+          },
+          "numberOfReviews": 1061,
+          "isClosed": false,
+          "isLongClosed": false,
+          "openNowText": "Open Now",
+          "priceLevel": "$$$$",
+          "dishes": [
+            "Doner Kebab",
+            "Curry",
+            "Mixed Kebabs",
+            "Lamb",
+            "Chicken dishes",
+            "Paneer",
+            "Thali",
+            "Soup",
+            "Daal",
+            "Paratha",
+            "Paneer Tikka",
+            "Desserts",
+            "Chicken Biryani",
+            "Kulfi",
+            "Mutton",
+            "Biryani",
+            "Cake",
+            "Vegetable Curry",
+            "Parantha"
+          ],
+          "hours": {
+            "weekRanges": [
+              [
+                {
+                  "open": 1110,
+                  "openHours": "18:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 930,
+                  "closeHours": "15:30"
+                },
+                {
+                  "open": 1110,
+                  "openHours": "18:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 930,
+                  "closeHours": "15:30"
+                },
+                {
+                  "open": 1110,
+                  "openHours": "18:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 930,
+                  "closeHours": "15:30"
+                },
+                {
+                  "open": 1110,
+                  "openHours": "18:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 930,
+                  "closeHours": "15:30"
+                },
+                {
+                  "open": 1110,
+                  "openHours": "18:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 720,
+                  "openHours": "12:00",
+                  "close": 930,
+                  "closeHours": "15:30"
+                },
+                {
+                  "open": 1110,
+                  "openHours": "18:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 1110,
+                  "openHours": "18:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ]
+            ],
+            "timezone": "Asia/Kolkata"
+          },
+          "menuWebUrl": "https://shangri-la-bengaluru.guest-chat.com/venue/29686/venues",
+          "ownersTopReasons": null,
+          "isNearbyResult": false,
+          "photos": [
+            "https://media-cdn.tripadvisor.com/media/photo-o/0b/ff/18/35/ssaffron-restaurant.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/0f/a7/ac/a0/ssaffron-outdoors.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/0b/ff/18/36/kebabs-and-more.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/28/e1/27/d1/rogan-josh.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/28/e1/27/d0/onion-rings.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/18/02/fa/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/18/02/dd/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/18/02/44/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/18/02/41/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/18/02/45/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/18/02/43/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/18/02/42/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/86/c7/6f/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/30/f2/ae/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/30/f2/ad/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/30/f2/ac/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/30/f2/ab/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/30/f2/aa/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/30/f2/a8/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/30/f2/a7/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/60/e5/12/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/89/99/3d/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/89/99/3e/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/a2/8f/e5/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/a2/8f/e6/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/a2/8f/e7/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/a2/8f/e8/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/a2/8f/e9/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/a2/8f/ea/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/a2/8f/eb/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/a2/8f/ec/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/a2/8f/ed/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/a2/8f/ee/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/70/84/53/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/65/f2/1a/caption.jpg"
+          ],
+          "travelerChoiceAward": null,
+          "cuisines": [
+            "Indian"
+          ],
+          "dietaryRestrictions": [
+            "Vegetarian friendly",
+            "Vegan options",
+            "Halal",
+            "Gluten free options"
+          ],
+          "establishmentTypes": [
+            "Restaurants"
+          ],
+          "features": [
+            "Reservations",
+            "Outdoor Seating",
+            "Seating",
+            "Parking Available",
+            "Valet Parking",
+            "Highchairs Available",
+            "Wheelchair Accessible",
+            "Serves Alcohol",
+            "Full Bar",
+            "Accepts Credit Cards",
+            "Table Service"
+          ],
+          "mealTypes": [
+            "Lunch",
+            "Dinner"
+          ],
+          "isClaimedIcon": false,
+          "isClaimedText": null,
+          "orderOnline": [],
+          "input": "Bengaluru"
+        }
+      },
+      {
+        "json": {
+          "reviewTags": [
+            {
+              "text": "brunch",
+              "reviews": 6
+            },
+            {
+              "text": "pizza",
+              "reviews": 14
+            },
+            {
+              "text": "fish fingers",
+              "reviews": 2
+            },
+            {
+              "text": "appam",
+              "reviews": 2
+            },
+            {
+              "text": "cakes",
+              "reviews": 3
+            },
+            {
+              "text": "the cottages",
+              "reviews": 12
+            },
+            {
+              "text": "kerala style",
+              "reviews": 12
+            },
+            {
+              "text": "beautiful property",
+              "reviews": 5
+            },
+            {
+              "text": "mr hari",
+              "reviews": 4
+            },
+            {
+              "text": "pet friendly resort",
+              "reviews": 3
+            },
+            {
+              "text": "lush green surroundings",
+              "reviews": 3
+            },
+            {
+              "text": "baby shower",
+              "reviews": 2
+            },
+            {
+              "text": "vineyard tour",
+              "reviews": 2
+            },
+            {
+              "text": "the resort manager",
+              "reviews": 2
+            },
+            {
+              "text": "the entire property",
+              "reviews": 2
+            },
+            {
+              "text": "swimming pool is",
+              "reviews": 2
+            },
+            {
+              "text": "nice weekend",
+              "reviews": 2
+            },
+            {
+              "text": "weekend outing",
+              "reviews": 2
+            },
+            {
+              "text": "special shoutout",
+              "reviews": 2
+            },
+            {
+              "text": "house keeping",
+              "reviews": 2
+            },
+            {
+              "text": "excellent place",
+              "reviews": 8
+            },
+            {
+              "text": "bangalore city",
+              "reviews": 6
+            },
+            {
+              "text": "comfortable stay",
+              "reviews": 2
+            },
+            {
+              "text": "goat cheese",
+              "reviews": 2
+            },
+            {
+              "text": "great ambience and food",
+              "reviews": 2
+            },
+            {
+              "text": "food and wine",
+              "reviews": 2
+            },
+            {
+              "text": "amazing hospitality",
+              "reviews": 3
+            },
+            {
+              "text": "ala carte",
+              "reviews": 3
+            },
+            {
+              "text": "candle light dinner",
+              "reviews": 2
+            },
+            {
+              "text": "special mention",
+              "reviews": 4
+            }
+          ],
+          "id": "21372213",
+          "type": "RESTAURANT",
+          "category": "restaurant",
+          "subcategories": [
+            "Sit down"
+          ],
+          "name": "Ranch at Big Banyan Vineyard & Resort",
+          "locationString": "Bengaluru, Bangalore District, Karnataka",
+          "description": "Set in the 20-acre sprawling Big Banyan Resort & Vineyard, Ranch is your weekend getaway, late-night pub cum hang-out with friends, the go-to restaurant for family outings, and an ideal venue for your team lunches and dinners. Has a vegetable farm with livestock and a vineyard. Adjacent is the Big Banyan Winery where we organize a wine tour with wine tasting. Have three accommodation cottages done up tastefully in ethnic style",
+          "image": "https://media-cdn.tripadvisor.com/media/photo-o/1c/4b/04/89/restaurant-and-bar-at.jpg",
+          "photoCount": 308,
+          "rankingPosition": 35,
+          "rating": 4.8,
+          "rawRanking": 4.755186557769775,
+          "phone": "+91 80 6911 1100",
+          "address": "Sy No.8/3, VP Khatha No.396/8/3 Near Big Banyan Tree, Bengaluru 562130 India",
+          "addressObj": {
+            "street1": "Sy No.8/3, VP Khatha No.396/8/3",
+            "street2": "Near Big Banyan Tree",
+            "city": "Bengaluru",
+            "state": "Karnataka",
+            "country": "India",
+            "postalcode": "562130"
+          },
+          "localName": "Ranch at Big Banyan Vineyard & Resort",
+          "localAddress": "Sy No.8/3, VP Khatha No.396/8/3, Near Big Banyan Tree, 562130",
+          "localLangCode": "en-IN",
+          "email": "blrsales2@thepaul.in",
+          "latitude": 12.908014,
+          "longitude": 77.38185,
+          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d21372213-Reviews-Ranch_at_Big_Banyan_Vineyard_Resort-Bengaluru_Bangalore_District_Karnataka.html",
+          "website": "https://www.facebook.com/ranchatbigbanyanvineyardandresort/",
+          "rankingString": "#35 of 10,590 places to eat in Bengaluru",
           "rankingDenominator": "4152",
           "rankingSource": "API",
           "neighborhoodLocations": [],
@@ -1377,30 +2286,353 @@
             }
           ],
           "ratingHistogram": {
-            "count1": 7,
-            "count2": 4,
-            "count3": 13,
-            "count4": 83,
-            "count5": 1501
+            "count1": 5,
+            "count2": 0,
+            "count3": 1,
+            "count4": 20,
+            "count5": 235
           },
-          "numberOfReviews": 1608,
+          "numberOfReviews": 261,
           "isClosed": false,
           "isLongClosed": false,
           "openNowText": "Open Now",
           "priceLevel": "$$$$",
           "dishes": [
-            "Pasta",
-            "Doner Kebab",
-            "Tapas",
-            "Nachos",
-            "Tres Leches",
-            "Mixed Kebabs",
-            "Pesto",
             "Fish",
-            "Pork",
-            "Chicken dishes",
-            "Mixed Platter",
-            "Finger Food",
+            "Soup",
+            "Chicken Biryani",
+            "Biryani",
+            "Cake"
+          ],
+          "hours": {
+            "weekRanges": [
+              [
+                {
+                  "open": 450,
+                  "openHours": "07:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 450,
+                  "openHours": "07:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 450,
+                  "openHours": "07:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 450,
+                  "openHours": "07:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 450,
+                  "openHours": "07:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 450,
+                  "openHours": "07:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 450,
+                  "openHours": "07:30",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ]
+            ],
+            "timezone": "Asia/Kolkata"
+          },
+          "menuWebUrl": null,
+          "ownersTopReasons": null,
+          "isNearbyResult": false,
+          "photos": [
+            "https://media-cdn.tripadvisor.com/media/photo-o/1c/4b/04/89/restaurant-and-bar-at.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/1c/4b/05/d7/lawns-vineyard-farmhouse.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/1c/4b/05/ab/lawns-vineyard-farmhouse.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/1c/4b/04/8a/restaurant-and-bar-at.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/1c/4b/05/d6/lawns-vineyard-farmhouse.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/4f/46/00/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/4f/46/01/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/4f/46/02/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/4f/46/04/caption.jpg"
+          ],
+          "travelerChoiceAward": null,
+          "cuisines": [
+            "Indian",
+            "Bar",
+            "Pizza",
+            "Healthy"
+          ],
+          "dietaryRestrictions": [
+            "Vegetarian friendly",
+            "Vegan options",
+            "Gluten free options"
+          ],
+          "establishmentTypes": [
+            "Restaurants"
+          ],
+          "features": [
+            "Reservations",
+            "Outdoor Seating",
+            "Buffet",
+            "Seating",
+            "Parking Available",
+            "Validated Parking",
+            "Highchairs Available",
+            "Serves Alcohol",
+            "Full Bar",
+            "Wine and Beer",
+            "Digital Payments",
+            "Free Wifi",
+            "Accepts Credit Cards",
+            "Table Service",
+            "Playgrounds",
+            "Dog Friendly",
+            "Family style"
+          ],
+          "mealTypes": [
+            "Breakfast",
+            "Lunch",
+            "Dinner",
+            "Brunch",
+            "Drinks"
+          ],
+          "isClaimedIcon": false,
+          "isClaimedText": null,
+          "orderOnline": [],
+          "input": "Bengaluru"
+        }
+      },
+      {
+        "json": {
+          "reviewTags": [
+            {
+              "text": "salad",
+              "reviews": 87
+            },
+            {
+              "text": "dosa",
+              "reviews": 49
+            },
+            {
+              "text": "ice cream",
+              "reviews": 26
+            },
+            {
+              "text": "sai vishram",
+              "reviews": 298
+            },
+            {
+              "text": "restaurant manager",
+              "reviews": 102
+            },
+            {
+              "text": "vegetarian food",
+              "reviews": 125
+            },
+            {
+              "text": "electronic city",
+              "reviews": 84
+            },
+            {
+              "text": "excellent hospitality",
+              "reviews": 64
+            },
+            {
+              "text": "excellent vegetarian",
+              "reviews": 27
+            },
+            {
+              "text": "garden city",
+              "reviews": 24
+            },
+            {
+              "text": "pure veg",
+              "reviews": 50
+            },
+            {
+              "text": "welcome drink",
+              "reviews": 42
+            },
+            {
+              "text": "awesome food",
+              "reviews": 59
+            },
+            {
+              "text": "family lunch",
+              "reviews": 21
+            },
+            {
+              "text": "buffet spread",
+              "reviews": 42
+            },
+            {
+              "text": "mind blowing",
+              "reviews": 28
+            },
+            {
+              "text": "lunch buffet",
+              "reviews": 37
+            },
+            {
+              "text": "south indian",
+              "reviews": 39
+            },
+            {
+              "text": "live counter",
+              "reviews": 24
+            },
+            {
+              "text": "nice ambience",
+              "reviews": 52
+            },
+            {
+              "text": "visit this place",
+              "reviews": 50
+            },
+            {
+              "text": "courteous staff",
+              "reviews": 24
+            },
+            {
+              "text": "main course",
+              "reviews": 65
+            },
+            {
+              "text": "special thanks",
+              "reviews": 24
+            },
+            {
+              "text": "mouth watering",
+              "reviews": 27
+            },
+            {
+              "text": "quality of food",
+              "reviews": 23
+            },
+            {
+              "text": "bommasandra",
+              "reviews": 41
+            },
+            {
+              "text": "ecity",
+              "reviews": 24
+            },
+            {
+              "text": "team",
+              "reviews": 157
+            },
+            {
+              "text": "bangalore",
+              "reviews": 259
+            }
+          ],
+          "id": "1389538",
+          "type": "RESTAURANT",
+          "category": "restaurant",
+          "subcategories": [
+            "Sit down"
+          ],
+          "name": "Time Traveller",
+          "locationString": "Bengaluru, Bangalore District, Karnataka",
+          "description": "Time Traveller offers an eclectic buffet & an a la carte menu with dishes from across the globe. The buffet for lunch & dinner features over 12 salads, soup selections, 18 main course dishes & over a dozen desserts. Some of the dishes featured in the menu span from Greece, Mexico, The Orient, Europe, Morocco… etc all. Our live counter is a must try!",
+          "image": "https://media-cdn.tripadvisor.com/media/photo-o/14/96/fa/14/restaurant.jpg",
+          "photoCount": 539,
+          "rankingPosition": 1,
+          "rating": 4.9,
+          "rawRanking": 4.955207824707031,
+          "phone": "+91 80 4040 0400",
+          "address": "144 - C/1 Kirloskar Rd Ground Floor, Sai Vishram Business Hotel, Bengaluru 560099 India",
+          "addressObj": {
+            "street1": "144 - C/1 Kirloskar Rd",
+            "street2": "Ground Floor, Sai Vishram Business Hotel",
+            "city": "Bengaluru",
+            "state": "Karnataka",
+            "country": "India",
+            "postalcode": "560099"
+          },
+          "localName": "Time Traveller",
+          "localAddress": "144 - C/1 Kirloskar Rd, Ground Floor, Sai Vishram Business Hotel, 560099",
+          "localLangCode": "en-IN",
+          "email": null,
+          "latitude": 12.824636,
+          "longitude": 77.68114,
+          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d1389538-Reviews-Time_Traveller-Bengaluru_Bangalore_District_Karnataka.html",
+          "website": "https://www.instagram.com/timetravellersaivishram/?hl=e",
+          "rankingString": "#1 of 10,590 places to eat in Bengaluru",
+          "rankingDenominator": "4152",
+          "rankingSource": "API",
+          "neighborhoodLocations": [],
+          "nearestMetroStations": [],
+          "ancestorLocations": [
+            {
+              "id": "297628",
+              "name": "Bengaluru",
+              "abbreviation": null,
+              "subcategory": "City"
+            },
+            {
+              "id": "12392950",
+              "name": "Bangalore District",
+              "abbreviation": null,
+              "subcategory": "District"
+            },
+            {
+              "id": "297627",
+              "name": "Karnataka",
+              "abbreviation": null,
+              "subcategory": "State"
+            },
+            {
+              "id": "293860",
+              "name": "India",
+              "abbreviation": null,
+              "subcategory": "Country"
+            }
+          ],
+          "ratingHistogram": {
+            "count1": 10,
+            "count2": 8,
+            "count3": 33,
+            "count4": 163,
+            "count5": 2502
+          },
+          "numberOfReviews": 2714,
+          "isClosed": false,
+          "isLongClosed": false,
+          "openNowText": "Open Now",
+          "priceLevel": "$$ - $$$",
+          "dishes": [
+            "Pasta",
+            "Salad",
+            "Pesto",
+            "Sweets",
+            "Dinner Buffet",
+            "Soup",
+            "Dosa",
             "Fresh Pasta",
             "Desserts",
             "Cake"
@@ -1409,95 +2641,83 @@
             "weekRanges": [
               [
                 {
-                  "open": 720,
-                  "openHours": "12:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
+                  "open": 420,
+                  "openHours": "07:00",
+                  "close": 1350,
+                  "closeHours": "22:30"
                 }
               ],
               [
                 {
-                  "open": 720,
-                  "openHours": "12:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
+                  "open": 420,
+                  "openHours": "07:00",
+                  "close": 1350,
+                  "closeHours": "22:30"
                 }
               ],
               [
                 {
-                  "open": 720,
-                  "openHours": "12:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
+                  "open": 420,
+                  "openHours": "07:00",
+                  "close": 1350,
+                  "closeHours": "22:30"
                 }
               ],
               [
                 {
-                  "open": 720,
-                  "openHours": "12:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
+                  "open": 420,
+                  "openHours": "07:00",
+                  "close": 1350,
+                  "closeHours": "22:30"
                 }
               ],
               [
                 {
-                  "open": 720,
-                  "openHours": "12:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
+                  "open": 420,
+                  "openHours": "07:00",
+                  "close": 1350,
+                  "closeHours": "22:30"
                 }
               ],
               [
                 {
-                  "open": 720,
-                  "openHours": "12:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
+                  "open": 420,
+                  "openHours": "07:00",
+                  "close": 1350,
+                  "closeHours": "22:30"
                 }
               ],
               [
                 {
-                  "open": 720,
-                  "openHours": "12:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
+                  "open": 420,
+                  "openHours": "07:00",
+                  "close": 1350,
+                  "closeHours": "22:30"
                 }
               ]
             ],
             "timezone": "Asia/Kolkata"
           },
-          "menuWebUrl": "http://www.tripadvisor.com/MobileRestaurantMenu-g297628-d14766986-Byg_Brewski_Brewing_Company-Bengaluru_Bangalore_District_Karnataka.html",
+          "menuWebUrl": null,
           "ownersTopReasons": null,
           "isNearbyResult": false,
           "photos": [
-            "https://media-cdn.tripadvisor.com/media/photo-o/18/85/13/70/byg-brewski-brewing-company.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/18/85/0f/06/byg-brewski-brewing-company.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/18/85/0e/8c/syn-bar-terrace.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/18/85/15/1e/byg-brewski-brewing-company.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/18/85/15/08/array-of-grills.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/59/d5/04/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/32/ac/60/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/32/ac/5f/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/32/ac/5e/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/32/ac/5c/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/32/ac/5b/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/32/ac/5a/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/25/32/ac/59/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/e2/1b/a9/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/e2/1b/a8/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/26/e2/1b/a7/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/91/85/91/byg-brewski-brewing-company.jpg"
+            "https://media-cdn.tripadvisor.com/media/photo-o/14/96/fa/14/restaurant.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/02/d7/6e/a7/e-inn.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/13/c4/03/d2/paneer-biryani-served.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/13/a2/cf/82/mango-tart-served-at.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/13/21/e2/fc/baby-corn-in-hot-garlic.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/bb/f4/90/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/bb/f4/a5/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/7a/d3/d8/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/7a/d3/d9/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/7a/d3/da/caption.jpg"
           ],
           "travelerChoiceAward": null,
           "cuisines": [
-            "Mexican",
-            "American",
             "Indian",
-            "Brew Pub",
-            "Bar",
             "International",
-            "Asian",
-            "Pub"
+            "Asian"
           ],
           "dietaryRestrictions": [
             "Vegetarian friendly",
@@ -1512,603 +2732,22 @@
             "Takeout",
             "Reservations",
             "Seating",
-            "Validated Parking",
-            "Serves Alcohol",
-            "Full Bar",
-            "Table Service",
-            "Live Music"
-          ],
-          "mealTypes": [
-            "Lunch",
-            "Dinner",
-            "Drinks"
-          ],
-          "isClaimedIcon": false,
-          "isClaimedText": null,
-          "orderOnline": [],
-          "input": "Bengaluru"
-        }
-      },
-      {
-        "json": {
-          "reviewTags": [
-            {
-              "text": "sticky toffee pudding",
-              "reviews": 2
-            },
-            {
-              "text": "pizza",
-              "reviews": 14
-            },
-            {
-              "text": "lamb chops",
-              "reviews": 2
-            },
-            {
-              "text": "prawns",
-              "reviews": 2
-            },
-            {
-              "text": "salad",
-              "reviews": 2
-            },
-            {
-              "text": "service staff are",
-              "reviews": 2
-            },
-            {
-              "text": "small plates",
-              "reviews": 2
-            },
-            {
-              "text": "signature cocktails",
-              "reviews": 2
-            },
-            {
-              "text": "wonderful dinner",
-              "reviews": 2
-            },
-            {
-              "text": "amazing hospitality",
-              "reviews": 3
-            },
-            {
-              "text": "delicious food",
-              "reviews": 8
-            },
-            {
-              "text": "great ambience",
-              "reviews": 8
-            },
-            {
-              "text": "special thanks",
-              "reviews": 6
-            },
-            {
-              "text": "pool side",
-              "reviews": 3
-            },
-            {
-              "text": "special mention",
-              "reviews": 4
-            },
-            {
-              "text": "awesome place",
-              "reviews": 3
-            },
-            {
-              "text": "visit this place",
-              "reviews": 3
-            },
-            {
-              "text": "amit",
-              "reviews": 28
-            },
-            {
-              "text": "novotel",
-              "reviews": 10
-            },
-            {
-              "text": "team",
-              "reviews": 19
-            },
-            {
-              "text": "terrian",
-              "reviews": 2
-            },
-            {
-              "text": "accor",
-              "reviews": 2
-            },
-            {
-              "text": "durga",
-              "reviews": 2
-            },
-            {
-              "text": "abt",
-              "reviews": 2
-            },
-            {
-              "text": "bellandur",
-              "reviews": 2
-            },
-            {
-              "text": "poolside",
-              "reviews": 2
-            },
-            {
-              "text": "sesame",
-              "reviews": 2
-            },
-            {
-              "text": "cheers",
-              "reviews": 4
-            },
-            {
-              "text": "mocktails",
-              "reviews": 4
-            },
-            {
-              "text": "hangout",
-              "reviews": 5
-            }
-          ],
-          "id": "2355493",
-          "type": "RESTAURANT",
-          "category": "restaurant",
-          "subcategories": [
-            "Sit down"
-          ],
-          "name": "Blue Terrain",
-          "locationString": "Bengaluru, Bangalore District, Karnataka",
-          "description": "Blue Terrain is an evening outdoor dining restaurant and bar that offers customers a mix of classic and contemporary dining experiences along the poolside under the star-lit sky. Blue Terrain is known for hosting corporate gatherings in the Outer Ring Road area, in addition to being the ideal destination for couples and casual diners. The outlet has a one-of-a-kind menu for consumers, offering a variety of Fondues, Flambes, Sharing Plates, one-pot wonders, and other dishes to enhance the user experience. Blue Terrain has it all covered, from intimate proposals to social celebrations, with a variety of unique dining options and setups",
-          "image": "https://media-cdn.tripadvisor.com/media/photo-m/1280/22/08/f7/68/blue-terrain.jpg",
-          "photoCount": 189,
-          "rankingPosition": 7,
-          "rating": 4.9,
-          "rawRanking": 4.86522912979126,
-          "phone": "+91 95388 12348",
-          "address": "Outer Ring Road Rooftop, Novotel Bengaluru Outer Ring Road, Opp. RMZ Ecospace Business Park, Bengaluru 560103 India",
-          "addressObj": {
-            "street1": "Outer Ring Road",
-            "street2": "Rooftop, Novotel Bengaluru Outer Ring Road, Opp. RMZ Ecospace Business Park",
-            "city": "Bengaluru",
-            "state": "Karnataka",
-            "country": "India",
-            "postalcode": "560103"
-          },
-          "localName": "Blue Terrain",
-          "localAddress": "Outer Ring Road, Rooftop, Novotel Bengaluru Outer Ring Road, Opp. RMZ Ecospace Business Park, 560103",
-          "localLangCode": "en-IN",
-          "email": "h6453-fb1@accor.com",
-          "latitude": 12.929868,
-          "longitude": 77.68337,
-          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d2355493-Reviews-Blue_Terrain-Bengaluru_Bangalore_District_Karnataka.html",
-          "website": "http://all.accor.com/hotel/6453/index.en.shtml",
-          "rankingString": "#7 of 10,588 places to eat in Bengaluru",
-          "rankingDenominator": "4152",
-          "rankingSource": "API",
-          "neighborhoodLocations": [],
-          "nearestMetroStations": [],
-          "ancestorLocations": [
-            {
-              "id": "297628",
-              "name": "Bengaluru",
-              "abbreviation": null,
-              "subcategory": "City"
-            },
-            {
-              "id": "12392950",
-              "name": "Bangalore District",
-              "abbreviation": null,
-              "subcategory": "District"
-            },
-            {
-              "id": "297627",
-              "name": "Karnataka",
-              "abbreviation": null,
-              "subcategory": "State"
-            },
-            {
-              "id": "293860",
-              "name": "India",
-              "abbreviation": null,
-              "subcategory": "Country"
-            }
-          ],
-          "ratingHistogram": {
-            "count1": 1,
-            "count2": 1,
-            "count3": 7,
-            "count4": 30,
-            "count5": 333
-          },
-          "numberOfReviews": 372,
-          "isClosed": false,
-          "isLongClosed": false,
-          "openNowText": "Open Now",
-          "priceLevel": "$$$$",
-          "dishes": [
-            "Lamb chops",
-            "Steak Frites",
-            "Prawns",
-            "Lamb",
-            "Chicken dishes",
-            "Soup",
-            "Desserts",
-            "Jumbo Shrimp",
-            "Cake",
-            "Rack of Lamb"
-          ],
-          "hours": {
-            "weekRanges": [
-              [
-                {
-                  "open": 1080,
-                  "openHours": "18:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
-                }
-              ],
-              [
-                {
-                  "open": 1080,
-                  "openHours": "18:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
-                }
-              ],
-              [
-                {
-                  "open": 1080,
-                  "openHours": "18:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
-                }
-              ],
-              [
-                {
-                  "open": 1080,
-                  "openHours": "18:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
-                }
-              ],
-              [
-                {
-                  "open": 1080,
-                  "openHours": "18:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
-                }
-              ],
-              [
-                {
-                  "open": 1080,
-                  "openHours": "18:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
-                }
-              ],
-              [
-                {
-                  "open": 1080,
-                  "openHours": "18:00",
-                  "close": 1500,
-                  "closeHours": "01:00"
-                }
-              ]
-            ],
-            "timezone": "Asia/Kolkata"
-          },
-          "menuWebUrl": "https://drive.google.com/drive/folders/1mnSkGTZ0DocB-xL3MgWVkWo3ww-Jor7g?usp=share_link",
-          "ownersTopReasons": null,
-          "isNearbyResult": false,
-          "photos": [
-            "https://media-cdn.tripadvisor.com/media/photo-o/22/08/f7/68/blue-terrain.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/28/b0/73/bd/intimate-couple-dining.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/28/b0/73/a6/five-spiced-chicken-soba.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/28/b0/73/79/refreshing-cocktails.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/28/b0/73/6c/sesame-crusted-ginger.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/e7/5d/bc/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/e7/5d/bd/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/55/e4/49/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/f0/a0/d9/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/f0/a0/da/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/f0/a0/db/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/f0/a0/dc/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/f0/a0/dd/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/f0/a0/de/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/f0/a0/df/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/f0/a0/e0/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/f0/a0/e1/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/ee/d9/67/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/02/68/25/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/02/68/62/caption.jpg"
-          ],
-          "travelerChoiceAward": null,
-          "cuisines": [
-            "Indian",
-            "Bar",
-            "Mediterranean",
-            "Barbecue",
-            "Dining bars"
-          ],
-          "dietaryRestrictions": [
-            "Vegetarian friendly",
-            "Vegan options",
-            "Gluten free options"
-          ],
-          "establishmentTypes": [
-            "Restaurants"
-          ],
-          "features": [
-            "Reservations",
-            "Outdoor Seating",
-            "Seating",
-            "Parking Available",
-            "Validated Parking",
-            "Valet Parking",
-            "Serves Alcohol",
-            "Full Bar",
-            "Digital Payments",
-            "Free Wifi",
-            "Accepts Credit Cards",
-            "Table Service",
-            "Family style"
-          ],
-          "mealTypes": [
-            "Dinner",
-            "Drinks"
-          ],
-          "isClaimedIcon": false,
-          "isClaimedText": null,
-          "orderOnline": [],
-          "input": "Bengaluru"
-        }
-      },
-      {
-        "json": {
-          "reviewTags": [
-            {
-              "text": "brunch",
-              "reviews": 2
-            },
-            {
-              "text": "special thanks",
-              "reviews": 4
-            },
-            {
-              "text": "food was great",
-              "reviews": 2
-            },
-            {
-              "text": "sagar",
-              "reviews": 3
-            },
-            {
-              "text": "hospitality",
-              "reviews": 2
-            },
-            {
-              "text": "buffet",
-              "reviews": 3
-            },
-            {
-              "text": "order",
-              "reviews": 2
-            },
-            {
-              "text": "bangalore",
-              "reviews": 2
-            },
-            {
-              "text": "ambience",
-              "reviews": 2
-            }
-          ],
-          "id": "24187506",
-          "type": "RESTAURANT",
-          "category": "restaurant",
-          "subcategories": [
-            "Sit down"
-          ],
-          "name": "Neo Kitchen",
-          "locationString": "Bengaluru, Bangalore District, Karnataka",
-          "description": "Neo Kitchen is located at Hilton Bengaluru Embassy Manyata Business Park and is a contemporary food theater that elevates your culinary experience with its world on your platter concept. This all-day dining restaurant brings together cuisines from Indonesia, Vietnam, Singapore, and India, with signature meat offerings prepared a la minute in the Josper oven by creative chefs. Featuring culinary islands and private and semi-private seating enclaves, Neo Kitchen combines theatrical cooking with elegant dining. Guests can enjoy live cooking stations for breakfast, indulgent Saturday lunch buffets, or luxurious dinner experiences. From business breakfasts to relaxed weekend buffets, each meal is thoughtfully crafted to delight every palate, making Neo Kitchen a top choice for locals, hotel guests, and travelers seeking premium dining in North Bengaluru.",
-          "image": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2e/bd/5a/5c/neo-kitchen-is-a-vibrant.jpg",
-          "photoCount": 48,
-          "rankingPosition": 6,
-          "rating": 4.9,
-          "rawRanking": 4.868257999420166,
-          "phone": "+91 80 6901 2345",
-          "address": "Outer Ring Road Nagawara Bengaluru Hilton Bengaluru Embassy Manyata Business Park, Bengaluru 560045 India",
-          "addressObj": {
-            "street1": "Outer Ring Road Nagawara Bengaluru",
-            "street2": "Hilton Bengaluru Embassy Manyata Business Park",
-            "city": "Bengaluru",
-            "state": "Karnataka",
-            "country": "India",
-            "postalcode": "560045"
-          },
-          "localName": "Neo Kitchen",
-          "localAddress": "Outer Ring Road Nagawara Bengaluru, Hilton Bengaluru Embassy Manyata Business Park, 560045",
-          "localLangCode": "en-IN",
-          "email": "saikat.saha@hilton.com",
-          "latitude": 13.039997,
-          "longitude": 77.62437,
-          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d24187506-Reviews-Neo_Kitchen-Bengaluru_Bangalore_District_Karnataka.html",
-          "website": "https://hiltonsatmanyatabengaluru.com/restaurants-bars/neo-kitchen/",
-          "rankingString": "#6 of 10,588 places to eat in Bengaluru",
-          "rankingDenominator": "4152",
-          "rankingSource": "API",
-          "neighborhoodLocations": [],
-          "nearestMetroStations": [],
-          "ancestorLocations": [
-            {
-              "id": "297628",
-              "name": "Bengaluru",
-              "abbreviation": null,
-              "subcategory": "City"
-            },
-            {
-              "id": "12392950",
-              "name": "Bangalore District",
-              "abbreviation": null,
-              "subcategory": "District"
-            },
-            {
-              "id": "297627",
-              "name": "Karnataka",
-              "abbreviation": null,
-              "subcategory": "State"
-            },
-            {
-              "id": "293860",
-              "name": "India",
-              "abbreviation": null,
-              "subcategory": "Country"
-            }
-          ],
-          "ratingHistogram": {
-            "count1": 0,
-            "count2": 0,
-            "count3": 0,
-            "count4": 11,
-            "count5": 165
-          },
-          "numberOfReviews": 176,
-          "isClosed": false,
-          "isLongClosed": false,
-          "openNowText": "Open Now",
-          "priceLevel": "$$$$",
-          "dishes": [
-            "Sushi Rolls",
-            "Desserts",
-            "Cake"
-          ],
-          "hours": {
-            "weekRanges": [
-              [
-                {
-                  "open": 0,
-                  "openHours": "00:00",
-                  "close": 1439,
-                  "closeHours": "23:59"
-                }
-              ],
-              [
-                {
-                  "open": 0,
-                  "openHours": "00:00",
-                  "close": 1439,
-                  "closeHours": "23:59"
-                }
-              ],
-              [
-                {
-                  "open": 0,
-                  "openHours": "00:00",
-                  "close": 1439,
-                  "closeHours": "23:59"
-                }
-              ],
-              [
-                {
-                  "open": 0,
-                  "openHours": "00:00",
-                  "close": 1439,
-                  "closeHours": "23:59"
-                }
-              ],
-              [
-                {
-                  "open": 0,
-                  "openHours": "00:00",
-                  "close": 1439,
-                  "closeHours": "23:59"
-                }
-              ],
-              [
-                {
-                  "open": 0,
-                  "openHours": "00:00",
-                  "close": 1439,
-                  "closeHours": "23:59"
-                }
-              ],
-              [
-                {
-                  "open": 0,
-                  "openHours": "00:00",
-                  "close": 1439,
-                  "closeHours": "23:59"
-                }
-              ]
-            ],
-            "timezone": "Asia/Kolkata"
-          },
-          "menuWebUrl": "http://www.tripadvisor.com/MobileRestaurantMenu-g297628-d24187506-Neo_Kitchen-Bengaluru_Bangalore_District_Karnataka.html",
-          "ownersTopReasons": null,
-          "isNearbyResult": false,
-          "photos": [
-            "https://media-cdn.tripadvisor.com/media/photo-o/2e/bd/5a/5c/neo-kitchen-is-a-vibrant.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/30/97/da/6a/neo-kitchen.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/30/97/da/69/neo-kitchen.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/30/97/da/68/neo-kitchen.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/30/97/da/67/neo-kitchen.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/72/f1/ae/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/72/f1/af/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/72/f1/b0/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/47/f9/38/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/2e/fc/96/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/2e/fc/95/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/2e/fc/94/caption.jpg"
-          ],
-          "travelerChoiceAward": null,
-          "cuisines": [
-            "Italian",
-            "Indian",
-            "International",
-            "Asian",
-            "Grill"
-          ],
-          "dietaryRestrictions": [
-            "Vegetarian friendly",
-            "Vegan options"
-          ],
-          "establishmentTypes": [
-            "Restaurants"
-          ],
-          "features": [
-            "Takeout",
-            "Reservations",
-            "Outdoor Seating",
-            "Buffet",
-            "Private Dining",
-            "Seating",
             "Parking Available",
             "Validated Parking",
             "Valet Parking",
             "Highchairs Available",
-            "Serves Alcohol",
-            "Full Bar",
             "Wine and Beer",
-            "American Express",
             "Mastercard",
             "Visa",
-            "Discover",
-            "Table Service",
-            "Live Music",
-            "Family style"
+            "Free Wifi",
+            "Accepts Credit Cards",
+            "Table Service"
           ],
           "mealTypes": [
             "Breakfast",
             "Lunch",
             "Dinner",
-            "Brunch",
-            "Late Night",
-            "Drinks"
+            "Brunch"
           ],
           "isClaimedIcon": false,
           "isClaimedText": null,
@@ -2149,7 +2788,7 @@
           "longitude": 77.58465,
           "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d26559384-Reviews-Loya-Bengaluru_Bangalore_District_Karnataka.html",
           "website": "https://www.tajhotels.com/en-in/hotels/taj-west-end-bengaluru/restaurants/loya-taj-west-end?utm_source=Google&utm_campaign=LoyaTWE&utm_medium=Local",
-          "rankingString": "#2 of 10,588 places to eat in Bengaluru",
+          "rankingString": "#2 of 10,590 places to eat in Bengaluru",
           "rankingDenominator": "4152",
           "rankingSource": "API",
           "neighborhoodLocations": [],
@@ -2243,9 +2882,9 @@
             "count2": 2,
             "count3": 3,
             "count4": 15,
-            "count5": 646
+            "count5": 645
           },
-          "numberOfReviews": 667,
+          "numberOfReviews": 666,
           "isClosed": false,
           "isLongClosed": false,
           "openNowText": "Open Now",
@@ -2386,164 +3025,47 @@
       },
       {
         "json": {
-          "reviewTags": [
-            {
-              "text": "brunch",
-              "reviews": 17
-            },
-            {
-              "text": "salad",
-              "reviews": 8
-            },
-            {
-              "text": "curries",
-              "reviews": 4
-            },
-            {
-              "text": "cakes",
-              "reviews": 4
-            },
-            {
-              "text": "chaat",
-              "reviews": 3
-            },
-            {
-              "text": "ice cream",
-              "reviews": 5
-            },
-            {
-              "text": "bread",
-              "reviews": 5
-            },
-            {
-              "text": "rice",
-              "reviews": 3
-            },
-            {
-              "text": "electronic city",
-              "reviews": 10
-            },
-            {
-              "text": "buffet restaurant",
-              "reviews": 4
-            },
-            {
-              "text": "swimming pool",
-              "reviews": 2
-            },
-            {
-              "text": "special occasions",
-              "reviews": 2
-            },
-            {
-              "text": "special thanks",
-              "reviews": 4
-            },
-            {
-              "text": "nice restaurant",
-              "reviews": 3
-            },
-            {
-              "text": "fine dining",
-              "reviews": 2
-            },
-            {
-              "text": "food was amazing",
-              "reviews": 2
-            },
-            {
-              "text": "special mention",
-              "reviews": 2
-            },
-            {
-              "text": "courteous staff",
-              "reviews": 2
-            },
-            {
-              "text": "quick service",
-              "reviews": 2
-            },
-            {
-              "text": "great ambience",
-              "reviews": 2
-            },
-            {
-              "text": "spread",
-              "reviews": 18
-            },
-            {
-              "text": "ayub",
-              "reviews": 2
-            },
-            {
-              "text": "rubina",
-              "reviews": 2
-            },
-            {
-              "text": "team",
-              "reviews": 8
-            },
-            {
-              "text": "indian",
-              "reviews": 8
-            },
-            {
-              "text": "hospitality",
-              "reviews": 6
-            },
-            {
-              "text": "palate",
-              "reviews": 3
-            },
-            {
-              "text": "puri",
-              "reviews": 2
-            },
-            {
-              "text": "foodie",
-              "reviews": 2
-            },
-            {
-              "text": "mocktails",
-              "reviews": 2
-            }
-          ],
-          "id": "3524727",
+          "id": "15131290",
           "type": "RESTAURANT",
           "category": "restaurant",
           "subcategories": [
             "Sit down"
           ],
-          "name": "24@43 Coffee Shop",
+          "name": "WBG - Whitefield Bar and Grill",
           "locationString": "Bengaluru, Bangalore District, Karnataka",
-          "description": "Enjoy all-day dining at 24@43 at The Oterra, Bengaluru, as this Internationally-inspired restaurant offers the perfect ambience for breakfast, lunch, dinner and Sunday brunch. Serving both Indian and western cuisines along with a variety of cocktails. It consists of an a-la-carte menu, scrumptious buffets, and an expansive Sunday brunch.",
-          "image": "https://media-cdn.tripadvisor.com/media/photo-o/0e/ee/88/26/24-43.jpg",
-          "photoCount": 181,
-          "rankingPosition": 4,
-          "rating": 4.8,
-          "rawRanking": 4.876920700073242,
-          "phone": "+91 96208 00500",
-          "address": "43 Electronic City, Phase 1, Hosur Road The Oterra, Lobby Level, Bengaluru 560100 India",
+          "description": "Escape to our poolside oasis for an unforgettable dining experience. With fresh breezes and a fun-loving spirit, our menu of Modern Indian and international grills perfectly paired with our curated drinks list.",
+          "image": "https://media-cdn.tripadvisor.com/media/photo-m/1280/15/00/da/85/whitefield-bar-grill.jpg",
+          "photoCount": 158,
+          "rankingPosition": 28,
+          "rating": 4.9,
+          "rawRanking": 4.78355073928833,
+          "phone": "+91 95131 38662",
+          "address": "Plot No 75 8th Road Bengaluru Marriott Hotel Whitefield, Bengaluru 560066 India",
           "addressObj": {
-            "street1": "43 Electronic City, Phase 1, Hosur Road",
-            "street2": "The Oterra, Lobby Level",
+            "street1": "Plot No 75 8th Road",
+            "street2": "Bengaluru Marriott Hotel Whitefield",
             "city": "Bengaluru",
             "state": "Karnataka",
             "country": "India",
-            "postalcode": "560100"
+            "postalcode": "560066"
           },
-          "localName": "24@43 Coffee Shop",
-          "localAddress": "43 Electronic City, Phase 1, Hosur Road, The Oterra, Lobby Level, 560100",
+          "localName": "WBG - Whitefield Bar and Grill",
+          "localAddress": "Plot No 75 8th Road, Bengaluru Marriott Hotel Whitefield, 560066",
           "localLangCode": "en-IN",
-          "email": "reservations@theoterra.com",
-          "latitude": 12.850158,
-          "longitude": 77.66027,
-          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d3524727-Reviews-24_43_Coffee_Shop-Bengaluru_Bangalore_District_Karnataka.html",
-          "website": "https://www.theoterra.com/dining/24-43",
-          "rankingString": "#4 of 10,588 places to eat in Bengaluru",
+          "email": "mhrs.blrwf.fnbsales@marriott.com",
+          "latitude": 12.979014,
+          "longitude": 77.72833,
+          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d15131290-Reviews-WBG_Whitefield_Bar_and_Grill-Bengaluru_Bangalore_District_Karnataka.html",
+          "website": "http://www.marriott.com/en-us/dining/restaurant-bar/blrwf-bengaluru-marriott-hotel-whitefield/5829615-wbg-whitefield-bar-and-grill.mi",
+          "rankingString": "#28 of 10,590 places to eat in Bengaluru",
           "rankingDenominator": "4152",
           "rankingSource": "API",
-          "neighborhoodLocations": [],
+          "neighborhoodLocations": [
+            {
+              "id": "13087493",
+              "name": "Whitefield"
+            }
+          ],
           "nearestMetroStations": [],
           "ancestorLocations": [
             {
@@ -2573,12 +3095,260 @@
           ],
           "ratingHistogram": {
             "count1": 1,
-            "count2": 3,
-            "count3": 17,
-            "count4": 56,
-            "count5": 385
+            "count2": 0,
+            "count3": 1,
+            "count4": 15,
+            "count5": 213
           },
-          "numberOfReviews": 460,
+          "numberOfReviews": 230,
+          "isClosed": false,
+          "isLongClosed": false,
+          "openNowText": "Open Now",
+          "priceLevel": "$$ - $$$",
+          "dishes": [
+            "Burger",
+            "Tandoori Chicken",
+            "Steak Frites",
+            "Prawns",
+            "Beef",
+            "Lamb",
+            "Chicken dishes",
+            "Paneer",
+            "Burger and Fries",
+            "Jumbo Shrimp",
+            "Sea Bass"
+          ],
+          "hours": {
+            "weekRanges": [
+              [
+                {
+                  "open": 660,
+                  "openHours": "11:00",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 1020,
+                  "openHours": "17:00",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 1020,
+                  "openHours": "17:00",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 1020,
+                  "openHours": "17:00",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 1020,
+                  "openHours": "17:00",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 1020,
+                  "openHours": "17:00",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ],
+              [
+                {
+                  "open": 660,
+                  "openHours": "11:00",
+                  "close": 1380,
+                  "closeHours": "23:00"
+                }
+              ]
+            ],
+            "timezone": "Asia/Kolkata"
+          },
+          "menuWebUrl": "https://drive.google.com/file/d/1BeRqEEKS2U8Uxf0CVjU6q66AQB43YxaU/view?usp=drive_link",
+          "ownersTopReasons": null,
+          "isNearbyResult": false,
+          "reviewTags": [
+            {
+              "text": "special thanks",
+              "reviews": 6
+            },
+            {
+              "text": "amazing food",
+              "reviews": 5
+            },
+            {
+              "text": "marriott",
+              "reviews": 17
+            },
+            {
+              "text": "team",
+              "reviews": 16
+            },
+            {
+              "text": "bangalore",
+              "reviews": 20
+            }
+          ],
+          "photos": [
+            "https://media-cdn.tripadvisor.com/media/photo-o/31/58/92/45/long-shot-of-the-ambience.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/15/00/da/85/whitefield-bar-grill.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/15/00/da/1a/whitefield-bar-grill.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/15/00/d3/57/whitefield-bar-grill.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/31/58/92/44/cozy-outdoor-seating.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/30/df/c9/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/df/47/26/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/df/47/27/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/b6/2e/a7/wbg-whitefield-bar-and.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/b6/2e/a0/wbg-whitefield-bar-and.jpg"
+          ],
+          "travelerChoiceAward": null,
+          "cuisines": [
+            "Bar",
+            "Grill",
+            "Fusion",
+            "Dining bars"
+          ],
+          "dietaryRestrictions": [
+            "Vegetarian friendly",
+            "Vegan options",
+            "Gluten free options"
+          ],
+          "establishmentTypes": [
+            "Restaurants"
+          ],
+          "features": [
+            "Reservations",
+            "Outdoor Seating",
+            "Seating",
+            "Parking Available",
+            "Valet Parking",
+            "Highchairs Available",
+            "Wheelchair Accessible",
+            "Serves Alcohol",
+            "Full Bar",
+            "Wine and Beer",
+            "American Express",
+            "Mastercard",
+            "Visa",
+            "Free Wifi",
+            "Discover",
+            "Accepts Credit Cards",
+            "Table Service",
+            "Live Music",
+            "Dog Friendly",
+            "Family style"
+          ],
+          "mealTypes": [
+            "Lunch",
+            "Dinner",
+            "Drinks"
+          ],
+          "isClaimedIcon": false,
+          "isClaimedText": null,
+          "orderOnline": [
+            {
+              "providerType": "RESERVATION",
+              "canProvideTimeslots": false,
+              "buttonText": "Reserve",
+              "offerURL": "https://www.tripadvisor.com/Commerce?p=Restaurants_SevenRooms&src=272177606&geo=15131290&from=Restaurant_Review&area=reservation_button&slot=1&matchID=1&oos=0&cnt=1&silo=29025&bucket=870813&nrank=1&crank=1&clt=R&ttype=Restaurant&tm=344423135&managed=false&capped=false&gosox=9DMvibDTWdNaFeGYL8QTakyv1LBYZaGpeB4MEHn-hv2mZBN376EHVCGusTIRxmJ8y7At_zNDN2p4VpkTXco0l8GDZ__Ct5V4HOal017sfb8&cs=1dacd25060c2e2d89b5ff9878ede911fd",
+              "logoUrl": "https://static.tacdn.com/img2/branding/hotels/sevenrooms_04.23.2019.png",
+              "provider": "Restaurants_SevenRooms",
+              "providerId": "14051",
+              "providerDisplayName": "SevenRooms",
+              "headerText": "Reserve a table"
+            }
+          ],
+          "input": "Bengaluru"
+        }
+      },
+      {
+        "json": {
+          "id": "14101434",
+          "type": "RESTAURANT",
+          "category": "restaurant",
+          "subcategories": [
+            "Sit down"
+          ],
+          "name": "The Creek",
+          "locationString": "Bengaluru, Bangalore District, Karnataka",
+          "description": "Perfect for a quick meal or a prompt business meet, it is both a gastronomic and sensory delight. Food prepared in interactive counters on modern cooking ranges, grills and exotic clay ovens display the innovative art-form of our chefs. Walk out to Alfresco for an open air leisurely space that stands out for its unique feature of being surrounded by a trail of all day flowing water bodies.",
+          "image": "https://media-cdn.tripadvisor.com/media/photo-m/1280/13/f7/9b/cb/photo0jpg.jpg",
+          "photoCount": 279,
+          "rankingPosition": 12,
+          "rating": 4.9,
+          "rawRanking": 4.836822032928467,
+          "phone": "+91 8071 117 272",
+          "address": "KIADB Export Promotion Industrial Area, Whitefield ITPL Main Road, Bengaluru 560066 India",
+          "addressObj": {
+            "street1": "KIADB Export Promotion Industrial Area, Whitefield",
+            "street2": "ITPL Main Road",
+            "city": "Bengaluru",
+            "state": "Karnataka",
+            "country": "India",
+            "postalcode": "560066"
+          },
+          "localName": "The Creek",
+          "localAddress": "KIADB Export Promotion Industrial Area, Whitefield, ITPL Main Road, 560066",
+          "localLangCode": "en-IN",
+          "email": "thecreek@denhotels.com",
+          "latitude": 12.987164,
+          "longitude": 77.73316,
+          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d14101434-Reviews-The_Creek-Bengaluru_Bangalore_District_Karnataka.html",
+          "website": "http://www.denhotels.com",
+          "rankingString": "#12 of 10,590 places to eat in Bengaluru",
+          "rankingDenominator": "4152",
+          "rankingSource": "API",
+          "neighborhoodLocations": [],
+          "nearestMetroStations": [],
+          "ancestorLocations": [
+            {
+              "id": "297628",
+              "name": "Bengaluru",
+              "abbreviation": null,
+              "subcategory": "City"
+            },
+            {
+              "id": "12392950",
+              "name": "Bangalore District",
+              "abbreviation": null,
+              "subcategory": "District"
+            },
+            {
+              "id": "297627",
+              "name": "Karnataka",
+              "abbreviation": null,
+              "subcategory": "State"
+            },
+            {
+              "id": "293860",
+              "name": "India",
+              "abbreviation": null,
+              "subcategory": "Country"
+            }
+          ],
+          "ratingHistogram": {
+            "count1": 7,
+            "count2": 3,
+            "count3": 9,
+            "count4": 47,
+            "count5": 885
+          },
+          "numberOfReviews": 949,
           "isClosed": false,
           "isLongClosed": false,
           "openNowText": "Open Now",
@@ -2586,109 +3356,214 @@
           "dishes": [
             "Pasta",
             "Salad",
-            "Curry",
-            "Lamb",
             "Pesto",
-            "Cakes",
-            "Chicken dishes",
-            "Rice dishes",
-            "Breads and Pastries",
-            "Soup",
-            "Dosa",
+            "Dinner Buffet",
             "Fresh Pasta",
             "Desserts",
-            "Chicken Biryani",
-            "Biryani",
             "Cake",
-            "Vegetable Curry",
-            "Pastries"
+            "Sandesh"
           ],
           "hours": {
             "weekRanges": [
               [
                 {
-                  "open": 390,
-                  "openHours": "06:30",
-                  "close": 1440,
-                  "closeHours": "00:00"
+                  "open": 0,
+                  "openHours": "00:00",
+                  "close": 1439,
+                  "closeHours": "23:59"
                 }
               ],
               [
                 {
-                  "open": 390,
-                  "openHours": "06:30",
-                  "close": 1440,
-                  "closeHours": "00:00"
+                  "open": 0,
+                  "openHours": "00:00",
+                  "close": 1439,
+                  "closeHours": "23:59"
                 }
               ],
               [
                 {
-                  "open": 390,
-                  "openHours": "06:30",
-                  "close": 1440,
-                  "closeHours": "00:00"
+                  "open": 0,
+                  "openHours": "00:00",
+                  "close": 1439,
+                  "closeHours": "23:59"
                 }
               ],
               [
                 {
-                  "open": 390,
-                  "openHours": "06:30",
-                  "close": 1440,
-                  "closeHours": "00:00"
+                  "open": 0,
+                  "openHours": "00:00",
+                  "close": 1439,
+                  "closeHours": "23:59"
                 }
               ],
               [
                 {
-                  "open": 390,
-                  "openHours": "06:30",
-                  "close": 1440,
-                  "closeHours": "00:00"
+                  "open": 0,
+                  "openHours": "00:00",
+                  "close": 1439,
+                  "closeHours": "23:59"
                 }
               ],
               [
                 {
-                  "open": 390,
-                  "openHours": "06:30",
-                  "close": 1440,
-                  "closeHours": "00:00"
+                  "open": 0,
+                  "openHours": "00:00",
+                  "close": 1439,
+                  "closeHours": "23:59"
                 }
               ],
               [
                 {
-                  "open": 390,
-                  "openHours": "06:30",
-                  "close": 1440,
-                  "closeHours": "00:00"
+                  "open": 0,
+                  "openHours": "00:00",
+                  "close": 1439,
+                  "closeHours": "23:59"
                 }
               ]
             ],
             "timezone": "Asia/Kolkata"
           },
-          "menuWebUrl": "http://www.tripadvisor.com/MobileRestaurantMenu-g297628-d3524727-24_43_Coffee_Shop-Bengaluru_Bangalore_District_Karnataka.html",
+          "menuWebUrl": null,
           "ownersTopReasons": null,
           "isNearbyResult": false,
+          "reviewTags": [
+            {
+              "text": "brunch",
+              "reviews": 54
+            },
+            {
+              "text": "cake",
+              "reviews": 9
+            },
+            {
+              "text": "salad",
+              "reviews": 14
+            },
+            {
+              "text": "special thanks",
+              "reviews": 24
+            },
+            {
+              "text": "nice hospitality",
+              "reviews": 8
+            },
+            {
+              "text": "buffet spread",
+              "reviews": 19
+            },
+            {
+              "text": "amazing restaurant",
+              "reviews": 6
+            },
+            {
+              "text": "special mention",
+              "reviews": 15
+            },
+            {
+              "text": "excellent food and service",
+              "reviews": 10
+            },
+            {
+              "text": "live counter",
+              "reviews": 11
+            },
+            {
+              "text": "must visit place",
+              "reviews": 17
+            },
+            {
+              "text": "family dinner",
+              "reviews": 7
+            },
+            {
+              "text": "rumi",
+              "reviews": 111
+            },
+            {
+              "text": "den",
+              "reviews": 66
+            },
+            {
+              "text": "amit",
+              "reviews": 77
+            },
+            {
+              "text": "team",
+              "reviews": 48
+            },
+            {
+              "text": "leye",
+              "reviews": 6
+            },
+            {
+              "text": "sah",
+              "reviews": 6
+            },
+            {
+              "text": "ambience",
+              "reviews": 118
+            },
+            {
+              "text": "whitefield",
+              "reviews": 22
+            },
+            {
+              "text": "hostess",
+              "reviews": 7
+            },
+            {
+              "text": "cheers",
+              "reviews": 10
+            },
+            {
+              "text": "desert",
+              "reviews": 11
+            },
+            {
+              "text": "feedback",
+              "reviews": 8
+            },
+            {
+              "text": "varieties",
+              "reviews": 16
+            },
+            {
+              "text": "mark",
+              "reviews": 9
+            },
+            {
+              "text": "items",
+              "reviews": 10
+            },
+            {
+              "text": "bangalore",
+              "reviews": 18
+            },
+            {
+              "text": "cuisine",
+              "reviews": 6
+            }
+          ],
           "photos": [
-            "https://media-cdn.tripadvisor.com/media/photo-o/0d/d3/d6/ac/p-20161206-091252-hdr.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/31/d2/66/50/caption.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/31/cf/37/26/caption.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/31/9e/25/5d/caption.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/0e/ee/88/26/24-43.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/31/80/03/76/caption.jpg",
-            "https://media-cdn.tripadvisor.com/media/video-t/2f/4e/b8/fe/24-43-coffee-shop-1.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/4e/ed/7f/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/4e/ed/5d/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/e8/31/21/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/e8/31/20/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/e8/31/1f/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/e8/31/1e/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/e8/31/1d/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/e8/31/1c/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/e8/31/1b/caption.jpg"
+            "https://media-cdn.tripadvisor.com/media/photo-o/28/07/63/8d/the-creek.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/31/dd/80/15/caption.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/31/dd/7f/d8/caption.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/31/a7/39/e5/caption.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/13/f7/9b/cb/photo0jpg.jpg",
+            "https://media-cdn.tripadvisor.com/media/photo-o/1c/a0/d8/72/20210131-114333-largejpg.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/92/9e/c7/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/92/9e/c8/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/92/9e/c9/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/92/9e/ca/caption.jpg",
+            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/92/9e/cb/caption.jpg"
           ],
           "travelerChoiceAward": null,
           "cuisines": [
             "Indian",
-            "International"
+            "Bar",
+            "International",
+            "Grill"
           ],
           "dietaryRestrictions": [
             "Vegetarian friendly",
@@ -2700,695 +3575,28 @@
             "Restaurants"
           ],
           "features": [
-            "Takeout",
             "Reservations",
+            "Outdoor Seating",
+            "Buffet",
             "Seating",
             "Parking Available",
             "Validated Parking",
             "Valet Parking",
             "Highchairs Available",
-            "Wheelchair Accessible",
             "Serves Alcohol",
             "Full Bar",
-            "Table Service"
-          ],
-          "mealTypes": [
-            "Breakfast",
-            "Lunch",
-            "Dinner",
-            "Brunch"
-          ],
-          "isClaimedIcon": false,
-          "isClaimedText": null,
-          "orderOnline": [],
-          "input": "Bengaluru"
-        }
-      },
-      {
-        "json": {
-          "id": "1389538",
-          "type": "RESTAURANT",
-          "category": "restaurant",
-          "subcategories": [
-            "Sit down"
-          ],
-          "name": "Time Traveller",
-          "locationString": "Bengaluru, Bangalore District, Karnataka",
-          "description": "Time Traveller offers an eclectic buffet & an a la carte menu with dishes from across the globe. The buffet for lunch & dinner features over 12 salads, soup selections, 18 main course dishes & over a dozen desserts. Some of the dishes featured in the menu span from Greece, Mexico, The Orient, Europe, Morocco… etc all. Our live counter is a must try!",
-          "image": "https://media-cdn.tripadvisor.com/media/photo-o/14/96/fa/14/restaurant.jpg",
-          "photoCount": 539,
-          "rankingPosition": 1,
-          "rating": 4.9,
-          "rawRanking": 4.955207824707031,
-          "phone": "+91 80 4040 0400",
-          "address": "144 - C/1 Kirloskar Rd Ground Floor, Sai Vishram Business Hotel, Bengaluru 560099 India",
-          "addressObj": {
-            "street1": "144 - C/1 Kirloskar Rd",
-            "street2": "Ground Floor, Sai Vishram Business Hotel",
-            "city": "Bengaluru",
-            "state": "Karnataka",
-            "country": "India",
-            "postalcode": "560099"
-          },
-          "localName": "Time Traveller",
-          "localAddress": "144 - C/1 Kirloskar Rd, Ground Floor, Sai Vishram Business Hotel, 560099",
-          "localLangCode": "en-IN",
-          "email": null,
-          "latitude": 12.824636,
-          "longitude": 77.68114,
-          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d1389538-Reviews-Time_Traveller-Bengaluru_Bangalore_District_Karnataka.html",
-          "website": "https://www.instagram.com/timetravellersaivishram/?hl=e",
-          "rankingString": "#1 of 10,588 places to eat in Bengaluru",
-          "rankingDenominator": "4152",
-          "rankingSource": "API",
-          "neighborhoodLocations": [],
-          "nearestMetroStations": [],
-          "ancestorLocations": [
-            {
-              "id": "297628",
-              "name": "Bengaluru",
-              "abbreviation": null,
-              "subcategory": "City"
-            },
-            {
-              "id": "12392950",
-              "name": "Bangalore District",
-              "abbreviation": null,
-              "subcategory": "District"
-            },
-            {
-              "id": "297627",
-              "name": "Karnataka",
-              "abbreviation": null,
-              "subcategory": "State"
-            },
-            {
-              "id": "293860",
-              "name": "India",
-              "abbreviation": null,
-              "subcategory": "Country"
-            }
-          ],
-          "ratingHistogram": {
-            "count1": 10,
-            "count2": 8,
-            "count3": 33,
-            "count4": 163,
-            "count5": 2496
-          },
-          "numberOfReviews": 2710,
-          "isClosed": false,
-          "isLongClosed": false,
-          "openNowText": "Open Now",
-          "priceLevel": "$$ - $$$",
-          "dishes": [
-            "Pasta",
-            "Salad",
-            "Pesto",
-            "Sweets",
-            "Dinner Buffet",
-            "Soup",
-            "Dosa",
-            "Fresh Pasta",
-            "Desserts",
-            "Cake"
-          ],
-          "hours": {
-            "weekRanges": [
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ],
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ],
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ],
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ],
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ],
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ],
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ]
-            ],
-            "timezone": "Asia/Kolkata"
-          },
-          "menuWebUrl": null,
-          "ownersTopReasons": null,
-          "isNearbyResult": false,
-          "reviewTags": [
-            {
-              "text": "salad",
-              "reviews": 87
-            },
-            {
-              "text": "dosa",
-              "reviews": 49
-            },
-            {
-              "text": "ice cream",
-              "reviews": 26
-            },
-            {
-              "text": "sai vishram",
-              "reviews": 298
-            },
-            {
-              "text": "restaurant manager",
-              "reviews": 102
-            },
-            {
-              "text": "vegetarian food",
-              "reviews": 125
-            },
-            {
-              "text": "electronic city",
-              "reviews": 84
-            },
-            {
-              "text": "excellent hospitality",
-              "reviews": 64
-            },
-            {
-              "text": "excellent vegetarian",
-              "reviews": 27
-            },
-            {
-              "text": "garden city",
-              "reviews": 24
-            },
-            {
-              "text": "pure veg",
-              "reviews": 50
-            },
-            {
-              "text": "welcome drink",
-              "reviews": 42
-            },
-            {
-              "text": "awesome food",
-              "reviews": 59
-            },
-            {
-              "text": "family lunch",
-              "reviews": 21
-            },
-            {
-              "text": "buffet spread",
-              "reviews": 42
-            },
-            {
-              "text": "mind blowing",
-              "reviews": 28
-            },
-            {
-              "text": "lunch buffet",
-              "reviews": 37
-            },
-            {
-              "text": "south indian",
-              "reviews": 39
-            },
-            {
-              "text": "live counter",
-              "reviews": 24
-            },
-            {
-              "text": "nice ambience",
-              "reviews": 52
-            },
-            {
-              "text": "visit this place",
-              "reviews": 50
-            },
-            {
-              "text": "courteous staff",
-              "reviews": 24
-            },
-            {
-              "text": "main course",
-              "reviews": 65
-            },
-            {
-              "text": "special thanks",
-              "reviews": 24
-            },
-            {
-              "text": "mouth watering",
-              "reviews": 27
-            },
-            {
-              "text": "quality of food",
-              "reviews": 23
-            },
-            {
-              "text": "bommasandra",
-              "reviews": 41
-            },
-            {
-              "text": "ecity",
-              "reviews": 24
-            },
-            {
-              "text": "team",
-              "reviews": 157
-            },
-            {
-              "text": "bangalore",
-              "reviews": 259
-            }
-          ],
-          "photos": [
-            "https://media-cdn.tripadvisor.com/media/photo-o/14/96/fa/14/restaurant.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/02/d7/6e/a7/e-inn.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/13/c4/03/d2/paneer-biryani-served.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/13/a2/cf/82/mango-tart-served-at.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/13/21/e2/fc/baby-corn-in-hot-garlic.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/bb/f4/90/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/bb/f4/a5/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/7a/d3/d8/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/7a/d3/d9/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/7a/d3/da/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/ac/03/cf/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/ac/03/d0/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/ac/03/d1/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/ac/03/d2/caption.jpg"
-          ],
-          "travelerChoiceAward": null,
-          "cuisines": [
-            "Indian",
-            "International",
-            "Asian"
-          ],
-          "dietaryRestrictions": [
-            "Vegetarian friendly",
-            "Vegan options",
-            "Gluten free options"
-          ],
-          "establishmentTypes": [
-            "Restaurants"
-          ],
-          "features": [
-            "Delivery",
-            "Takeout",
-            "Reservations",
-            "Seating",
-            "Parking Available",
-            "Validated Parking",
-            "Valet Parking",
-            "Highchairs Available",
             "Wine and Beer",
-            "Mastercard",
-            "Visa",
+            "Digital Payments",
             "Free Wifi",
             "Accepts Credit Cards",
             "Table Service"
-          ],
-          "mealTypes": [
-            "Breakfast",
-            "Lunch",
-            "Dinner",
-            "Brunch"
-          ],
-          "isClaimedIcon": false,
-          "isClaimedText": null,
-          "orderOnline": [],
-          "input": "Bengaluru"
-        }
-      },
-      {
-        "json": {
-          "reviewTags": [
-            {
-              "text": "tapas",
-              "reviews": 6
-            },
-            {
-              "text": "dosa",
-              "reviews": 10
-            },
-            {
-              "text": "cakes",
-              "reviews": 4
-            },
-            {
-              "text": "salad",
-              "reviews": 5
-            },
-            {
-              "text": "aloft hotel",
-              "reviews": 22
-            },
-            {
-              "text": "cessna business park",
-              "reviews": 9
-            },
-            {
-              "text": "house keeping",
-              "reviews": 7
-            },
-            {
-              "text": "chef santosh",
-              "reviews": 7
-            },
-            {
-              "text": "wonderful stay",
-              "reviews": 6
-            },
-            {
-              "text": "long stay",
-              "reviews": 4
-            },
-            {
-              "text": "special mention",
-              "reviews": 15
-            },
-            {
-              "text": "special thanks",
-              "reviews": 15
-            },
-            {
-              "text": "outer ring road",
-              "reviews": 6
-            },
-            {
-              "text": "great hospitality",
-              "reviews": 7
-            },
-            {
-              "text": "memorable experience",
-              "reviews": 4
-            },
-            {
-              "text": "great food and service",
-              "reviews": 4
-            },
-            {
-              "text": "dining experience",
-              "reviews": 6
-            },
-            {
-              "text": "food options",
-              "reviews": 4
-            },
-            {
-              "text": "service staff",
-              "reviews": 4
-            },
-            {
-              "text": "must visit place",
-              "reviews": 4
-            },
-            {
-              "text": "anjali",
-              "reviews": 81
-            },
-            {
-              "text": "tirumala",
-              "reviews": 82
-            },
-            {
-              "text": "mona",
-              "reviews": 27
-            },
-            {
-              "text": "team",
-              "reviews": 39
-            },
-            {
-              "text": "khushi",
-              "reviews": 7
-            },
-            {
-              "text": "alia",
-              "reviews": 6
-            },
-            {
-              "text": "samarth",
-              "reviews": 5
-            },
-            {
-              "text": "kushi",
-              "reviews": 4
-            },
-            {
-              "text": "buffet",
-              "reviews": 30
-            },
-            {
-              "text": "bangalore",
-              "reviews": 32
-            }
-          ],
-          "id": "6885333",
-          "type": "RESTAURANT",
-          "category": "restaurant",
-          "subcategories": [],
-          "name": "Nook",
-          "locationString": "Bengaluru, Bangalore District, Karnataka",
-          "description": "Sample worldly flavors at Nook, our all-day restaurant in Marathahalli-Sarjapur, with a menu including Continental, Chinese, Indian and other cuisines. Our dining spot serves tasty meals throughout the week and a special à la carte menu on weekends.",
-          "image": "https://media-cdn.tripadvisor.com/media/photo-w/0e/b0/fe/6b/aloft-rohit-dassani.jpg",
-          "photoCount": 385,
-          "rankingPosition": 3,
-          "rating": 4.9,
-          "rawRanking": 4.880972385406494,
-          "phone": "+91 88844 52271",
-          "address": "Outer Ring Road Cessna Business Park, Bengaluru 560103 India",
-          "addressObj": {
-            "street1": "Outer Ring Road",
-            "street2": "Cessna Business Park",
-            "city": "Bengaluru",
-            "state": "Karnataka",
-            "country": "India",
-            "postalcode": "560103"
-          },
-          "localName": "Nook",
-          "localAddress": "Outer Ring Road, Cessna Business Park, 560103",
-          "localLangCode": "en-IN",
-          "email": null,
-          "latitude": 12.937097,
-          "longitude": 77.69514,
-          "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g297628-d6885333-Reviews-Nook-Bengaluru_Bangalore_District_Karnataka.html",
-          "website": null,
-          "rankingString": "#3 of 10,588 places to eat in Bengaluru",
-          "rankingDenominator": "4152",
-          "rankingSource": "API",
-          "neighborhoodLocations": [],
-          "nearestMetroStations": [],
-          "ancestorLocations": [
-            {
-              "id": "297628",
-              "name": "Bengaluru",
-              "abbreviation": null,
-              "subcategory": "City"
-            },
-            {
-              "id": "12392950",
-              "name": "Bangalore District",
-              "abbreviation": null,
-              "subcategory": "District"
-            },
-            {
-              "id": "297627",
-              "name": "Karnataka",
-              "abbreviation": null,
-              "subcategory": "State"
-            },
-            {
-              "id": "293860",
-              "name": "India",
-              "abbreviation": null,
-              "subcategory": "Country"
-            }
-          ],
-          "ratingHistogram": {
-            "count1": 4,
-            "count2": 2,
-            "count3": 3,
-            "count4": 29,
-            "count5": 556
-          },
-          "numberOfReviews": 594,
-          "isClosed": false,
-          "isLongClosed": false,
-          "openNowText": "Open Now",
-          "priceLevel": "$$$$",
-          "dishes": [
-            "Omelette",
-            "Tapas",
-            "Salad",
-            "Cakes",
-            "Fish",
-            "Chicken dishes",
-            "Breads and Pastries",
-            "Soup",
-            "Dosa",
-            "Naan",
-            "Mixed Platter",
-            "Finger Food",
-            "Desserts",
-            "Garlic Naan",
-            "Cake",
-            "Sandesh"
-          ],
-          "hours": {
-            "weekRanges": [
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ],
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ],
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ],
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ],
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ],
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ],
-              [
-                {
-                  "open": 420,
-                  "openHours": "07:00",
-                  "close": 1350,
-                  "closeHours": "22:30"
-                }
-              ]
-            ],
-            "timezone": "Asia/Kolkata"
-          },
-          "menuWebUrl": "https://bit.ly/AloftCessnaHomeDelivery",
-          "ownersTopReasons": null,
-          "isNearbyResult": false,
-          "photos": [
-            "https://media-cdn.tripadvisor.com/media/photo-o/30/72/aa/73/nook-restaurant.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/1c/f1/e6/59/bbq-chicken-wings.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/30/72/ad/a7/multicuisine-restaurant.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/1c/f1/e6/5c/vegetable-manchurian.jpg",
-            "https://media-cdn.tripadvisor.com/media/photo-o/1c/f1/e6/52/junglee-maas.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/e9/4a/cf/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/e9/4a/d0/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/e9/4a/d1/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/e9/4a/d2/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/c9/04/60/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/c9/04/61/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/c9/04/62/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/12/54/69/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/b1/74/0d/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/8a/42/13/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/be/cc/05/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/be/cc/06/caption.jpg",
-            "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/be/cc/07/caption.jpg"
-          ],
-          "travelerChoiceAward": null,
-          "cuisines": [
-            "Indian",
-            "Asian"
-          ],
-          "dietaryRestrictions": [
-            "Vegetarian friendly",
-            "Vegan options",
-            "Gluten free options"
-          ],
-          "establishmentTypes": [
-            "Restaurants"
-          ],
-          "features": [
-            "Reservations",
-            "Seating",
-            "Parking Available",
-            "Validated Parking",
-            "Valet Parking",
-            "Highchairs Available",
-            "Wheelchair Accessible",
-            "Serves Alcohol",
-            "Full Bar",
-            "Free Wifi",
-            "Accepts Credit Cards",
-            "Table Service",
-            "Live Music"
           ],
           "mealTypes": [
             "Breakfast",
             "Lunch",
             "Dinner",
             "Brunch",
+            "Late Night",
             "Drinks"
           ],
           "isClaimedIcon": false,
@@ -3411,7 +3619,18 @@
         ]
       ]
     },
-    "When chat message received": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Search Field",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Field": {
       "main": [
         [
           {
@@ -3427,8 +3646,9 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "7ad85f79-0276-4c27-8d92-67db276d5339",
+  "versionId": "7d2e1c2a-d2fe-4076-b41b-4cd8c377cfea",
   "meta": {
+    "templateCredsSetupCompleted": true,
     "instanceId": "a39925a189fc4958777cfbc2ee952f96a625e56b8dde120f89d58a7cdacf694a"
   },
   "id": "0tcX7ccGb8Q2kF0E",

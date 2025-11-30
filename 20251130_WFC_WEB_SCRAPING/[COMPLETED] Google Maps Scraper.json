@@ -3,32 +3,6 @@
   "nodes": [
     {
       "parameters": {
-        "formTitle": "Google Scraper",
-        "formFields": {
-          "values": [
-            {
-              "fieldLabel": "Query"
-            },
-            {
-              "fieldLabel": "Location",
-              "placeholder": "New York, USA"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.formTrigger",
-      "typeVersion": 2.3,
-      "position": [
-        112,
-        80
-      ],
-      "id": "9809abc6-1bfd-4e93-922b-a5b351b3a3f8",
-      "name": "On form submission",
-      "webhookId": "98a4ce26-80b3-497e-8e19-54bb025bbf3f"
-    },
-    {
-      "parameters": {
         "operation": "append",
         "documentId": {
           "__rl": true,
@@ -51,7 +25,7 @@
             "Address": "={{ $json.address }}",
             "City": "={{ $json.city }}",
             "Website": "={{ $json.website }}",
-            "Phone": "={{ $json.phone }}"
+            "Phone": "='{{ $json.phone }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -186,8 +160,7 @@
           "cachedResultName": "Google Maps Scraper (compass/crawler-google-places)",
           "cachedResultUrl": "https://console.apify.com/actors/nwua9Gu5YrADL7ZDj/input"
         },
-        "customBody": "={\n    \"includeWebResults\": false,\n    \"language\": \"en\",\n    \"locationQuery\": \"{{ $json.Location }}\",\n    \"maxCrawledPlacesPerSearch\": 10,\n    \"maxImages\": 0,\n    \"maximumLeadsEnrichmentRecords\": 0,\n    \"scrapeContacts\": false,\n    \"scrapeDirectories\": false,\n    \"scrapeImageAuthors\": false,\n    \"scrapePlaceDetailPage\": false,\n    \"scrapeReviewsPersonalData\": true,\n    \"scrapeTableReservationProvider\": false,\n    \"searchStringsArray\": [\n        \"{{ $json.Query }}\"\n    ],\n    \"skipClosedPlaces\": false\n}",
-        "authentication": "apifyOAuth2Api"
+        "customBody": "={\n    \"includeWebResults\": false,\n    \"language\": \"en\",\n    \"locationQuery\": \"{{ $json.Location }}\",\n    \"maxCrawledPlacesPerSearch\": 10,\n    \"maxImages\": 0,\n    \"maximumLeadsEnrichmentRecords\": 0,\n    \"scrapeContacts\": false,\n    \"scrapeDirectories\": false,\n    \"scrapeImageAuthors\": false,\n    \"scrapePlaceDetailPage\": false,\n    \"scrapeReviewsPersonalData\": true,\n    \"scrapeTableReservationProvider\": false,\n    \"searchStringsArray\": [\n        \"{{ $json['Search Term'] }}\"\n    ],\n    \"skipClosedPlaces\": false\n}"
       },
       "type": "@apify/n8n-nodes-apify.apify",
       "typeVersion": 1,
@@ -198,39 +171,84 @@
       "id": "25aeb50c-d06e-444c-bb22-37bfb5b4e1b3",
       "name": "Google Maps Scraper",
       "credentials": {
-        "apifyOAuth2Api": {
-          "id": "6o3xidJSHCECpNRF",
-          "name": "Apify account 8"
+        "apifyApi": {
+          "id": "HdtXg7jhS6Bv0Bx7",
+          "name": "KN APIFY 30 NOV 2025"
         }
       }
     },
     {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -192,
+        80
+      ],
+      "id": "6d4e05d6-339a-4f38-99d1-a2134715f7a6",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
       "parameters": {
-        "content": "## Google Sheet Link (Copy)\nhttps://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=sharing",
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e321b614-455b-4237-92dc-2972b2620df7",
+              "name": "Search Term",
+              "value": "SaaS",
+              "type": "string"
+            },
+            {
+              "id": "93d75b7f-24c3-46ba-bb47-0c8abef8fe8e",
+              "name": "Location",
+              "value": "Bengaluru",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        96,
+        80
+      ],
+      "id": "0bd4c948-466d-43f6-a48f-38121b18243b",
+      "name": "Search Field"
+    },
+    {
+      "parameters": {
+        "content": "## Replace with \n- Form\n- Agent",
         "height": 112,
-        "width": 480
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        32,
+        288
+      ],
+      "typeVersion": 1,
+      "id": "0313cb34-7796-46f6-a972-d451419b9cd6",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Links\n- Google Sheet Link (Copy) https://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=sharing\n\n- Apify Actor - https://console.apify.com/actors/nwua9Gu5YrADL7ZDj/input",
+        "height": 144,
+        "width": 1008
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
         0,
-        -128
+        -240
       ],
       "typeVersion": 1,
-      "id": "f5394830-a822-4563-978a-a94ea9f7b81e",
+      "id": "7884ea6e-9bcb-417b-bd2b-d56407427e07",
       "name": "Sticky Note3"
     }
   ],
   "pinData": {
-    "On form submission": [
-      {
-        "json": {
-          "Query": "SaaS",
-          "Location": "Bengaluru, India",
-          "submittedAt": "2025-11-14T06:53:46.407-05:00",
-          "formMode": "test"
-        }
-      }
-    ],
     "Google Maps Scraper": [
       {
         "json": {
@@ -250,7 +268,7 @@
             "lat": 12.8939644,
             "lng": 77.5254934
           },
-          "totalScore": 5,
+          "totalScore": 4.7,
           "permanentlyClosed": false,
           "temporarilyClosed": false,
           "placeId": "ChIJT3rUrnM_rjsRoVZHbUmX0F0",
@@ -259,10 +277,10 @@
           ],
           "fid": "0x3bae3f73aed47a4f:0x5dd097496d4756a1",
           "cid": "6760069382304913057",
-          "reviewsCount": 11,
+          "reviewsCount": 12,
           "imagesCount": 5,
           "imageCategories": [],
-          "scrapedAt": "2025-11-14T11:56:01.183Z",
+          "scrapedAt": "2025-11-30T14:10:38.985Z",
           "googleFoodUrl": null,
           "hotelAds": [],
           "openingHours": [
@@ -320,7 +338,7 @@
           "language": "en",
           "rank": 1,
           "isAdvertisement": false,
-          "imageUrl": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=HLXkh3lkPDNsMOw6oAL91w&cb_client=search.gws-prod.gps&w=408&h=240&yaw=82.81761&pitch=0&thumbfov=100",
+          "imageUrl": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=HLXkh3lkPDNsMOw6oAL91w&cb_client=search.gws-prod.gps&w=408&h=240&yaw=83.18714&pitch=0&thumbfov=100",
           "kgmid": "/g/11yllyv5r5"
         }
       },
@@ -354,7 +372,7 @@
           "reviewsCount": 2,
           "imagesCount": 3,
           "imageCategories": [],
-          "scrapedAt": "2025-11-14T11:56:01.184Z",
+          "scrapedAt": "2025-11-30T14:10:38.986Z",
           "googleFoodUrl": null,
           "hotelAds": [],
           "openingHours": [
@@ -403,89 +421,6 @@
       },
       {
         "json": {
-          "title": "SaaS Labs",
-          "price": null,
-          "categoryName": "Corporate office",
-          "address": "Prestige Taktare, Kasturba Cross Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka 560001, India",
-          "neighborhood": "Shanthala Nagar, Ashok Nagar",
-          "street": "Prestige Taktare, Kasturba Cross Rd",
-          "city": "Bengaluru",
-          "postalCode": "560001",
-          "state": "Karnataka",
-          "countryCode": "IN",
-          "claimThisBusiness": false,
-          "location": {
-            "lat": 12.9741253,
-            "lng": 77.5970578
-          },
-          "totalScore": 5,
-          "permanentlyClosed": false,
-          "temporarilyClosed": false,
-          "placeId": "ChIJIdN7RwAXrjsR2WF-psjXzQY",
-          "categories": [
-            "Corporate office"
-          ],
-          "fid": "0x3bae1700477bd321:0x6cdd7c8a67e61d9",
-          "cid": "490285191239983577",
-          "reviewsCount": 9,
-          "imagesCount": 28,
-          "imageCategories": [],
-          "scrapedAt": "2025-11-14T11:56:01.184Z",
-          "googleFoodUrl": null,
-          "hotelAds": [],
-          "openingHours": [
-            {
-              "day": "Monday",
-              "hours": "Open 24 hours"
-            },
-            {
-              "day": "Tuesday",
-              "hours": "Open 24 hours"
-            },
-            {
-              "day": "Wednesday",
-              "hours": "Open 24 hours"
-            },
-            {
-              "day": "Thursday",
-              "hours": "Open 24 hours"
-            },
-            {
-              "day": "Friday",
-              "hours": "Open 24 hours"
-            },
-            {
-              "day": "Saturday",
-              "hours": "Closed"
-            },
-            {
-              "day": "Sunday",
-              "hours": "Closed"
-            }
-          ],
-          "peopleAlsoSearch": [],
-          "placesTags": [],
-          "reviewsTags": [],
-          "additionalInfo": {
-            "Amenities": [
-              {
-                "Restroom": true
-              }
-            ]
-          },
-          "gasPrices": [],
-          "url": "https://www.google.com/maps/search/?api=1&query=SaaS%20Labs&query_place_id=ChIJIdN7RwAXrjsR2WF-psjXzQY",
-          "searchPageUrl": "https://www.google.com/maps/search/SaaS/@12.854154141963184,77.4848026697295,13z?hl=en",
-          "searchString": "SaaS",
-          "language": "en",
-          "rank": 3,
-          "isAdvertisement": false,
-          "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipPbZ8uczFOdrRRw-XZw6iJGxN_SCEmBno4gfxaO=w408-h408-k-no",
-          "kgmid": "/g/11ln19ccb9"
-        }
-      },
-      {
-        "json": {
           "title": "SaaSTech",
           "subTitle": "ಸಾಸ್ತೆಚ್",
           "price": null,
@@ -517,7 +452,7 @@
           "reviewsCount": 39,
           "imagesCount": 3,
           "imageCategories": [],
-          "scrapedAt": "2025-11-14T11:56:01.184Z",
+          "scrapedAt": "2025-11-30T14:10:38.986Z",
           "googleFoodUrl": null,
           "hotelAds": [],
           "openingHours": [
@@ -565,10 +500,93 @@
           "searchPageUrl": "https://www.google.com/maps/search/SaaS/@12.854154141963184,77.4848026697295,13z?hl=en",
           "searchString": "SaaS",
           "language": "en",
-          "rank": 4,
+          "rank": 3,
           "isAdvertisement": false,
           "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipOpH5LI57jKawMwkntg1oTbZBtJCOl3VHb-30Rf=w408-h306-k-no",
           "kgmid": "/g/1w0qzbzs"
+        }
+      },
+      {
+        "json": {
+          "title": "SaaS Labs",
+          "price": null,
+          "categoryName": "Corporate office",
+          "address": "Prestige Taktare, Kasturba Cross Rd, Shanthala Nagar, Ashok Nagar, Bengaluru, Karnataka 560001, India",
+          "neighborhood": "Shanthala Nagar, Ashok Nagar",
+          "street": "Prestige Taktare, Kasturba Cross Rd",
+          "city": "Bengaluru",
+          "postalCode": "560001",
+          "state": "Karnataka",
+          "countryCode": "IN",
+          "claimThisBusiness": false,
+          "location": {
+            "lat": 12.9741253,
+            "lng": 77.5970578
+          },
+          "totalScore": 5,
+          "permanentlyClosed": false,
+          "temporarilyClosed": false,
+          "placeId": "ChIJIdN7RwAXrjsR2WF-psjXzQY",
+          "categories": [
+            "Corporate office"
+          ],
+          "fid": "0x3bae1700477bd321:0x6cdd7c8a67e61d9",
+          "cid": "490285191239983577",
+          "reviewsCount": 8,
+          "imagesCount": 28,
+          "imageCategories": [],
+          "scrapedAt": "2025-11-30T14:10:38.987Z",
+          "googleFoodUrl": null,
+          "hotelAds": [],
+          "openingHours": [
+            {
+              "day": "Monday",
+              "hours": "Open 24 hours"
+            },
+            {
+              "day": "Tuesday",
+              "hours": "Open 24 hours"
+            },
+            {
+              "day": "Wednesday",
+              "hours": "Open 24 hours"
+            },
+            {
+              "day": "Thursday",
+              "hours": "Open 24 hours"
+            },
+            {
+              "day": "Friday",
+              "hours": "Open 24 hours"
+            },
+            {
+              "day": "Saturday",
+              "hours": "Closed"
+            },
+            {
+              "day": "Sunday",
+              "hours": "Closed"
+            }
+          ],
+          "peopleAlsoSearch": [],
+          "placesTags": [],
+          "reviewsTags": [],
+          "additionalInfo": {
+            "Amenities": [
+              {
+                "Restroom": true
+              }
+            ]
+          },
+          "gasPrices": [],
+          "url": "https://www.google.com/maps/search/?api=1&query=SaaS%20Labs&query_place_id=ChIJIdN7RwAXrjsR2WF-psjXzQY",
+          "searchPageUrl": "https://www.google.com/maps/search/SaaS/@12.854154141963184,77.4848026697295,13z?hl=en",
+          "searchString": "SaaS",
+          "language": "en",
+          "rank": 4,
+          "isAdvertisement": false,
+          "imageUrl": "https://lh3.googleusercontent.com/p/AF1QipPbZ8uczFOdrRRw-XZw6iJGxN_SCEmBno4gfxaO=w408-h408-k-no",
+          "kgmid": "/g/11ln19ccb9"
         }
       },
       {
@@ -602,7 +620,7 @@
           "reviewsCount": 30,
           "imagesCount": 14,
           "imageCategories": [],
-          "scrapedAt": "2025-11-14T11:56:01.184Z",
+          "scrapedAt": "2025-11-30T14:10:38.987Z",
           "googleFoodUrl": null,
           "hotelAds": [],
           "openingHours": [
@@ -679,9 +697,9 @@
           "fid": "0x3bae3d1bcd6398cd:0xa2328a8ae87af956",
           "cid": "11687556312190351702",
           "reviewsCount": 7,
-          "imagesCount": 38,
+          "imagesCount": 39,
           "imageCategories": [],
-          "scrapedAt": "2025-11-14T11:56:01.184Z",
+          "scrapedAt": "2025-11-30T14:10:38.987Z",
           "googleFoodUrl": null,
           "hotelAds": [],
           "openingHours": [
@@ -730,6 +748,99 @@
       },
       {
         "json": {
+          "title": "SAAS",
+          "price": null,
+          "categoryName": "Housing society",
+          "address": "13mrs palya nandidruga road, post, Benson Town, Bengaluru, Karnataka 560046, India",
+          "neighborhood": "Byadarahalli, Benson Town",
+          "street": "13mrs palya nandidruga road, post",
+          "city": "Bengaluru",
+          "postalCode": "560046",
+          "state": "Karnataka",
+          "countryCode": "IN",
+          "claimThisBusiness": true,
+          "location": {
+            "lat": 12.9998183,
+            "lng": 77.5999919
+          },
+          "permanentlyClosed": false,
+          "temporarilyClosed": false,
+          "placeId": "ChIJacmw39gXrjsRWRQF1vBKjRc",
+          "categories": [
+            "Housing society"
+          ],
+          "fid": "0x3bae17d8dfb0c969:0x178d4af0d6051459",
+          "cid": "1697095032831808601",
+          "reviewsCount": 0,
+          "imagesCount": 1,
+          "imageCategories": [],
+          "scrapedAt": "2025-11-30T14:10:38.987Z",
+          "googleFoodUrl": null,
+          "hotelAds": [],
+          "openingHours": [],
+          "peopleAlsoSearch": [],
+          "placesTags": [],
+          "reviewsTags": [],
+          "gasPrices": [],
+          "url": "https://www.google.com/maps/search/?api=1&query=SAAS&query_place_id=ChIJacmw39gXrjsRWRQF1vBKjRc",
+          "searchPageUrl": "https://www.google.com/maps/search/SaaS/@12.854154141963184,77.4848026697295,13z?hl=en",
+          "searchString": "SaaS",
+          "language": "en",
+          "rank": 7,
+          "isAdvertisement": false,
+          "imageUrl": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=6TXTE7dYQjm2DP93TrSAHQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=45.860825&pitch=0&thumbfov=100",
+          "kgmid": "/g/11t1z31bm5"
+        }
+      },
+      {
+        "json": {
+          "title": "Saas ka Ghar",
+          "price": null,
+          "categoryName": "Apartment building",
+          "address": "XH32+FQJ, 9/1, Ashwathakatte Rd, Vittal Nagar, Kasthuriba Nagar, Azad Nagar, Bengaluru, Karnataka 560026, India",
+          "neighborhood": "Vittal Nagar, Kasthuriba Nagar, Azad Nagar",
+          "street": "XH32+FQJ, 9/1, Ashwathakatte Rd",
+          "city": "Bengaluru",
+          "postalCode": "560026",
+          "state": "Karnataka",
+          "countryCode": "IN",
+          "claimThisBusiness": true,
+          "location": {
+            "lat": 12.9537169,
+            "lng": 77.5519643
+          },
+          "totalScore": 2,
+          "permanentlyClosed": false,
+          "temporarilyClosed": false,
+          "placeId": "ChIJ8e3Lwzc_rjsRHOzvboU6U8I",
+          "categories": [
+            "Apartment building"
+          ],
+          "fid": "0x3bae3f37c3cbedf1:0xc2533a856eefec1c",
+          "cid": "14002600011191282716",
+          "reviewsCount": 1,
+          "imagesCount": 3,
+          "imageCategories": [],
+          "scrapedAt": "2025-11-30T14:10:38.987Z",
+          "googleFoodUrl": null,
+          "hotelAds": [],
+          "openingHours": [],
+          "peopleAlsoSearch": [],
+          "placesTags": [],
+          "reviewsTags": [],
+          "gasPrices": [],
+          "url": "https://www.google.com/maps/search/?api=1&query=Saas%20ka%20Ghar&query_place_id=ChIJ8e3Lwzc_rjsRHOzvboU6U8I",
+          "searchPageUrl": "https://www.google.com/maps/search/SaaS/@12.854154141963184,77.4848026697295,13z?hl=en",
+          "searchString": "SaaS",
+          "language": "en",
+          "rank": 8,
+          "isAdvertisement": false,
+          "imageUrl": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cX9YH77q9xCTiNlbB7u2rw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=84.6065&pitch=0&thumbfov=100",
+          "kgmid": "/g/11v01fn2_4"
+        }
+      },
+      {
+        "json": {
           "title": "SaaS Insider",
           "price": null,
           "categoryName": "Corporate office",
@@ -757,7 +868,7 @@
           "reviewsCount": 0,
           "imagesCount": 1,
           "imageCategories": [],
-          "scrapedAt": "2025-11-14T11:56:01.184Z",
+          "scrapedAt": "2025-11-30T14:10:38.987Z",
           "googleFoodUrl": null,
           "hotelAds": [],
           "openingHours": [
@@ -805,103 +916,10 @@
           "searchPageUrl": "https://www.google.com/maps/search/SaaS/@12.854154141963184,77.4848026697295,13z?hl=en",
           "searchString": "SaaS",
           "language": "en",
-          "rank": 7,
+          "rank": 9,
           "isAdvertisement": false,
           "imageUrl": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=1zYTsqGLqzaF4QbvY9istg&cb_client=search.gws-prod.gps&w=408&h=240&yaw=61.099384&pitch=0&thumbfov=100",
           "kgmid": "/g/11vynw13t_"
-        }
-      },
-      {
-        "json": {
-          "title": "SAAS",
-          "price": null,
-          "categoryName": "Housing society",
-          "address": "13mrs palya nandidruga road, post, Benson Town, Bengaluru, Karnataka 560046, India",
-          "neighborhood": "Byadarahalli, Benson Town",
-          "street": "13mrs palya nandidruga road, post",
-          "city": "Bengaluru",
-          "postalCode": "560046",
-          "state": "Karnataka",
-          "countryCode": "IN",
-          "claimThisBusiness": true,
-          "location": {
-            "lat": 12.9998183,
-            "lng": 77.5999919
-          },
-          "permanentlyClosed": false,
-          "temporarilyClosed": false,
-          "placeId": "ChIJacmw39gXrjsRWRQF1vBKjRc",
-          "categories": [
-            "Housing society"
-          ],
-          "fid": "0x3bae17d8dfb0c969:0x178d4af0d6051459",
-          "cid": "1697095032831808601",
-          "reviewsCount": 0,
-          "imagesCount": 1,
-          "imageCategories": [],
-          "scrapedAt": "2025-11-14T11:56:01.184Z",
-          "googleFoodUrl": null,
-          "hotelAds": [],
-          "openingHours": [],
-          "peopleAlsoSearch": [],
-          "placesTags": [],
-          "reviewsTags": [],
-          "gasPrices": [],
-          "url": "https://www.google.com/maps/search/?api=1&query=SAAS&query_place_id=ChIJacmw39gXrjsRWRQF1vBKjRc",
-          "searchPageUrl": "https://www.google.com/maps/search/SaaS/@12.854154141963184,77.4848026697295,13z?hl=en",
-          "searchString": "SaaS",
-          "language": "en",
-          "rank": 8,
-          "isAdvertisement": false,
-          "imageUrl": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=6TXTE7dYQjm2DP93TrSAHQ&cb_client=search.gws-prod.gps&w=408&h=240&yaw=45.860825&pitch=0&thumbfov=100",
-          "kgmid": "/g/11t1z31bm5"
-        }
-      },
-      {
-        "json": {
-          "title": "Saas ka Ghar",
-          "price": null,
-          "categoryName": "Apartment building",
-          "address": "XH32+FQJ, 9/1, Ashwathakatte Rd, Vittal Nagar, Kasthuriba Nagar, Azad Nagar, Bengaluru, Karnataka 560026, India",
-          "neighborhood": "Vittal Nagar, Kasthuriba Nagar, Azad Nagar",
-          "street": "XH32+FQJ, 9/1, Ashwathakatte Rd",
-          "city": "Bengaluru",
-          "postalCode": "560026",
-          "state": "Karnataka",
-          "countryCode": "IN",
-          "claimThisBusiness": true,
-          "location": {
-            "lat": 12.9537169,
-            "lng": 77.5519643
-          },
-          "totalScore": 2,
-          "permanentlyClosed": false,
-          "temporarilyClosed": false,
-          "placeId": "ChIJ8e3Lwzc_rjsRHOzvboU6U8I",
-          "categories": [
-            "Apartment building"
-          ],
-          "fid": "0x3bae3f37c3cbedf1:0xc2533a856eefec1c",
-          "cid": "14002600011191282716",
-          "reviewsCount": 1,
-          "imagesCount": 3,
-          "imageCategories": [],
-          "scrapedAt": "2025-11-14T11:56:01.184Z",
-          "googleFoodUrl": null,
-          "hotelAds": [],
-          "openingHours": [],
-          "peopleAlsoSearch": [],
-          "placesTags": [],
-          "reviewsTags": [],
-          "gasPrices": [],
-          "url": "https://www.google.com/maps/search/?api=1&query=Saas%20ka%20Ghar&query_place_id=ChIJ8e3Lwzc_rjsRHOzvboU6U8I",
-          "searchPageUrl": "https://www.google.com/maps/search/SaaS/@12.854154141963184,77.4848026697295,13z?hl=en",
-          "searchString": "SaaS",
-          "language": "en",
-          "rank": 9,
-          "isAdvertisement": false,
-          "imageUrl": "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=cX9YH77q9xCTiNlbB7u2rw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=84.6065&pitch=0&thumbfov=100",
-          "kgmid": "/g/11v01fn2_4"
         }
       },
       {
@@ -934,7 +952,7 @@
           "reviewsCount": 2,
           "imagesCount": 7,
           "imageCategories": [],
-          "scrapedAt": "2025-11-14T11:56:01.185Z",
+          "scrapedAt": "2025-11-30T14:10:38.987Z",
           "googleFoodUrl": null,
           "hotelAds": [],
           "openingHours": [
@@ -984,22 +1002,33 @@
     ]
   },
   "connections": {
-    "On form submission": {
+    "Google Maps Scraper": {
       "main": [
         [
           {
-            "node": "Google Maps Scraper",
+            "node": "Append row in sheet",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Google Maps Scraper": {
+    "When clicking ‘Execute workflow’": {
       "main": [
         [
           {
-            "node": "Append row in sheet",
+            "node": "Search Field",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Field": {
+      "main": [
+        [
+          {
+            "node": "Google Maps Scraper",
             "type": "main",
             "index": 0
           }
@@ -1011,7 +1040,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "e8727060-f0bb-4d9b-afa5-bbc135fcd9ec",
+  "versionId": "e07f3fb4-cac1-48aa-9f66-3cd118fe5862",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "a39925a189fc4958777cfbc2ee952f96a625e56b8dde120f89d58a7cdacf694a"
