@@ -234,7 +234,7 @@
     },
     {
       "parameters": {
-        "content": "## Links\n- Google Sheet Link (Copy) https://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=sharing\n\n- Apify Actor - https://console.apify.com/actors/nwua9Gu5YrADL7ZDj/input",
+        "content": "## Google Maps\n- Google Sheet Link (Copy) https://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=sharing\n\n- Apify Actor - https://console.apify.com/actors/nwua9Gu5YrADL7ZDj/input",
         "height": 144,
         "width": 1008
       },
@@ -1040,7 +1040,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "e07f3fb4-cac1-48aa-9f66-3cd118fe5862",
+  "versionId": "404cdb90-bdc1-40c2-9d8e-d30b9e6c5e08",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "a39925a189fc4958777cfbc2ee952f96a625e56b8dde120f89d58a7cdacf694a"

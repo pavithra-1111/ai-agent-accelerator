@@ -200,7 +200,7 @@
     },
     {
       "parameters": {
-        "content": "## Links\n- Google Sheet Link (Copy) https://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=sharing\n\n- Apify Actor - https://console.apify.com/actors/h7sDV53CddomktSi5/input",
+        "content": "## YouTube Scraper\n- Google Sheet Link (Copy) https://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=sharing\n\n- Apify Actor - https://console.apify.com/actors/h7sDV53CddomktSi5/input",
         "height": 144,
         "width": 1008
       },
@@ -1410,7 +1410,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "514c6f1f-5416-4751-8241-2ac421835204",
+  "versionId": "ae564335-ee14-4b6a-9ca2-28749c8e1683",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "a39925a189fc4958777cfbc2ee952f96a625e56b8dde120f89d58a7cdacf694a"
