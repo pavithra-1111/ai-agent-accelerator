@@ -20,10 +20,10 @@
       "type": "n8n-nodes-base.formTrigger",
       "typeVersion": 2.3,
       "position": [
-        -192,
-        -16
+        112,
+        80
       ],
-      "id": "b15e3c65-74fb-445c-a91a-cb619a22f96a",
+      "id": "9809abc6-1bfd-4e93-922b-a5b351b3a3f8",
       "name": "On form submission",
       "webhookId": "98a4ce26-80b3-497e-8e19-54bb025bbf3f"
     },
@@ -32,33 +32,32 @@
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1Y7BZJvQzn_yqbXn0gATa3oQdVVvUqbdknCI7CvO9ZgQ",
+          "value": "1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM",
           "mode": "list",
-          "cachedResultName": "Google Maps Scraper",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Y7BZJvQzn_yqbXn0gATa3oQdVVvUqbdknCI7CvO9ZgQ/edit?usp=drivesdk"
+          "cachedResultName": "20251130_Scraper",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
-          "value": "gid=0",
+          "value": 1082723821,
           "mode": "list",
-          "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Y7BZJvQzn_yqbXn0gATa3oQdVVvUqbdknCI7CvO9ZgQ/edit#gid=0"
+          "cachedResultName": "Google_Maps",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit#gid=1082723821"
         },
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "Category name": "={{ $json.categoryName }}",
+            "Title": "={{ $json.title }}",
             "Address": "={{ $json.address }}",
             "City": "={{ $json.city }}",
             "Website": "={{ $json.website }}",
-            "Category": "={{ $json.categories[0] }}",
-            "Phone": "='{{ $json.phone ?? $json.phoneUnformatted ?? 'No phone available' }}"
+            "Phone": "={{ $json.phone }}"
           },
           "matchingColumns": [],
           "schema": [
             {
-              "id": "Category name",
-              "displayName": "Category name",
+              "id": "Title",
+              "displayName": "Title",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -93,8 +92,8 @@
               "canBeUsedToMatch": true
             },
             {
-              "id": "Category",
-              "displayName": "Category",
+              "id": "Email",
+              "displayName": "Email",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -119,15 +118,15 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        464,
-        -16
+        768,
+        80
       ],
-      "id": "7f69d67c-2587-40c6-8e7b-e977967d1f16",
+      "id": "ef291268-522f-4f7a-86f5-1ad2ff75d1a1",
       "name": "Append row in sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "KWE2h3ZpxTfcjA9c",
-          "name": "Arpan's Google Sheets"
+          "id": "50DCmt1movthIA5n",
+          "name": "KN DSM Public Google Sheets 9 NOV 2025"
         }
       }
     },
@@ -139,11 +138,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -304,
-        -96
+        0,
+        0
       ],
       "typeVersion": 1,
-      "id": "b8c2e188-6ce5-4fdf-a02b-03ba4bba8448",
+      "id": "81e5c24c-dbb0-4c42-b449-dbe3d56a34c5",
       "name": "Sticky Note"
     },
     {
@@ -154,11 +153,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        32,
-        -96
+        336,
+        0
       ],
       "typeVersion": 1,
-      "id": "0fd377d7-1885-4c41-9f30-2b15ed6b3749",
+      "id": "d8d70b41-9cb0-4a4a-b081-7a7d7acb020e",
       "name": "Sticky Note1"
     },
     {
@@ -169,11 +168,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        368,
-        -96
+        672,
+        0
       ],
       "typeVersion": 1,
-      "id": "af472c46-dade-4817-b3d7-b5575ccc794a",
+      "id": "e55568ef-3ccc-4be0-a48b-ed9c8fd556d3",
       "name": "Sticky Note2"
     },
     {
@@ -187,22 +186,38 @@
           "cachedResultName": "Google Maps Scraper (compass/crawler-google-places)",
           "cachedResultUrl": "https://console.apify.com/actors/nwua9Gu5YrADL7ZDj/input"
         },
-        "customBody": "={\n    \"includeWebResults\": false,\n    \"language\": \"en\",\n    \"locationQuery\": \"{{ $json.Location }}\",\n    \"maxCrawledPlacesPerSearch\": 10,\n    \"maxImages\": 0,\n    \"maximumLeadsEnrichmentRecords\": 0,\n    \"scrapeContacts\": false,\n    \"scrapeDirectories\": false,\n    \"scrapeImageAuthors\": false,\n    \"scrapePlaceDetailPage\": false,\n    \"scrapeReviewsPersonalData\": true,\n    \"scrapeTableReservationProvider\": false,\n    \"searchStringsArray\": [\n        \"{{ $json.Query }}\"\n    ],\n    \"skipClosedPlaces\": false\n}"
+        "customBody": "={\n    \"includeWebResults\": false,\n    \"language\": \"en\",\n    \"locationQuery\": \"{{ $json.Location }}\",\n    \"maxCrawledPlacesPerSearch\": 10,\n    \"maxImages\": 0,\n    \"maximumLeadsEnrichmentRecords\": 0,\n    \"scrapeContacts\": false,\n    \"scrapeDirectories\": false,\n    \"scrapeImageAuthors\": false,\n    \"scrapePlaceDetailPage\": false,\n    \"scrapeReviewsPersonalData\": true,\n    \"scrapeTableReservationProvider\": false,\n    \"searchStringsArray\": [\n        \"{{ $json.Query }}\"\n    ],\n    \"skipClosedPlaces\": false\n}",
+        "authentication": "apifyOAuth2Api"
       },
       "type": "@apify/n8n-nodes-apify.apify",
       "typeVersion": 1,
       "position": [
-        144,
-        -16
+        448,
+        80
       ],
-      "id": "0e8d3da2-38e3-4cfb-8624-874f63c70783",
+      "id": "25aeb50c-d06e-444c-bb22-37bfb5b4e1b3",
       "name": "Google Maps Scraper",
       "credentials": {
-        "apifyApi": {
-          "id": "mmIoZGIjIHp24dKy",
-          "name": "AS Apify account"
+        "apifyOAuth2Api": {
+          "id": "6o3xidJSHCECpNRF",
+          "name": "Apify account 8"
         }
       }
+    },
+    {
+      "parameters": {
+        "content": "## Google Sheet Link (Copy)\nhttps://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=sharing",
+        "height": 112,
+        "width": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "f5394830-a822-4563-978a-a94ea9f7b81e",
+      "name": "Sticky Note3"
     }
   ],
   "pinData": {
@@ -996,11 +1011,11 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "65c293a9-98b5-4242-b92d-5d78f73687d5",
+  "versionId": "e8727060-f0bb-4d9b-afa5-bbc135fcd9ec",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "d85661857dfcd1207ce11ef23fab2db3d27371fb05cc9bce02662a3f60039047"
+    "instanceId": "a39925a189fc4958777cfbc2ee952f96a625e56b8dde120f89d58a7cdacf694a"
   },
-  "id": "mPS88HXOylXZZ7wK",
+  "id": "MepDlAYASlz7CkqX",
   "tags": []
 }

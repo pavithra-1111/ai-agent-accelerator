@@ -3,47 +3,32 @@
   "nodes": [
     {
       "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1.4,
-      "position": [
-        -400,
-        -32
-      ],
-      "id": "7963b88f-40cb-415d-8958-abb8742b6018",
-      "name": "When chat message received",
-      "webhookId": "8171a5d1-8b06-46d1-b796-fd7fd983b193"
-    },
-    {
-      "parameters": {
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1Ro05FaAHEPj9FAvVJSP7hUdzlKNPVt2rWsj0PtCVB7s",
+          "value": "1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM",
           "mode": "list",
-          "cachedResultName": "YouTube Scraper",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ro05FaAHEPj9FAvVJSP7hUdzlKNPVt2rWsj0PtCVB7s/edit?usp=drivesdk"
+          "cachedResultName": "20251130_Scraper",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
-          "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Ro05FaAHEPj9FAvVJSP7hUdzlKNPVt2rWsj0PtCVB7s/edit#gid=0"
+          "cachedResultName": "YouTube",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "Channel Name": "={{ $json.channelName }}",
-            "Channel URL": "={{ $json.channelUrl }}",
-            "No. of Subscribers": "={{ $json.numberOfSubscribers }}",
-            "Location": "={{ $json.location }}",
             "Video Title": "={{ $json.title }}",
             "Link": "={{ $json.url }}",
+            "Views": "={{ $json.viewCount }}",
             "Likes": "={{ $json.likes }}",
             "Comments": "={{ $json.commentsCount }}",
-            "Views": "={{ $json.viewCount }}"
+            "Channel Name": "={{ $json.channelName }}",
+            "Channel URL": "={{ $json.channelUrl }}",
+            "Location": "={{ $json.location }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -54,8 +39,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "Link",
@@ -64,8 +48,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "Views",
@@ -74,8 +57,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "Likes",
@@ -84,8 +66,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "Comments",
@@ -94,8 +75,7 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "Channel Name",
@@ -104,21 +84,11 @@
               "defaultMatch": false,
               "display": true,
               "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
+              "canBeUsedToMatch": true
             },
             {
               "id": "Channel URL",
               "displayName": "Channel URL",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "No. of Subscribers",
-              "displayName": "No. of Subscribers",
               "required": false,
               "defaultMatch": false,
               "display": true,
@@ -143,15 +113,15 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        304,
-        -32
+        800,
+        80
       ],
-      "id": "b99b8ac5-495e-4041-8afc-fe751a70b3d6",
+      "id": "ea375cf2-f489-4837-9b3f-7d88cabad2e4",
       "name": "Append row in sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "8ERR7nKGyBgaeMLc",
-          "name": "DSM PUBLIC- 18 NOV 2025"
+          "id": "50DCmt1movthIA5n",
+          "name": "KN DSM Public Google Sheets 9 NOV 2025"
         }
       }
     },
@@ -163,11 +133,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -496,
-        -112
+        0,
+        0
       ],
       "typeVersion": 1,
-      "id": "7b82855b-3e3f-4e5a-87cb-35dc433e5190",
+      "id": "b4d4ce3f-c0ab-4720-9681-a0b47c204e4f",
       "name": "Sticky Note"
     },
     {
@@ -178,11 +148,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -144,
-        -112
+        352,
+        0
       ],
       "typeVersion": 1,
-      "id": "4e5c1d65-db7e-4cbd-906d-9d19dc6569ec",
+      "id": "bb76648e-cba5-410c-8111-4537cbb9afb2",
       "name": "Sticky Note1"
     },
     {
@@ -193,11 +163,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        208,
-        -112
+        704,
+        0
       ],
       "typeVersion": 1,
-      "id": "859e4d5b-312c-4798-85a7-e3d2aec57e57",
+      "id": "e9876abe-88c1-430f-b1c9-a63b7694edac",
       "name": "Sticky Note2"
     },
     {
@@ -211,34 +181,55 @@
           "cachedResultName": "YouTube Scraper (streamers/youtube-scraper)",
           "cachedResultUrl": "https://console.apify.com/actors/h7sDV53CddomktSi5/input"
         },
-        "customBody": "={\n    \"downloadSubtitles\": false,\n    \"hasCC\": false,\n    \"hasLocation\": false,\n    \"hasSubtitles\": false,\n    \"is360\": false,\n    \"is3D\": false,\n    \"is4K\": false,\n    \"isBought\": false,\n    \"isHD\": false,\n    \"isHDR\": false,\n    \"isLive\": false,\n    \"isVR180\": false,\n    \"maxResultStreams\": 0,\n    \"maxResults\": 10,\n    \"maxResultsShorts\": 0,\n    \"preferAutoGeneratedSubtitles\": false,\n    \"saveSubsToKVS\": false,\n    \"searchQueries\": [\n        \"{{ $json.chatInput }}\"\n    ]\n}"
+        "customBody": "={\n    \"downloadSubtitles\": false,\n    \"hasCC\": false,\n    \"hasLocation\": false,\n    \"hasSubtitles\": false,\n    \"is360\": false,\n    \"is3D\": false,\n    \"is4K\": false,\n    \"isBought\": false,\n    \"isHD\": false,\n    \"isHDR\": false,\n    \"isLive\": false,\n    \"isVR180\": false,\n    \"maxResultStreams\": 0,\n    \"maxResults\": 10,\n    \"maxResultsShorts\": 0,\n    \"preferAutoGeneratedSubtitles\": false,\n    \"saveSubsToKVS\": false,\n    \"searchQueries\": [\n        \"{{ $json.chatInput }}\"\n    ]\n}",
+        "authentication": "apifyOAuth2Api"
       },
       "type": "@apify/n8n-nodes-apify.apify",
       "typeVersion": 1,
       "position": [
-        -48,
-        -32
+        448,
+        80
       ],
-      "id": "10cad73d-04b9-4647-aade-054661c93f87",
+      "id": "d29f4091-1d73-447c-9ee3-5710e582919c",
       "name": "YouTube Scraper",
       "credentials": {
-        "apifyApi": {
-          "id": "mmIoZGIjIHp24dKy",
-          "name": "AS Apify account"
+        "apifyOAuth2Api": {
+          "id": "6o3xidJSHCECpNRF",
+          "name": "Apify account 8"
         }
       }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        128,
+        80
+      ],
+      "id": "76b3307e-e3d2-4f7c-b5f4-6b63c71b089a",
+      "name": "When chat message received",
+      "webhookId": "1beb296e-0e60-4e99-b6d9-c34681836592"
+    },
+    {
+      "parameters": {
+        "content": "## Google Sheet Link (Copy)\nhttps://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=sharing",
+        "height": 112,
+        "width": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "79de44e7-a51c-4845-813e-f4439055d1f9",
+      "name": "Sticky Note3"
     }
   ],
   "pinData": {
-    "When chat message received": [
-      {
-        "json": {
-          "sessionId": "44700aea9c364eec8e376621cdbf3380",
-          "action": "sendMessage",
-          "chatInput": "Autocar India"
-        }
-      }
-    ],
     "YouTube Scraper": [
       {
         "json": {
@@ -1145,22 +1136,22 @@
     ]
   },
   "connections": {
-    "When chat message received": {
+    "YouTube Scraper": {
       "main": [
         [
           {
-            "node": "YouTube Scraper",
+            "node": "Append row in sheet",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "YouTube Scraper": {
+    "When chat message received": {
       "main": [
         [
           {
-            "node": "Append row in sheet",
+            "node": "YouTube Scraper",
             "type": "main",
             "index": 0
           }
@@ -1172,11 +1163,11 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "dab37d2b-6821-43c9-a668-28635a2ab360",
+  "versionId": "5da382fc-e2e8-431d-a572-8fd2398752f0",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "d85661857dfcd1207ce11ef23fab2db3d27371fb05cc9bce02662a3f60039047"
+    "instanceId": "a39925a189fc4958777cfbc2ee952f96a625e56b8dde120f89d58a7cdacf694a"
   },
-  "id": "rtGs2J4vCNxwcOZN",
+  "id": "64uHmYGAspbv47do",
   "tags": []
 }

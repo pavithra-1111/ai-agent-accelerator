@@ -3,34 +3,20 @@
   "nodes": [
     {
       "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1.4,
-      "position": [
-        -800,
-        -416
-      ],
-      "id": "93c89849-8e2e-4bd9-a663-8f70299a80b8",
-      "name": "When chat message received",
-      "webhookId": "719c1e7e-f8e0-4eb9-bb96-9461d4de20a1"
-    },
-    {
-      "parameters": {
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1YUQ3SH4rKdVzzyz_yRnJqdB0WvjcHnvjH-XmLE6iAI0",
+          "value": "1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM",
           "mode": "list",
-          "cachedResultName": "Trip Advisor",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YUQ3SH4rKdVzzyz_yRnJqdB0WvjcHnvjH-XmLE6iAI0/edit?usp=drivesdk"
+          "cachedResultName": "20251130_Scraper",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
-          "value": "gid=0",
+          "value": 2109795639,
           "mode": "list",
-          "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YUQ3SH4rKdVzzyz_yRnJqdB0WvjcHnvjH-XmLE6iAI0/edit#gid=0"
+          "cachedResultName": "Trip_advisor",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit#gid=2109795639"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -38,13 +24,13 @@
             "Type": "={{ $json.type }}",
             "Category": "={{ $json.category }}",
             "Name": "={{ $json.name }}",
-            "Address": "={{ $json.address }}",
+            "Address": "={{ $json.locationString }}",
             "Rating": "={{ $json.rating }}",
+            "Phone Number": "={{ $json.phone }}",
             "Email": "={{ $json.email }}",
-            "Phone Number": "='{{ $json.phone }}",
-            "Price Range": "={{ $json.priceRange }}",
-            "No. of Reviews": "={{ $json.numberOfReviews }}",
-            "Website": "={{ $json.website }}"
+            "No. of Reviews": "={{ $json.rankingDenominator }}",
+            "Website": "={{ $json.website }}",
+            "Price Range": "={{ $json.priceLevel }}"
           },
           "matchingColumns": [],
           "schema": [
@@ -147,15 +133,15 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        -144,
-        -416
+        768,
+        96
       ],
-      "id": "da2fa1c6-5875-4c0a-8d54-06d39fd411d4",
+      "id": "d677f82b-621c-4d89-8456-ea90a9f4b0bc",
       "name": "Append row in sheet",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "KWE2h3ZpxTfcjA9c",
-          "name": "Arpan's Google Sheets"
+          "id": "50DCmt1movthIA5n",
+          "name": "KN DSM Public Google Sheets 9 NOV 2025"
         }
       }
     },
@@ -167,11 +153,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -912,
-        -512
+        0,
+        0
       ],
       "typeVersion": 1,
-      "id": "539a76fc-59a0-4fa6-8b5f-f6d31e16a09e",
+      "id": "38708b62-580b-43c2-970c-964ce2f43331",
       "name": "Sticky Note"
     },
     {
@@ -182,11 +168,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -576,
-        -512
+        336,
+        0
       ],
       "typeVersion": 1,
-      "id": "de036e6b-c640-4257-b7e1-926df035d22a",
+      "id": "ab426a25-d91e-45af-a527-7f534ca469b8",
       "name": "Sticky Note1"
     },
     {
@@ -197,11 +183,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        -240,
-        -512
+        672,
+        0
       ],
       "typeVersion": 1,
-      "id": "34ff9fd8-b95a-48fc-9776-a17c45642101",
+      "id": "83f576de-3551-45c6-8795-70cee225303f",
       "name": "Sticky Note2"
     },
     {
@@ -220,17 +206,40 @@
       "type": "@apify/n8n-nodes-apify.apify",
       "typeVersion": 1,
       "position": [
-        -480,
-        -416
+        432,
+        96
       ],
-      "id": "2bb589e8-9062-4ba7-9643-a07945b99981",
-      "name": "TripAdvisor Scraper",
-      "credentials": {
-        "apifyApi": {
-          "id": "mmIoZGIjIHp24dKy",
-          "name": "AS Apify account"
-        }
-      }
+      "id": "c6bf7593-06e9-4a00-847a-4b5d882ff25a",
+      "name": "TripAdvisor Scraper"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        128,
+        96
+      ],
+      "id": "ea668d27-c954-487a-b2d0-1cc07295e680",
+      "name": "When chat message received",
+      "webhookId": "6b70fc25-efe4-4d72-8d53-315d4aa8e40f"
+    },
+    {
+      "parameters": {
+        "content": "## Google Sheet Link (Copy)\nhttps://docs.google.com/spreadsheets/d/1CUfg6rhh-OjVaNrB5AWSv40g9TCNwTg_11yuJg7nnrM/edit?usp=sharing",
+        "height": 112,
+        "width": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        -128
+      ],
+      "typeVersion": 1,
+      "id": "29cd8788-c4bf-4f36-9ec3-40de68bcdcf2",
+      "name": "Sticky Note3"
     }
   ],
   "pinData": {
@@ -3391,22 +3400,22 @@
     ]
   },
   "connections": {
-    "When chat message received": {
+    "TripAdvisor Scraper": {
       "main": [
         [
           {
-            "node": "TripAdvisor Scraper",
+            "node": "Append row in sheet",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "TripAdvisor Scraper": {
+    "When chat message received": {
       "main": [
         [
           {
-            "node": "Append row in sheet",
+            "node": "TripAdvisor Scraper",
             "type": "main",
             "index": 0
           }
@@ -3418,11 +3427,10 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "df55bde3-7520-4fc5-b3d7-5d89e2dd204b",
+  "versionId": "7ad85f79-0276-4c27-8d92-67db276d5339",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "d85661857dfcd1207ce11ef23fab2db3d27371fb05cc9bce02662a3f60039047"
+    "instanceId": "a39925a189fc4958777cfbc2ee952f96a625e56b8dde120f89d58a7cdacf694a"
   },
-  "id": "1L8I5UYu928Rv9wi",
+  "id": "0tcX7ccGb8Q2kF0E",
   "tags": []
 }
