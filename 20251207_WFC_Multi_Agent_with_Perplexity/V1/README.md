@@ -12,6 +12,22 @@ Plus a Main Orchestrator Agent.
 Each agent uses the Perplexity model for any external information.  
 This ensures the workflow remains grounded, realistic, and hallucination free.
 
+## Prompts to Test
+
+### Prompt 1
+```
+My AI automation agency is stuck at 2 lakh per month. I have limited time, no sales team, and I am already doing custom n8n projects. How should I scale to 10 lakh per month without burning out.
+```
+
+### Prompt 2
+```
+I can build three things next. 1) A lead generation agent for realtors. 2) A review reply automation for local businesses. 3) A Telegram reporting agent for agencies. I have one month of build time. Which should I prioritize and why.
+```
+
+### Prompt 3
+```
+I am considering hiring a part time developer to help with n8n flows. Budget is limited and I am worried about quality and management overhead. Should I hire now or delay and keep doing everything myself
+```
 ---
 
 ## How It Works
