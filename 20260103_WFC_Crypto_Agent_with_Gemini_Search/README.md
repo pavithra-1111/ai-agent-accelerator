@@ -64,8 +64,8 @@ POLICY
 
 STEP-BY-STEP
 1) Build tool payloads:
-   - FundamentalsAnalyst: pass { id, symbol } (or just id if symbol unavailable).
-   - TechnicalsAnalyst: pass { id, symbol } (or just id if symbol unavailable).
+   - Fundamental Analyst: pass { id, symbol } (or just id if symbol unavailable).
+   - Technical Analyst: pass { id, symbol } (or just id if symbol unavailable).
 2) Call BOTH tools. Capture their text outputs EXACTLY as returned
    (they already include Gemini Search context lines).
 3) Compose a single Markdown string with THIS EXACT FORMAT and line breaks:
